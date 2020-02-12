@@ -4,8 +4,8 @@ import pandas
 import json
 from bs4 import BeautifulSoup
 
-f = open('C:/Users/KTH/Desktop/전공/python/userID.csv',encoding='ANSI')
-csvfile = pandas.read_csv('C:/Users/KTH/Desktop/전공/python/userID.csv',header=None,encoding='ANSI')
+f = open('C:/Users/KTH/Desktop/python/userID.csv',encoding='ANSI')
+csvfile = pandas.read_csv('C:/Users/KTH/Desktop/python/userID.csv',header=None,encoding='ANSI')
 f.close()
 
 f = open('C:/Users/KTH/Desktop/GitHub/realUserID.csv', 'a')
