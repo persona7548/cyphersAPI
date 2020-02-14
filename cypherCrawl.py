@@ -6,7 +6,7 @@ for j in range(0,10000,1000):
     r = requests.get(url)
     data = json.loads(r.text)
     for i in range(0,1000):
-        f = open('C:/Users/KTH/Desktop/GitHub/matchId.csv', 'a')
+        f = open('C:/Users/KTH/Desktop/GitHub/userID.csv', 'a')
         try:
             nickname = str(data["rows"][i]["nickname"])
             playerId = str(data["rows"][i]["playerId"])
