@@ -1,16 +1,17 @@
 import requests
-import time
-from bs4 import BeautifulSoup
+import json
 
-for pageNum in range(1,200):
-    time.sleep(0.5)
-    url = 'http://cyphers.nexon.com/cyphers/article/ranking/total/15/'+str(pageNum)
+for j in range(0,10000,1000):
+    url = 'https://api.neople.co.kr/cy/ranking/ratingpoint?&offset='+j+'&limit=1000&apikey=<SECRET>'
     r = requests.get(url)
-    html = r.content
-    soup = BeautifulSoup(html, 'html.parser')
-    titles_html = soup.select('.board_list > tbody > tr > td > a')
-    f = open('C:/userID.csv', 'a')
-    for i in range(len(titles_html)):
-        userID = titles_html[i].text
-        f.write(userID+',')
-    f.close()
+    data = json.loads(r.text)
+    for i in range(0,1000):
+        f = open('C:/Users/KTH/Desktop/GitHub/matchId.csv', 'a')
+        try:
+            nickname = str(data["rows"][i]["nickname"])
+            playerId = str(data["rows"][i]["playerId"])
+            print(nickname+','+playerId)
+            f.write(nickname+','+playerId+'\n')
+        except:
+            continue
+        f.close()
