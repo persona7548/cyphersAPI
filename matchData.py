@@ -3,35 +3,72 @@ import time
 import pandas
 import json
 
-API_KEY = 'SECRET'
-
+API_KEY = <SECRET>
+equipment = list(["101","102","103","104","105","106","202","203","301","302","303","304","305","107","204","205"])
 csvfile = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/matchId.csv',header=None,encoding='ANSI')
 headers = {'Content-Type': 'application/json; charset=utf-8'}
 
-matchID = csvfile[0][0]
-url = 'https://api.neople.co.kr/cy/matches/'+matchID+'?&apikey='+API_KEY
-r = requests.get(url=url,headers = headers)
-data = json.loads(r.text)
-map = str(data["players"][1]["map"]["name"])
-winList = data["teams"][1]["players"]
-f = open('C:/Users/KTH/Desktop/GitHub/matchData.csv', 'a')
-f.write(matchID+","+map)
-for i in range(0,10):
-    player = data["players"][i]
-    if player["playerId"] in winList:
-        f.write(","+str(player["playInfo"]["characterName"]))
-f.write("\n")
-f.close()
+csvfile = csvfile.drop_duplicates()
 
-f = open('C:/Users/KTH/Desktop/GitHub/matchInfo.csv', 'a')
+for id in range(len(csvfile)):
+    time.sleep(2)
+    print(id)
+    try:
+        matchID = csvfile[0][id]
+    except:
+        continue
 
-for i in range(0,10):
-    player = data["players"][i]
-    if player["playerId"] in winList:
-        f.write(matchID+","+player["playerId"]+","+player["playInfo"]["characterName"]+","+player["position"]["name"]+","+
-        player["position"]["attribute"][0]["name"]+","+player["position"]["attribute"][1]["name"]+","+player["position"]["attribute"][2]["name"])
-        for j in range(0,16):
-            f.write(","+player["items"][j]["itemName"])
-        f.write("\n")
+    url = 'https://api.neople.co.kr/cy/matches/'+matchID+'?&apikey='+API_KEY
+    r = requests.get(url=url,headers = headers)
+    data = json.loads(r.text)
+    map = str(data["players"][1]["map"]["name"])
 
-f.close()
+    if data["teams"][0]["result"] =="win":
+        winList = data["teams"][0]["players"]
+        loseList = data["teams"][1]["players"]
+    else:
+        winList = data["teams"][1]["players"]
+        loseList = data["teams"][0]["players"]
+
+    f = open('C:/Users/KTH/Desktop/GitHub/matchData.csv', 'a')
+    #create win match record
+    f.write(matchID+","+map)
+    playerCount = data["players"]
+    for i in range(len(playerCount)):
+        player = data["players"][i]
+        if player["playerId"] in winList:
+            f.write(","+str(player["playInfo"]["characterName"]))
+    f.write("\n")
+
+    #create lose match record
+    f.write(matchID+","+map)
+    playerCount = data["players"]
+    for i in range(len(playerCount)):
+        player = data["players"][i]
+        if player["playerId"] in loseList:
+            f.write(","+str(player["playInfo"]["characterName"]))
+    f.write("\n")
+    f.close()
+
+
+#create detail match infomation
+    f = open('C:/Users/KTH/Desktop/GitHub/matchInfo.csv', 'a')
+    for i in range(len(playerCount)):
+        player = data["players"][i]
+        if player["playerId"] in winList:
+            f.write(matchID+","+player["playerId"]+","+player["playInfo"]["characterName"]+","+player["position"]["name"]+","+
+            player["position"]["attribute"][0]["name"]+","+player["position"]["attribute"][1]["name"]+","+player["position"]["attribute"][2]["name"])
+            itemNum =0
+            for j in range(0,16):
+                try:
+                    if (player["items"][itemNum]["equipSlotCode"] == equipment[j]):
+                        f.write(","+player["items"][itemNum]["itemName"])
+                        itemNum = itemNum+1
+                    else:
+                        f.write(",미장착")
+                except:
+                    f.write(",미장착")
+                    break
+            f.write("\n")
+    f.close()
+    time.sleep(2)
