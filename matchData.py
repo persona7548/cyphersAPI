@@ -32,16 +32,15 @@ for id in range(len(csvfile)):
 
     f = open('C:/Users/KTH/Desktop/GitHub/matchData.csv', 'a')
     #create win match record
-    f.write(matchID+","+map)
+    f.write(matchID+","+map+"win,")
     playerCount = data["players"]
     for i in range(len(playerCount)):
         player = data["players"][i]
         if player["playerId"] in winList:
             f.write(","+str(player["playInfo"]["characterName"]))
     f.write("\n")
-
     #create lose match record
-    f.write(matchID+","+map)
+    f.write(matchID+","+map+"lose,")
     playerCount = data["players"]
     for i in range(len(playerCount)):
         player = data["players"][i]
@@ -56,19 +55,22 @@ for id in range(len(csvfile)):
     for i in range(len(playerCount)):
         player = data["players"][i]
         if player["playerId"] in winList:
-            f.write(matchID+","+player["playerId"]+","+player["playInfo"]["characterName"]+","+player["position"]["name"]+","+
-            player["position"]["attribute"][0]["name"]+","+player["position"]["attribute"][1]["name"]+","+player["position"]["attribute"][2]["name"])
-            itemNum =0
-            for j in range(0,16):
-                try:
-                    if (player["items"][itemNum]["equipSlotCode"] == equipment[j]):
-                        f.write(","+player["items"][itemNum]["itemName"])
-                        itemNum = itemNum+1
-                    else:
-                        f.write(",미장착")
-                except:
+            f.write("win,")
+        else:
+            f.write("lose,")
+        f.write(matchID+","+player["playerId"]+","+player["playInfo"]["characterName"]+","+player["position"]["name"]+","+
+        player["position"]["attribute"][0]["name"]+","+player["position"]["attribute"][1]["name"]+","+player["position"]["attribute"][2]["name"])
+        itemNum =0
+        for j in range(0,16):
+            try:
+                if (player["items"][itemNum]["equipSlotCode"] == equipment[j]):
+                    f.write(","+player["items"][itemNum]["itemName"])
+                    itemNum = itemNum+1
+                else:
                     f.write(",미장착")
-                    break
-            f.write("\n")
+            except:
+                f.write(",미장착")
+                break
+        f.write("\n")
     f.close()
     time.sleep(2)
