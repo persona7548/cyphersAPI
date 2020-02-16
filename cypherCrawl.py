@@ -12,8 +12,9 @@ for j in range(0,10000,1000):
         try:
             nickname = str(data["rows"][i]["nickname"])
             playerId = str(data["rows"][i]["playerId"])
-            print(nickname+','+playerId)
-            f.write(nickname+','+playerId+'\n')
+            ratingPoint = str(data["rows"][i]["ratingPoint"])
+            print(nickname+','+playerId+','+ratingPoint)
+            f.write(nickname+','+playerId+','+ratingPoint+'\n')
         except:
             continue
         f.close()
