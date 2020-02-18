@@ -29,22 +29,49 @@ MapCount$rate <- (MapCount$pick)/nrow(matchData)
 view(MapCount) # 맵 등장빈도
 
 ######맵 별 승률계산#########
-MapCount[[1]][1] #앞자리 1= 지역명 2= 등장수 뒷자리 =맵이름 (1~5)
-mapInfo <- matchInfo[matchInfo$Map == MapCount[[1]][1],]
-pickRate <- mapInfo%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist))
-winRate <- mapInfo[mapInfo$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
-CharRate <- merge(pickRate,winRate,by='Character.Id')
-CharRate$pickRate = CharRate$pick/MapCount[[2]][1]
-CharRate$winRate = CharRate$win/CharRate$pick
-CharRate$meanKDA = (CharRate$meanKill+CharRate$meanAssist)/CharRate$meanAssist
-CharRate<-CharRate[order(-CharRate$pick),]
-CharRate<-CharRate[CharRate$pickRate>0.1,]
-viewRate <- cbind(CharRate[1],CharRate[7:9])
-view(CharRate)
+setwd("C:/Users/KTH/Desktop/github/example/map")
+for (i in 1:5){
+  mapInfo <- matchInfo[matchInfo$Map == MapCount[[1]][i],]
+  mapRate <- data.frame()
+  for (j in list("탱커","서포터","근거리딜러","원거리딜러")){
+    position_Map<- mapInfo[mapInfo$Position == j,] 
+    pickRate <- position_Map%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist))
+    winRate <- position_Map[position_Map$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
+    
+    CharRate <- merge(pickRate,winRate,by='Character.Id')
+    CharRate$pickRate = CharRate$pick/MapCount[[2]][i]
+    CharRate$winRate = CharRate$win/CharRate$pick
+    CharRate$meanKDA = (CharRate$meanKill+CharRate$meanAssist)/CharRate$meanAssist
+    CharRate<-CharRate[order(-CharRate$pick),]
+    CharRate <- CharRate[,c(1,2,6,7,8,3,4,5,9)]
+    CharRate$position <- j
+    mapRate <- rbind(mapRate,CharRate)
+  }
+  mapRate<-mapRate[order(-mapRate$pick),]
+  Save <- paste0(MapCount[[1]][i],".csv")
+  write.csv(mapRate,Save,row.names =FALSE)
+}
+
 ##########################
+for (j in list("탱커","서포터","근거리딜러","원거리딜러")){
+  position_Map<- mapInfo[mapInfo$Position == j,] 
+  pickRate <- position_Map%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist))
+  winRate <- position_Map[position_Map$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
+  CharRate <- merge(pickRate,winRate,by='Character.Id')
+  CharRate$pickRate = CharRate$pick/MapCount[[2]][i]
+  CharRate$winRate = CharRate$win/CharRate$pick
+  CharRate$meanKDA = (CharRate$meanKill+CharRate$meanAssist)/CharRate$meanAssist
+  CharRate<-CharRate[order(-CharRate$pick),]
+  CharRate <- CharRate[,c(1,2,6,7,8,3,4,5,9)]
+  CharRate$position <- j
+  mapRate <- rbind(mapRate,CharRate)
+}
+mapRate<-mapRate[order(-mapRate$pick),]
+Save <- paste0(MapCount[[1]][i],".csv")
+write.csv(mapRate,Save,row.names =FALSE)
 
 
-########승률계산##########
+########통합승률계산##########
 pickRate <- matchInfo%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist))
 winRate <- matchInfo[matchInfo$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
 CharRate <- merge(pickRate,winRate,by='Character.Id')
@@ -105,51 +132,39 @@ write.csv(combination,"combination.csv",row.names =FALSE)
 
 
 
-
 ##########템트리 찾기(이긴 경기 기준)###########
-setwd("C:/Users/KTH/Desktop/github/build")
-for (i in nrow(CharRate)){
-  
-  
-  
+setwd("C:/Users/KTH/Desktop/github/example/build")
+CharRate <- matchInfo%>%group_by(Character.Id)%>%summarise(pick=n()) #matchInfo -> wininfo
+for (i in 1:nrow(CharRate)){
+  list<-matchInfo[matchInfo$Character.Id ==CharRate[[1]][i],]
+  list<-list[7:36] 
+  list
+  itemlist<- data.frame(c(1:5))
+  attribute<-table(list[11:14])#특성123
+  attribute <- data.frame(attribute)
+  attribute <- attribute[attribute$Freq>0,]
+  attribute[5]<-attribute[5]/sum(attribute[5])
+  attribute <- attribute[order(-attribute$Freq),]
+  attribute <-head(attribute,n=5)
+  itemlist <- cbind(itemlist,attribute)
+  for (j in 15:30){ #장비
+    position <- table(list[j])
+    position <- data.frame(position)
+    position <- position[position$Freq>0,]
+    position[2]<- position$Freq/nrow(list)
+    position
+    position <- position[order(-position$Freq),]
+    position <-head(position,n=5)
+    if(nrow(position)<5)
+    {
+      for(j in nrow(position)+1:(5-nrow(position)))
+        position <- rbind(position,c("NA","NA"))
+    }
+    names(position)[1] <-c(colnames(list[j]))
+    names(position)[2] <-c("pick rate")
+    itemlist <- cbind(itemlist,position)
+  }
+  Save <- paste0(CharRate[[1]][i],".csv")
+  write.csv(itemlist,Save,row.names =FALSE)
 }
-
-colnames(list)
-list<-matchInfo[matchInfo$Character.Id ==CharRate[[1]][i],]
-list<-list[7:36] 
-colnames(list)
-position <- table(list[11])
-position <- data.frame(position)
-position <- position[position$Freq>0,]
-view(position[order(-position$Freq),])
-
-attribute<-table(list[11:14])#특성123
-attribute <- data.frame(attribute)
-attribute <- attribute[attribute$Freq>5,]
-attribute <- attribute[order(-attribute$Freq),]
-view(attribute)
-
-for (j in 15:30){ #장비
-  position <- table(list[20])
-  position <- data.frame(position)
-  position <- position[position$Freq>0,]
-  view(position[order(-position$Freq),])
-}
-  
 ############################################
-
-
-
-
-#########듀오찾기(짜는중)############
-colnames(winInfo)
-corlist <- cbind(winInfo[3],winInfo[6])
-corlist<-table(corlist)
-write.csv(corlist,"UserTable.csv")
-corlist <- read.csv("UserTable.csv",check.names=FALSE,sep = ",")
-corlist <- cor(corlist[-1],method = "pearson") 
-write.csv(corlist,"corlist.csv")
-##########################
-
-
-
