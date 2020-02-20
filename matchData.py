@@ -6,7 +6,7 @@ import json
 API_KEY = <SECRET>
 equipment = list(["101","102","103","104","105","106","202","203","301","302","303","304","305","107","204","205"])
 csvfile = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/matchId.csv',header=None,encoding='ANSI')
-matchRecord = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/prevMatch.csv')
+matchRecord = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/prevMatch.csv')#######첫 실행시 생략
 uniqCsvfile = csvfile.drop_duplicates()
 
 for id in range(len(csvfile)):
@@ -15,9 +15,11 @@ for id in range(len(csvfile)):
         matchID = uniqCsvfile[0][id]
     except:
         continue
+    #######첫 실행시 생략#######
     if matchID in matchRecord:
         print("있는 기록")
         continue
+   ############################     
     time.sleep(0.1)
     url = 'https://api.neople.co.kr/cy/matches/'+matchID
     try:
