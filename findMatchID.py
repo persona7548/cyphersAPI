@@ -5,7 +5,7 @@ import json
 
 headers = {'Content-Type': 'application/json; charset=utf-8','apikey' :'SECRET'}
 csvfile = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/userID.csv',header=None,encoding='ANSI')
-matchRecord = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/matchId.csv')
+matchRecord = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/prevMatch.csv') #첫 실행시 생략
 
 for j in range(len(csvfile)):
     try:
@@ -31,8 +31,10 @@ for j in range(len(csvfile)):
             try:
                 f = open('C:/Users/KTH/Desktop/GitHub/matchId.csv', 'a')
                 matchId = str(data["matches"]["rows"][i]["matchId"])
-                if matchId in matchRecord:
+                #######첫 실행시 생략#######
+                if matchId in matchRecord: 
                     continue
+                ############################    
                 f.write(matchId+'\n')
                 f.close()
             except:
