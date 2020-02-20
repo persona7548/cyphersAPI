@@ -5,18 +5,21 @@ import json
 
 API_KEY = <SECRET>
 equipment = list(["101","102","103","104","105","106","202","203","301","302","303","304","305","107","204","205"])
-
 csvfile = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/matchId.csv',header=None,encoding='ANSI')
-csvfile = csvfile.drop_duplicates()
+matchRecord = pandas.read_csv('C:/Users/KTH/Desktop/GitHub/prevMatch.csv')
+uniqCsvfile = csvfile.drop_duplicates()
 
 for id in range(len(csvfile)):
     print(id)
     try:
-        matchID = csvfile[0][id]
+        matchID = uniqCsvfile[0][id]
     except:
         continue
+    if matchID in matchRecord:
+        print("있는 기록")
+        continue
     time.sleep(0.1)
-    url = 'https://api.neople.co.kr/cy/matches/'+matchID+'?&apikey='
+    url = 'https://api.neople.co.kr/cy/matches/'+matchID
     try:
         r = requests.get(url=url,headers = headers)
     except:
@@ -26,6 +29,7 @@ for id in range(len(csvfile)):
 
     data = json.loads(r.text)
     map = str(data["players"][1]["map"]["name"])
+    date = str(data["date"])
 
     if data["teams"][0]["result"] =="win":
         winList = data["teams"][0]["players"]
@@ -58,9 +62,9 @@ for id in range(len(csvfile)):
     for i in range(len(playerCount)):
         player = data["players"][i]
         if player["playerId"] in winList:
-            f.write("win,"+map+",")
+            f.write(date+","+"win,"+map+",")
         else:
-            f.write("lose,"+map+",")
+            f.write(date+","+"lose,"+map+",")
         f.write(matchID+","+player["playerId"]+","+str(player["playInfo"]["partyUserCount"])+","+player["playInfo"]["characterName"]+","+str(player["playInfo"]["level"])
         +","+str(player["playInfo"]["killCount"])+","+str(player["playInfo"]["deathCount"])+","+str(player["playInfo"]["assistCount"])
         +","+str(player["playInfo"]["attackPoint"])+","+str(player["playInfo"]["damagePoint"])+","+str(player["playInfo"]["battlePoint"])
