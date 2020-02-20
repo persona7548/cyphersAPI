@@ -1,11 +1,11 @@
 import requests
 import json
 
-API_KEY ='SECRET'
+headers = {'Content-Type': 'application/json; charset=utf-8','apikey' :'SECRET'}
 
 for j in range(0,10000,1000):
-    url = 'https://api.neople.co.kr/cy/ranking/ratingpoint?&offset='+str(j)+'&limit=1000&apikey='+API_KEY
-    r = requests.get(url)
+    url = 'https://api.neople.co.kr/cy/ranking/ratingpoint?&offset='+str(j)+'&limit=1000&apikey='
+    r = requests.get(url=url,headers = headers)
     data = json.loads(r.text)
     for i in range(0,1000):
         f = open('C:/Users/KTH/Desktop/GitHub/userID.csv', 'a')
