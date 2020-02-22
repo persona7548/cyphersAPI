@@ -5,12 +5,10 @@ library(data.table)
 library(dplyr)
 library(MASS)
 library(fBasics)
-
 setwd("C:/Users/KTH/Desktop/github/example")
 
 matchInfo <- read.csv("matchInfo.csv")
 matchData <- read.csv("matchData.csv")
-
 winMatch <- matchInfo[matchInfo$Match == "win",] #승리한 매치만 보관
 loseMatch <- matchInfo[matchInfo$Match == "lose",] #패배한 매치만 보관
 
@@ -61,7 +59,6 @@ CharRate <- CharRate[,c(1,2,6,7,8,3,4,5,9)]
 CharRate<-CharRate[order(-CharRate$pick),]
 setwd("C:/Users/KTH/Desktop/github/example/position")
 write.csv(CharRate,"Total.csv",row.names =FALSE)
-##########################
 
 ########포지션별 승률계산##########
 setwd("C:/Users/KTH/Desktop/github/example/position")
@@ -124,20 +121,16 @@ for (k in list("탱커","서포터","근거리딜러","원거리딜러")){
     if (nrow(charTmp)<(nrow(matchCount)*0.05)) next ##픽률 5%미만은 pass
     itemlist<- data.frame(c(1:5))
     tmp<-charTmp[7:36] 
-    tmp<-table(tmp[12:14])
-    tmp <- data.frame(tmp)
+    tmp<-data.frame(table(tmp[12:14]))
     winTmp <- charWin[7:36]
-    winTmp<-table(winTmp[12:14])
-    winTmp<- data.frame(winTmp)
+    winTmp<-data.frame(table(winTmp[12:14]))
     tmp <-cbind(tmp,winTmp)
     tmp <-cbind(tmp[1:4],tmp[8])
     tmp[5] <- tmp[5]/tmp[4]
     tmp[4] <- tmp[4]/sum(tmp[4])
-    names(tmp)[4] <-c("픽률")
-    names(tmp)[5] <-c("승률")
+    names(tmp)[4:5] <-c("픽률","승률")
     tmp <- tmp[tmp[4]>0,]
-    tmp <- tmp[order(-tmp[4]),]
-    tmp <-head(tmp,n=5)
+    tmp <- head(tmp[order(-tmp[4]),],n=5)
     if(nrow(tmp)<5)
     {
       for(l in nrow(tmp)+1:(5-nrow(tmp)))
@@ -145,25 +138,20 @@ for (k in list("탱커","서포터","근거리딜러","원거리딜러")){
     }
     itemlist <- cbind(itemlist,tmp)
     for (j in 21:36){ #장비
-      tmp <- table(charTmp[j])
-      tmp <- data.frame(tmp)
-      winTmp<-table(charWin[j])
-      winTmp<- data.frame(winTmp)
+      tmp <- data.frame(table(charTmp[j]))
+      winTmp<- data.frame(table(charWin[j]))
       tmp <-cbind(tmp,winTmp)
       tmp <-cbind(tmp[1:2],tmp[4])
       tmp[3] <- tmp[3]/tmp[2]
       tmp[2]<- tmp[2]/sum(tmp[2])
       tmp <- tmp[tmp$Freq>0,]
-      tmp <- tmp[order(-tmp[2]),]
-      tmp <-head(tmp,n=5)
+      tmp <- head(tmp[order(-tmp[2]),],n=5)
       if(nrow(tmp)<5)
       {
         for(l in nrow(tmp)+1:(5-nrow(tmp)))
           tmp <- rbind(tmp,c("NA","NA","NA"))
       }
-      names(tmp)[1] <-c(colnames(charTmp[j]))
-      names(tmp)[2] <-c("픽률")
-      names(tmp)[3] <-c("승률")
+      names(tmp) <-c(colnames(charTmp[j]),"픽률","승률")
       itemlist <- cbind(itemlist,tmp)
     }
     Save <- paste0(CharRate[[1]][i],"_",k,".csv")
