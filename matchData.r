@@ -1,4 +1,3 @@
-library(recommenderlab)
 library(tidyverse)
 library(stringr)
 library(arules)
@@ -6,21 +5,16 @@ library(data.table)
 library(dplyr)
 library(MASS)
 library(fBasics)
-library(RColorBrewer)
-library(wordcloud)
-library(nnet)
+
 setwd("C:/Users/KTH/Desktop/github/example")
 
 matchInfo <- read.csv("matchInfo.csv")
 matchData <- read.csv("matchData.csv")
 
-winInfo <- matchInfo[matchInfo$Match == "win",] #승리한 매치만 보관
-loseInfo <- matchInfo[matchInfo$Match == "lose",] #패배한 매치만 보관
+winMatch <- matchInfo[matchInfo$Match == "win",] #승리한 매치만 보관
+loseMatch <- matchInfo[matchInfo$Match == "lose",] #패배한 매치만 보관
 
-matchId <- read.csv("matchId.csv")
-nrow(matchId)
-matchId<- unique(matchId)
-
+####이미 작성한 경기들 기록(생략용)##
 setwd("C:/Users/KTH/Desktop/github")
 matchIdBackup <- read.csv("matchIdBackup.csv")
 matchId <- read.csv("matchId.csv")
@@ -29,13 +23,13 @@ matchIdBackup<- unique(matchIdBackup)
 write.csv(matchIdBackup,"matchIdBackup.csv", row.names=FALSE)
 write.table(t(matchIdBackup),"prevMatch.csv", sep=",", row.names=FALSE, col.names=FALSE, quote=FALSE)
 
-matchCount <-winInfo%>%group_by(Match.ID)%>%summarise(pick=n())
+matchCount <-winMatch%>%group_by(Match.ID)%>%summarise(pick=n())
 nrow(matchCount)#판수
 
 ######맵 별 승률계산#########
 setwd("C:/Users/KTH/Desktop/github/example/map")
 for (i in 1:5){
-  mapInfo <- matchInfo[matchInfo$Map == MapCount[[1]][i],]
+  mapInfo <- matchInfo[matchInfo$Map == mapCount[[1]][i],]
   mapRate <- data.frame()
   for (j in list("탱커","서포터","근거리딜러","원거리딜러")){
     position_Map<- mapInfo[mapInfo$Position == j,] 
@@ -43,7 +37,7 @@ for (i in 1:5){
     winRate <- position_Map[position_Map$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
     
     CharRate <- merge(pickRate,winRate,by='Character.Id')
-    CharRate$pickRate = CharRate$pick/MapCount[[2]][i]
+    CharRate$pickRate = CharRate$pick/mapCount[[2]][i]
     CharRate$winRate = CharRate$win/CharRate$pick
     CharRate$meanKDA = (CharRate$meanKill+CharRate$meanAssist)/CharRate$meanAssist
     CharRate<-CharRate[order(-CharRate$pick),]
@@ -52,7 +46,7 @@ for (i in 1:5){
     mapRate <- rbind(mapRate,CharRate)
   }
   mapRate<-mapRate[order(-mapRate$pick),]
-  Save <- paste0(MapCount[[1]][i],".csv")
+  Save <- paste0(mapCount[[1]][i],".csv")
   write.csv(mapRate,Save,row.names =FALSE)
 }
 
@@ -94,13 +88,13 @@ write.csv(positionData,"positionInfo.csv",row.names =FALSE)
 
 #######승리조합##########
 setwd("C:/Users/KTH/Desktop/github/example")
-winCombi<-(table(cbind(winInfo[4],winInfo[17])))
+winCombi<-(table(cbind(winMatch[4],winMatch[17])))
 write.csv(winCombi,"winCombi.csv")
 winCombi <- read.csv("winCombi.csv",check.names=FALSE,sep = ",")
 winCombi <- (data.frame(table(winCombi[-1])))
 names(winCombi)[5] <-c("winGame")
 #######패배조합##########
-loseCombi<-(table(cbind(loseInfo[4],loseInfo[17])))
+loseCombi<-(table(cbind(loseMatch[4],loseMatch[17])))
 write.csv(loseCombi,"loseCombi.csv")
 loseCombi <- read.csv("loseCombi.csv",check.names=FALSE,sep = ",")
 loseCombi <- (data.frame(table(loseCombi[-1])))
@@ -123,7 +117,7 @@ setwd("C:/Users/KTH/Desktop/github/example/build")
 CharRate <- matchInfo%>%group_by(Character.Id)%>%summarise(pick=n()) #matchInfo 
 for (k in list("탱커","서포터","근거리딜러","원거리딜러")){
   positionInfo<- matchInfo[matchInfo$Position == k,]
-  positionWin <- winInfo[winInfo$Position == k,]
+  positionWin <- winMatch[winMatch$Position == k,]
   for (i in 1:nrow(CharRate)){
     charTmp<-positionInfo[positionInfo$Character.Id ==CharRate[[1]][i],]
     #charWin <- positionWin[positionWin$Character.Id ==CharRate[[1]][5],]
@@ -165,23 +159,3 @@ for (k in list("탱커","서포터","근거리딜러","원거리딜러")){
   }
 }
 ############################################
-
-
-
-
-#########듀오찾기(짜는중)############
-setwd("C:/Users/KTH/Desktop/github/example")
-colnames(TankWin)
-corlist <- cbind(TankWin[4],TankWin[7])
-view(with(corlist,tapply(corlist$Match.ID,corlist$Character.Id)))
-corlist<-table(corlist)
-view(corlist)
-write.csv(corlist,"UserTable.csv")
-corlist <- read.csv("UserTable.csv",check.names=FALSE,sep = ",")
-view(corlist)
-corlist <- cor(corlist[-1],method = "pearson") 
-write.csv(corlist,"corlist.csv")
-##########################
-#http://cyphers.nexon.com/cyphers/article/guide/topic/27409425
-
-
