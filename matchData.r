@@ -12,7 +12,7 @@ matchInfo <- read.csv("matchInfo.csv")
 matchData <- read.csv("matchData.csv")
 winMatch <- matchInfo[matchInfo$Match == "win",] #승리한 매치만 보관
 loseMatch <- matchInfo[matchInfo$Match == "lose",] #패배한 매치만 보관
-
+colnames(winMatch)
 ####이미 작성한 경기들 기록(생략용)##
 setwd("C:/Users/KTH/Desktop/github")
 matchIdBackup <- read.csv("matchIdBackup.csv")
@@ -24,7 +24,6 @@ write.table(t(matchIdBackup),"prevMatch.csv", sep=",", row.names=FALSE, col.name
 
 matchCount <-winMatch%>%group_by(Match.ID)%>%summarise(pick=n())
 nrow(matchCount)#판수
-matchCount[[2]][3]
 
 ######맵 별 승률계산#########
 setwd("C:/Users/KTH/Desktop/github/example/map")
@@ -33,15 +32,19 @@ for (i in list("리버포드","메트로폴리스","브리스톨","스프링필�
   mapRate <- data.frame()
   for (j in list("탱커","서포터","근거리딜러","원거리딜러")){
     position_Map<- mapInfo[mapInfo$Position == j,] 
-    pickRate <- position_Map%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist))
+    position_Map
+    CharRate <- position_Map%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist)
+                                                                  ,meanLevel=mean(Level),meanAttackPoint=mean(AttackPoint),meanDamagePoint=mean(DamagePoint)
+                                                                  ,meanBattlePoint=mean(BattlePoint),meanSightPoint=mean(SightPoint),meanPlayTime=mean(PlayTime))
     winRate <- position_Map[position_Map$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
-    
-    CharRate <- merge(pickRate,winRate,by='Character.Id')
+    CharRate <- merge(CharRate,winRate,by='Character.Id')
     CharRate$pickRate = CharRate$pick/nrow(mapInfo)
+    CharRate$pickRate = CharRate$pick/nrow((mapInfo%>%group_by(Match.ID))%>%summarise(pick=n()))
     CharRate$winRate = CharRate$win/CharRate$pick
     CharRate$meanKDA = (CharRate$meanKill+CharRate$meanAssist)/CharRate$meanAssist
     CharRate<-CharRate[order(-CharRate$pick),]
-    CharRate <- CharRate[,c(1,2,6,7,8,3,4,5,9)]
+    colnames(CharRate)
+    CharRate <- CharRate[,c(1,2,12,13,14,15,3,4,5,6,7,8,9,10,11)]
     CharRate$position <- j
     mapRate <- rbind(mapRate,CharRate)
   }
@@ -51,13 +54,16 @@ for (i in list("리버포드","메트로폴리스","브리스톨","스프링필�
 }
 
 ########통합승률계산##########
-pickRate <- matchInfo%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist))
+CharRate <- matchInfo%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist)
+                                                              ,meanLevel=mean(Level),meanAttackPoint=mean(AttackPoint),meanDamagePoint=mean(DamagePoint)
+                                                              ,meanBattlePoint=mean(BattlePoint),meanSightPoint=mean(SightPoint),meanPlayTime=mean(PlayTime))
+
 winRate <- matchInfo[matchInfo$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
-CharRate <- merge(pickRate,winRate,by='Character.Id')
+CharRate <- merge(CharRate,winRate,by='Character.Id')
 CharRate$pickRate = CharRate$pick/nrow(matchCount)
 CharRate$winRate = CharRate$win/CharRate$pick
 CharRate$meanKDA = (CharRate$meanKill+CharRate$meanAssist)/CharRate$meanAssist
-CharRate <- CharRate[,c(1,2,6,7,8,3,4,5,9)]
+CharRate <- CharRate[,c(1,2,12,13,14,15,3,4,5,6,7,8,9,10,11)]
 CharRate<-CharRate[order(-CharRate$pick),]
 setwd("C:/Users/KTH/Desktop/github/example/position")
 write.csv(CharRate,"Total.csv",row.names =FALSE)
@@ -67,15 +73,17 @@ setwd("C:/Users/KTH/Desktop/github/example/position")
 positionData <- data.frame()
 for (i in list("탱커","서포터","근거리딜러","원거리딜러")){
   positionInfo<- matchInfo[matchInfo$Position == i,] 
-  pickRate <- positionInfo%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist))
+  CharRate <- positionInfo%>%group_by(Character.Id)%>%summarise(pick=n(),meanKill=mean(Kill),meanDeath=mean(Death),meanAssist=mean(Assist)
+                                                                ,meanLevel=mean(Level),meanAttackPoint=mean(AttackPoint),meanDamagePoint=mean(DamagePoint)
+                                                                ,meanBattlePoint=mean(BattlePoint),meanSightPoint=mean(SightPoint),meanPlayTime=mean(PlayTime))
   winRate <- positionInfo[positionInfo$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
-  CharRate <- merge(pickRate,winRate,by='Character.Id')
+  CharRate <- merge(CharRate,winRate,by='Character.Id')
   CharRate$pickRate = (CharRate$pick/nrow(matchCount))
   CharRate$winRate = (CharRate$win/CharRate$pick)
   # CharRate <- CharRate[CharRate$pickRate >=0.1,]
   CharRate$meanKDA = (CharRate$meanKill+CharRate$meanAssist)/CharRate$meanAssist
   CharRate <- CharRate[order(-CharRate$pick),]
-  CharRate <- CharRate[,c(1,2,6,7,8,3,4,5,9)]
+  CharRate <- CharRate[,c(1,2,12,13,14,15,3,4,5,6,7,8,9,10,11)]
   Save <- paste0(positionInfo$Position[1],".csv")
   write.csv(CharRate,Save,row.names =FALSE)
   CharRate$position <-i
