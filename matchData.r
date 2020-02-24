@@ -5,6 +5,7 @@ library(data.table)
 library(dplyr)
 library(MASS)
 library(fBasics)
+##추가 필요 날짜별 승률변화
 setwd("C:/Users/KTH/Desktop/github/example")
 
 matchInfo <- read.csv("matchInfo.csv")
@@ -23,11 +24,12 @@ write.table(t(matchIdBackup),"prevMatch.csv", sep=",", row.names=FALSE, col.name
 
 matchCount <-winMatch%>%group_by(Match.ID)%>%summarise(pick=n())
 nrow(matchCount)#판수
+matchCount[[2]][3]
 
 ######맵 별 승률계산#########
 setwd("C:/Users/KTH/Desktop/github/example/map")
-for (i in 1:5){
-  mapInfo <- matchInfo[matchInfo$Map == mapCount[[1]][i],]
+for (i in list("리버포드","메트로폴리스","브리스톨","스프링필드","그랑플람 아시아 지부")){
+  mapInfo <- matchInfo[matchInfo$Map == i,]
   mapRate <- data.frame()
   for (j in list("탱커","서포터","근거리딜러","원거리딜러")){
     position_Map<- mapInfo[mapInfo$Position == j,] 
@@ -35,7 +37,7 @@ for (i in 1:5){
     winRate <- position_Map[position_Map$Match =="win",]%>%group_by(Character.Id)%>%summarise(win=n())
     
     CharRate <- merge(pickRate,winRate,by='Character.Id')
-    CharRate$pickRate = CharRate$pick/mapCount[[2]][i]
+    CharRate$pickRate = CharRate$pick/nrow(mapInfo)
     CharRate$winRate = CharRate$win/CharRate$pick
     CharRate$meanKDA = (CharRate$meanKill+CharRate$meanAssist)/CharRate$meanAssist
     CharRate<-CharRate[order(-CharRate$pick),]
@@ -44,7 +46,7 @@ for (i in 1:5){
     mapRate <- rbind(mapRate,CharRate)
   }
   mapRate<-mapRate[order(-mapRate$pick),]
-  Save <- paste0(mapCount[[1]][i],".csv")
+  Save <- paste0(i,".csv")
   write.csv(mapRate,Save,row.names =FALSE)
 }
 
@@ -134,7 +136,7 @@ for (k in list("탱커","서포터","근거리딜러","원거리딜러")){
     if(nrow(tmp)<5)
     {
       for(l in nrow(tmp)+1:(5-nrow(tmp)))
-        tmp <- rbind(tmp,c("NA","NA","NA","NA","NA"))
+        tmp <- rbind(tmp,c("NA","NA","NA","0","0"))
     }
     itemlist <- cbind(itemlist,tmp)
     for (j in 21:36){ #장비
@@ -149,7 +151,7 @@ for (k in list("탱커","서포터","근거리딜러","원거리딜러")){
       if(nrow(tmp)<5)
       {
         for(l in nrow(tmp)+1:(5-nrow(tmp)))
-          tmp <- rbind(tmp,c("NA","NA","NA"))
+          tmp <- rbind(tmp,c("NA","0","0"))
       }
       names(tmp) <-c(colnames(charTmp[j]),"픽률","승률")
       itemlist <- cbind(itemlist,tmp)
