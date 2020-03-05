@@ -1,34 +1,61 @@
 const express = require('express')
 const app = express()
+const port = 3000
+const url = require('url');
+var ejs  = require('ejs');
 var mysql = require('mysql');
 var fs = require('fs');
 var path = require('path');
 var sanitizeHtml = require('sanitize-html');
 var qs = require('querystring');
 var template = require('./lib/template.js');
-var dbconfig = require('./config/database.js');
-var connection = mysql.createConnection(dbconfig);
-const port = 3000
 
+var dbconfig = require('./config/database.js');
+var db = mysql.createConnection(dbconfig);
+db.connect();
 app.get('/', function (request, response) {
-  fs.readdir('./data', function (error, filelist) {
+  fs.readdir('./character', function (error, filelist) {
     var title = 'Welcome';
     var description = 'Hello, Node.js';
     var list = template.list(filelist);
-    var html = template.HTML(title, list,`<h2>${title}</h2>${description}`,
-    `<a href="/create">create</a>`);
-
+    var html = template.HTML(title, list, `<h2>${title}</h2>${description}`,
+      `<a href="/create">create</a>
+     <a href="/persons">persons</a>
+     `);
     response.send(html);
   });
 });
 
-app.get('/persons', function (request, response) {
-
-  connection.query("SELECT * FROM `build` WHERE `character` LIKE \'호타루\' LIMIT 0, 30 ", function (err, rows,fields) {
-  if (err) throw err;
-  response.send(rows[0].attributeLv1);
+app.get('/index', function (request, response) {
+  response.writeHead(200, { 'Content-Type': 'text/html' });
+  fs.readFile(__dirname + '/index.html', (err, data) => {
+    if (err) {
+      return console.error(err);
+    }
+    response.end(data, 'utf-8');
   });
 });
+
+
+app.get('/character/:characterId', function (request, response) {
+  fs.readdir('./character', function (error, filelist) {
+    var filteredId = path.parse(request.params.characterId).base;
+    fs.readFile(`list.html`, 'utf8', function (err, description) {
+      var title = request.params.characterId;
+      var sanitizedTitle = sanitizeHtml(title);
+      var sanitizedDescription = sanitizeHtml(description, {
+        allowedTags: ['h1']
+      });
+      var list = template.list(filelist);
+      db.query("SELECT * FROM `build` WHERE `character` LIKE \'" + title + "\' LIMIT 0, 30 ", function (err, rows) {
+        if (err) throw err;
+        response.send(ejs.render(description,
+          {pageName:title,prodList:rows}));
+      });
+    });
+  });
+});
+
 
 app.get('/page/:pageId', function (request, response) {
   fs.readdir('./data', function (error, filelist) {
