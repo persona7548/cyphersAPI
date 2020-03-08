@@ -1,46 +1,41 @@
-const express = require('express')
-const app = express()
-const port = 3000
+const express = require('express');
+const app = express();
+const port = 8080
 const url = require('url');
-var ejs  = require('ejs');
-var mysql = require('mysql');
+var ejs = require('ejs');
 var fs = require('fs');
 var path = require('path');
-
 var sanitizeHtml = require('sanitize-html');
 var qs = require('querystring');
 var template = require('./lib/template.js');
 
+app.use('/public',express.static('public'));
+
+var mysql = require('mysql');
 var dbconfig = require('./config/database.js');
 var db = mysql.createConnection(dbconfig);
 db.connect();
-app.use(express.static('character'));
-
 
 app.get('/', function (request, response) {
-  fs.readdir('./character/thumb', function (error, filelist) {
-    var title = 'Welcome';
-    var description = 'Hello, Node.js';
-    var list = template.list(filelist);
-    var html = template.HTML(title, list, 
-      `<h2>${title}</h2>${description}`,
-      `<img src="https://img-api.neople.co.kr/cy/characters/d69971a6762d94340bb2332e8735238a" alt="${list}"/>
-      `);
-    response.send(html);
+  db.query("SELECT * FROM `characters`", function (err, charlist) {
+    fs.readFile(`index.html`, 'utf8', function (err, description) {
+      response.send(ejs.render(description, { prodList: charlist }));
+    });
   });
 });
 
 app.get('/character/:characterId', function (request, response) {
-    fs.readFile(`list.html`, 'utf8', function (err, description) {
-      var title = path.basename(request.params.characterId,path.extname(request.params.characterId));
-      var cleanTitle = sanitizeHtml(title);
-      var html = (`<img src="/thumb/${title}.jpg" alt="${title}"/>`);
-      db.query("SELECT * FROM `build` WHERE `character` LIKE \'" + cleanTitle + "\' LIMIT 0, 30 ", function (err, rows) {
-        if (err) throw err;
+  fs.readFile(`list.html`, 'utf8', function (err, description) {
+    if (err) throw err;
+    var title = path.basename(request.params.characterId, path.extname(request.params.characterId));
+    var cleanTitle = sanitizeHtml(title);
+    db.query("SELECT * FROM `build` WHERE `character` LIKE \'" + cleanTitle + "\' LIMIT 0, 30 ", function (err, rows) {
+      db.query("SELECT * FROM `characters` WHERE `character` LIKE \'" + cleanTitle + "\' LIMIT 0, 30 ", function (err, char) {
         response.send(ejs.render(description,
-          {pageName:cleanTitle,prodList:rows,img:html}));
+          { pageName: cleanTitle, build: rows, img: char[0].characterID }));
       });
     });
+  });
 });
 
 app.listen(port, function () {
