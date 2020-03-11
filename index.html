@@ -1,138 +1,123 @@
 <!doctype html>
-<html lang="ko">
-    <html>
-        <head>
-            <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-            <meta http-equiv="X-UA-Compatible" content="IE=edge">
-            <meta name="viewport" content="width=device-width, initial-scale=1">
-            <meta name="description" content="">
-            <meta name="author" content="">
-            <title>지존퍼즈</title>
-            <link href="/public/dist/css/bootstrap.min.css" rel="stylesheet">
-            <link href="/public/offcanvas.css" rel="stylesheet">
-            <script src="/public/assets/js/ie-emulation-modes-warning.js"></script>
-        </head>
-        <!-- NAVBAR================================================== -->
-        <nav class="navbar navbar-fixed-top navbar-inverse">
-            <div class="container">
-                <div class="navbar-header">
-                    <button
-                        type="button"
-                        class="navbar-toggle collapsed"
-                        data-toggle="collapse"
-                        data-target="#navbar"
-                        aria-expanded="false"
-                        aria-controls="navbar">
-                        <span class="sr-only">Toggle navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
-                    <a class="navbar-brand" href="/">지존퍼즈</a>
-                </div>
-                <div id="navbar" class="collapse navbar-collapse">
-                    <ul class="nav navbar-nav">
-                        <li class="active">
-                            <a href="/">Home</a>
-                        </li>
-                        <li>
-                            <a href="/about">캐릭터 통계(미제작)</a>
-                        </li>
-                        <li>
-                            <a href="/contact">Contact(미제작)</a>
-                        </li>
-                    </ul>
-                </div>
-                <!-- /.nav-collapse -->
-            </div>
-            <!-- /.container -->
-        </nav>
-        <!-- /.navbar -->
-        <!-- NAVBAR================================================== -->
+<html>
+    <head>
+        <!-- HTML Meta Tags -->
+        <title>지존퍼즈</title>
+        <meta name="description" content="템트리 보는 사이트">
 
+        <!-- Facebook Meta Tags / 페이스북 오픈 그래프 -->
+        <meta property="og:url" content="http://kth0416.iptime.org:8080/">
+        <meta property="og:type" content="website">
+        <meta property="og:title" content="지존퍼즈">
+        <meta property="og:description" content="템트리 보는 사이트">
+        <meta property="og:image" content="/public/thumb/fankit_sidney.jpg">
+
+        <!-- Twitter Meta Tags / 트위터 -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="지존퍼즈">
+        <meta name="twitter:description" content="템트리 보는 사이트">
+        <meta name="twitter:image" content="/public/thumb/fankit_sidney.jpg">
+
+        <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
+        <meta itemprop="name" content="지존퍼즈">
+        <meta itemprop="description" content="템트리 보는 사이트">
+        <meta itemprop="image" content="/public/thumb/fankit_sidney.jpg">
+
+        <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <script src="/public/ie-emulation-modes-warning.js"></script>
+        <link href="/public/bootstrap.min.css" rel="stylesheet">
+        <link href="/public/offcanvas.css" rel="stylesheet">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchpanes/1.0.1/css/searchPanes.dataTables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
+    
+    </head>
+    <!-- NAVBAR================================================== -->
+    <nav class="navbar navbar-fixed-top navbar-inverse">
         <div class="container">
-            <div class="row row-offcanvas row-offcanvas-dark">
-                <div class="col-xs-12 col-sm-8">
-                    <p class="pull-right visible-xs">
-                        <button type="button" class="btn btn-primary btn-xs" data-toggle="offcanvas">Toggle nav</button>
-                    </p>
-                   
-                    <div class="jumbotron">
-
-                        NAME :
-                        <img src="/public/thumb/로라스.jpg">
-                    </div>
-                    <div class="row">
-                        <div class="col-xs-10 col-lg-8">
-                            <h2>캐릭터통계</h2>
-                            <% prodList.forEach(function(item, index){ %>
-                                <a href="/character/<%=item.character%>">
-                                    <img
-                                        src="/public/thumb/<%=item.character%>.jpg"
-                                        alt=<%= item %>
-                                        class="img-thumbnail">
-                                </a>
-                                <% }); %>
-                                </p>
-                            </div>
-                            <!--/.col-xs-6.col-lg-4-->
-
-                        </div>
-                        <!--/row-->
-                    </div>
-                    <!--/.col-xs-12.col-sm-9-->
-
-                    <div class="col-xs-12 col-sm-4 sidebar-offcanvas" id="sidebar">
-                        <div class="list-group">
-                            
-                            <a class="list-group-item active"><img src="/public/attriImg/탱커.jpg"/>탱커</a>
-                            <a class="list-group-item active">
-                                <div class="row">
-                                    <div class="col-xs-6">순위</div>
-                                    <div class="col-xs-3">픽률</div>
-                                    <div class="col-xs-3">승률</div>
-                                </div>
-                            </a>
-                        </a>
-                        <% for(var i = 0; i < 20; i++){ %>
-                            <a
-                                href="/character/<%=tank[i].character%>/<%=tank[i].position%>"
-                                class="list-group-item">
-                                <div class="row">
-                                    <strong>
-                                        <div class="col-xs-6"><%= i+1%>위
-                                            <img
-                                                src="/public/thumb/<%= tank[i].character%>.jpg"
-                                                alt=<%= tank[i].character %>/></div>
-                                        <div class="col-xs-3">
-                                            <%= tank[i].pickRate%>%</div>
-                                        <div class="col-xs-3"><%= tank[i].winRate%>%</div>
-                                    </strong>
-                                </div>
-                            </a>
-                        <% } %>
-
-                    </div>
-                </div>
-                <!--/.sidebar-offcanvas-->
+            <div class="navbar-header">
+                <button
+                    type="button"
+                    class="navbar-toggle collapsed"
+                    data-toggle="collapse"
+                    data-target="#navbar"
+                    aria-expanded="false"
+                    aria-controls="navbar">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="/">지존퍼즈</a>
             </div>
-            <!--/row-->
-            <hr>
-            <footer style="background-color: #ffffff;">
-                <p>&copy; Company 2014</p>
-            </footer>
-
+            <div id="navbar" class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li class="active">
+                        <a href="/">Home</a>
+                    </li>
+                    <li>
+                        <a href="/statistic">캐릭터 통계</a>
+                    </li>
+                    <li>
+                        <a href="/contact">Contact(미제작)</a>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <!--/.container-->
-
-        <!-- Bootstrap core JavaScript
-        ================================================== -->
-        <!-- Placed at the end of the document so the pages load faster -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
-        <script src="/public/dist/js/bootstrap.min.js"></script>
-        <script src="/public/offcanvas.js"></script>
-        <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-        <script src="/public/assets/js/ie10-viewport-bug-workaround.js"></script>
+    </nav>
+    <!-- NAVBAR================================================== -->
+    <body>
+        <div class="container">
+            <div class="col-xs-12 col-sm-8">
+                <div class="jumbotron"> 
+                    <h2>캐릭터통계 </h2>            
+                    <% prodList.forEach(function(item, index){ %>       
+                        <a href="/character/<%=item.character%>">
+                        <img src="/public/thumb/<%=item.character%>.jpg" alt=<%= item.character %> class="img-thumbnail"></a>
+                    <% }); %>   
+                </div>
+            </div>
+            
+            <div class="col-xs-12 col-sm-4 sidebar-offcanvas" id="sidebar">
+                <table id="myTable" class="display nowrap" style="width:100%">
+                    <thead>
+                        <tr>
+                        <strong>
+                        <th scope="col"><p class="text-center">캐릭터</p></th>
+                        <th scope="col"><p class="text-center">포지션</p></th>
+                        <th scope="col"><p class="text-center">픽률</p></th>
+                        <th scope="col"><p class="text-center">승률</p></th>
+                        </strong>
+                        </tr>
+                    </thead>                                                   
+                </table>
+                
+            </div>
+        </div><!--/.container-->
+                <!-- Bootstrap core JavaScript
+                ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+            <footer style="background-color: #ffffff;">
+           
+            <a href="http://developers.neople.co.kr" target="_blank"><img src="public/itemImg/기술표기_가로형_color.png" alt="Neople 오픈 API" /> </a>
+             <p>&copy; Company 2020</p>
+                </footer>
+            <script src="/public/assets/js/ie-emulation-modes-warning.js"></script>
+            <script src="/public//ie10-viewport-bug-workaround.js"></script>
+           
+                <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+            <script src="/public/dist/js/scripts.js"></script>
+            <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+            <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>       
+            <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/1.0.1/js/dataTables.searchPanes.min.js"></script>        
+            <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+            <script src="/public/assets/demo/datatables-demo.js"></script>
 
     </body>
 </html>
