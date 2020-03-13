@@ -1,235 +1,322 @@
 <!doctype html>
 <html>
     <head>
-        <title><%=pageName%></title>
-        <meta charset="utf-8">
+	 <!-- HTML Meta Tags -->
+		<title><%=pageName%></title>
+        <meta name="description" content="템트리 보는 사이트">
+        <!-- Twitter Meta Tags / 트위터 -->
+        <meta name="twitter:card" content="summary_large_image">
+        <meta name="twitter:title" content="지존퍼즈">
+        <meta name="twitter:description" content="템트리 보는 사이트">
+        <meta name="twitter:image" content="/public/thumb/fankit_sidney.jpg">
+        <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
+        <meta itemprop="name" content="지존퍼즈">
+        <meta itemprop="description" content="템트리 보는 사이트">
+        <meta itemprop="image" content="/public/thumb/fankit_sidney.jpg"> 
+  		<meta charset="utf-8">
         <meta http-equiv="content-type" content="text/html; charset=UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">
-        <link href="/public/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="/public/ie-emulation-modes-warning.js"></script>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css" integrity="sha384-HSMxcRTRxnN+Bdg0JdbxYKrThecOKuH5zCYotlSAcp1+c8xmyTe9GYg1l9a69psu" crossorigin="anonymous">
         <link href="/public/offcanvas.css" rel="stylesheet">
-        <script src="/public/assets/js/ie-emulation-modes-warning.js"></script>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
     </head>
     <!-- NAVBAR================================================== -->
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button
-                    type="button"
-                    class="navbar-toggle collapsed"
-                    data-toggle="collapse"
-                    data-target="#navbar"
-                    aria-expanded="false"
-                    aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">지존퍼즈</a>
+     <nav class="navbar navbar-fixed-top navbar-inverse">
+            <div class="container">
+                <div class="navbar-header">
+                    <button
+                        type="button"
+                        class="navbar-toggle collapsed"
+                        data-toggle="collapse"
+                        data-target="#navbar"
+                        aria-expanded="false"
+                        aria-controls="navbar">
+                        <span class="sr-only">Toggle navigation</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand" href="/">지존퍼즈</a>
+                </div>
+                <div id="navbar" class="collapse navbar-collapse">
+                    <ul class="nav navbar-nav">
+                        <li><a href="/">Home</a></li>
+                        <li class="active"><a href="/statistic">캐릭터 통계</a></li>
+                        <li><a href="/contact">Contact</a></li>
+                    </ul>
+                </div>
             </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="/about">캐릭터 통계</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact</a>
-                    </li>
-                </ul>
-            </div>
-            <!-- /.nav-collapse -->
-        </div>
-        <!-- /.container -->
-    </nav>
-    <!-- /.navbar -->
-<!-- NAVBAR================================================== -->
-<body>
-<div class="container">
-<strong>
-	<h1 class="text-center"><img src="/public/thumb/<%=pageName%>.jpg" alt=<%=pageName%>/><%=pageName%></h1>
- 	 <table class="table">
-	   <thead class="thead-dark">
-		<tr>	
-			<th scope="col"><p class="text-center">포지션</p></th>
-			<th scope="col"><p class="text-center">순위</p></th>
-			<th scope="col"><p class="text-center">특성 Lv1</p></th>
-			<th scope="col"><p class="text-center">특성 Lv2</p></th>
-			<th scope="col"><p class="text-center">특성 Lv3</p></th>
-            <th scope="col"><p class="text-center">픽률</p></th>
-            <th scope="col"><p class="text-center">승률</p></th>	
-		</tr>	
-		</thead>	
-		<tbody>
-		
-	<% build.forEach(function(item, index){ %>
-	<tr>
-			<td><p class="text-center"><br><img src="/public/attriImg/<%= item.position %>.jpg"/><br><%= item.position %></p></td>
-            <td><p class="text-center"><br><%= item.rank %></p></td>
-			<td><p class="text-center"><img src="/public/attriImg/<%= item.attributeLv1 %>.jpg"/><br><%= item.attributeLv1 %></p></td>
-			<td><p class="text-center"><img src="/public/attriImg/<%= item.attributeLv2 %>.jpg"/><br><%= item.attributeLv2 %></p></td>
-			<td><p class="text-center"><img src="/public/attriImg/<%= item.attributeLv3 %>.jpg"/><br><%= item.attributeLv3 %></p></td>
-            <td><p class="text-center"><br><%= item.attriPick %>%</p></td>
-			<td><p class="text-center"><br><%= item.attriWin %>%</p></td>
-			
-		</tr>
-		<% }); %>
-		
-	</tbody>
-	</table>
+        </nav>
+        <!-- NAVBAR================================================== -->
+	<body>
+		<div class="container">
+			<div class="col-xs-12 col-sm-11">
+				<strong>
+				<div><h3><img src="/public/attriImg/<%= charInfo[0].position%>.jpg"> <img src="/public/thumb/<%=pageName%>.jpg" alt=<%=pageName%>/> <%=pageName%></h3>
+				<p>픽률 : <%= charInfo[0].pickRate%>%<br>승률 : <%= charInfo[0].winRate%>%</div></p>
+				
+					<ul class="nav nav-tabs" role="tablist" id="myTab a">
+						<li role="presentation" class = "active"><a href="#home" aria-controls="home" role="tab" data-toggle="tab">기본 정보</a></li>
+						<li role="presentation"><a href="#profile" aria-controls="profile" role="tab" data-toggle="tab">아이템 상세</a></li>
+						<li role="presentation"><a href="#messages" aria-controls="messages" role="tab" data-toggle="tab">Messages</a></li>
+						<li role="presentation"><a href="#settings" aria-controls="settings" role="tab" data-toggle="tab">Settings</a></li>
+					</ul>
 
-	<div class="table-responsive">
-  	<table class="table">
-		<tr>
-			<th>손(공격)</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>머리(치명)</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>가슴(체력)</th>
-			<th>픽률</th>
-			<th>승률</th>
-		</tr>	
-	<% build.forEach(function(item, index){ %>
-		<tr>
-			<td><img src="/public/itemImg/<%= item.hand %>.jpg"/><br> <%= item.hand %></td>
-            <td><%= item.handPick %>%</td>
-			<td><%= item.handWin %>%</td>
-			<td><img src="/public/itemImg/<%= item.head %>.jpg"/><br><%= item.head %></td>
-			<td><%= item.headPick %>%</td>
-            <td><%= item.headWin %>%</td>
-			<td><img src="/public/itemImg/<%= item.chest %>.jpg"/><br><%= item.chest %></td>
-			<td><%= item.chestPick %>%</td>
-            <td><%= item.chestWin %>%</td>
-		</tr>
-		<% }); %>
-	</table>
-	</div>
-	<div class="table-responsive">
-  	<table class="table">
-		<tr>
-			<th>허리(회피)</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>바지(방어)</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>신발(속도)</th>
-			<th>픽률</th>
-			<th>승률</th>
-		</tr>	
-	<% build.forEach(function(item, index){ %>
-		<tr>
-			<td><img src="/public/itemImg/<%= item.waist %>.jpg"/><br><%= item.waist %></td>
-            <td><%= item.waistPick %>%</td>
-			<td><%= item.waistWin %>%</td>
-			<td><img src="/public/itemImg/<%= item.leg %>.jpg"/><br><%= item.leg %></td>
-			<td><%= item.legPick %>%</td>
-            <td><%= item.legWin %>%</td>
-			<td><img src="/public/itemImg/<%= item.shoe %>.jpg"/><br><%= item.shoe %></td>
-			<td><%= item.shoePick %>%</td>
-            <td><%= item.shoeWin %>%</td>
-		</tr>
-		<% }); %>
-	</table>
-	</div>
-		<div class="table-responsive">
-  	<table class="table">
-		<tr>
-			<th>장신구1</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>장신구2</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>회복킷</th>
-			<th>픽률</th>
-			<th>승률</th>
-		</tr>	
-	<% build.forEach(function(item, index){ %>
-		<tr>
-			<td><img src="/public/itemImg/<%= item.arti1 %>.jpg"/><br><%= item.arti1 %></td>
-            <td><%= item.arti1Pick %>%</td>
-			<td><%= item.arti1Win %>%</td>
-			<td><img src="/public/itemImg/<%= item.arti2 %>.jpg"/><br><%= item.arti2 %></td>
-            <td><%= item.arti2Pick %>%</td>
-			<td><%= item.arti2Win %>%</td>
-			<td><img src="/public/itemImg/<%= item.heal %>.jpg"/><br><%= item.heal %></td>
-            <td><%= item.healPick %>%</td>
-			<td><%= item.healWin %>%</td>
-		</tr>
-		<% }); %>
-	</table>
-	</div>
-		<div class="table-responsive">
- 	 <table class="table">
-		<tr>
-			<th>이속킷</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>공격킷</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>방어킷</th>
-			<th>픽률</th>
-			<th>승률</th>
-		</tr>	
-	<% build.forEach(function(item, index){ %>
-		<tr>
-			<td><img src="/public/itemImg/<%= item.speed %>.jpg"/><br><%= item.speed %></td>
-            <td><%= item.speedPick %>%</td>
-			<td><%= item.speedWin %>%</td>
-			<td><img src="/public/itemImg/<%= item.attack %>.jpg"/><br><%= item.attack %></td>
-            <td><%= item.attackPick %>%</td>
-			<td><%= item.attackWin %>%</td>
-			<td><img src="/public/itemImg/<%= item.defense %>.jpg"/><br><%= item.defense %></td>
-            <td><%= item.defensePick %>%</td>
-			<td><%= item.defenseWin %>%</td>
-		</tr>
-		<% }); %>
-	</table>
-	</div>
-		<div class="table-responsive">
-  		<table class="table">
-		<tr>
-			<th>특수킷</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>목</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>장신구3</th>
-			<th>픽률</th>
-			<th>승률</th>
-			<th>장신구4</th>
-			<th>픽률</th>
-			<th>승률</th>
-		</tr>	
-	<% build.forEach(function(item, index){ %>
-		<tr>
-			<td><img src="/public/itemImg/<%= item.special %>.jpg"/><br><%= item.special %></td>
-            <td><%= item.specialPick %>%</td>
-			<td><%= item.specialWin %>%</td>
-			<td><img src="/public/itemImg/<%= item.neck %>.jpg"/><br><%= item.neck %></td>
-            <td><%= item.neckPick %>%</td>
-			<td><%= item.neckWin %>%</td>
-			<td><img src="/public/itemImg/<%= item.arti3 %>.jpg"/><br><%= item.arti3 %></td>
-            <td><%= item.arti3Pick %>%</td>
-			<td><%= item.arti3Win %>%</td>
-			<td><img src="/public/itemImg/<%= item.arti4 %>.jpg"/><br><%= item.arti4 %></td>
-            <td><%= item.arti4Pick %>%</td>
-			<td><%= item.arti4Win %>%</td>
-		</tr>
-		<% }); %>
-	</table>
-	</div>
-	</strong>
-	</div>
-</body>
+					<div class="tab-content">
+						<div role="tabpanel" class="tab-pane fade active in" id="home">
+							<table>
+							<tr>
+							<td><br><h3 data-toggle="tooltip" data-placement="left" title="각 아이템별 픽률 1위임니당">인기 아이템 빌드<h3></td>
+							<td><i class="fa fa-question-circle"></i></td>
+							</tr>
+							</table>
+							<table class="table">
+								<tr>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].hand%>.jpg" width="64" height="64"/><br><%= build[0].hand%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].head%>.jpg" width="64" height="64"/><br><%= build[0].head%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].chest%>.jpg" width="64" height="64"/><br><%= build[0].chest%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].waist%>.jpg" width="64" height="64"/><br><%= build[0].waist%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].leg%>.jpg" width="64" height="64"/><br><%= build[0].leg%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].shoe%>.jpg" width="64" height="64"/><br><%= build[0].shoe%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].arti1%>.jpg" width="64" height="64"/><br><%= build[0].arti1%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].arti2%>.jpg" width="64" height="64"/><br><%= build[0].arti2%></p></td>
+								</tr>
+								<tr>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].heal%>.jpg" width="64" height="64"/><br><%= build[0].heal%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].speed%>.jpg" width="64" height="64"/><br><%= build[0].speed%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].attack%>.jpg" width="64" height="64"/><br><%= build[0].attack%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].defense%>.jpg" width="64" height="64"/><br><%= build[0].defense%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].special%>.jpg" width="64" height="64"/><br><%= build[0].special%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].neck%>.jpg" width="64" height="64"/><br><%= build[0].neck%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].arti3%>.jpg" width="64" height="64"/><br><%= build[0].arti3%></p></td>
+								<td><p class="text-center"><img src="/public/itemImg/<%= build[0].arti4%>.jpg" width="64" height="64"/><br><%= build[0].arti4%></p></td>
+								</tr>
+							</table>	
+
+							<br><h3>인기 특성</h3>
+							<table class="table">
+									<thead class="thead-dark">
+										<tr>	
+											<th scope="col"><p class="text-center">특성 Lv1</p></td>
+											<th scope="col"><p class="text-center">특성 Lv2</p></td>
+											<th scope="col"><p class="text-center">특성 Lv3</p></td>
+											<th scope="col"><p class="text-center">픽률</p></td>
+											<th scope="col"><p class="text-center">승률</p></td>	
+										</tr>	
+										</thead>	
+										<tbody>	
+										<% for(var i=0 ; i<3 ; i++){ %>
+											<tr>
+												<td><p class="text-center"><img src="/public/attriImg/<%=  build[i].attributeLv1 %>.jpg"/><br><%= build[i].attributeLv1 %></p></td>
+												<td><p class="text-center"><img src="/public/attriImg/<%=  build[i].attributeLv2 %>.jpg"/><br><%= build[i].attributeLv2 %></p></td>
+												<td><p class="text-center"><img src="/public/attriImg/<%=  build[i].attributeLv3 %>.jpg"/><br><%= build[i].attributeLv3 %></p></td>
+												<td><p class="text-center"><br><%= build[i].attriPick %>%</p></td>
+												<td><p class="text-center"><br><%= build[i].attriWin %>%</p></td>
+											</tr>
+										<% }; %>
+										</tbody>
+							</table>
+						</div>
+						<div role="tabpanel" class="tab-pane fade" id="profile">
+							<br>
+							<div class="table-responsive">
+								<table class="table">
+								<thead class="thead-dark">
+									<tr>	
+										<th scope="col"><p class="text-center">특성 Lv1</p></td>
+										<th scope="col"><p class="text-center">특성 Lv2</p></td>
+										<th scope="col"><p class="text-center">특성 Lv3</p></td>
+										<th scope="col"><p class="text-center">픽률</p></td>
+										<th scope="col"><p class="text-center">승률</p></td>	
+									</tr>	
+									</thead>	
+									<tbody>	
+									<% build.forEach(function(item, index){ %>
+									<tr>
+										<td><p class="text-center"><img src="/public/attriImg/<%= item.attributeLv1 %>.jpg"/><br><%= item.attributeLv1 %></p></td>
+										<td><p class="text-center"><img src="/public/attriImg/<%= item.attributeLv2 %>.jpg"/><br><%= item.attributeLv2 %></p></td>
+										<td><p class="text-center"><img src="/public/attriImg/<%= item.attributeLv3 %>.jpg"/><br><%= item.attributeLv3 %></p></td>
+										<td><p class="text-center"><br><%= item.attriPick %>%</p></td>
+										<td><p class="text-center"><br><%= item.attriWin %>%</p></td>
+									</tr>
+									<% }); %>
+									</tbody>
+									</table>
+							</div>
+							<div class="table-responsive">
+								<table class="table">
+									<tr>
+										<td>손(공격)</td>
+										<td>픽률</td>
+										<td>승률</td>
+										<td>머리(치명)</td>
+										<td>픽률</td>
+										<td>승률</td>
+										<td>가슴(체력)</td>
+										<td>픽률</td>
+										<td>승률</td>
+									</tr>	
+									<% build.forEach(function(item, index){ %>
+									<tr>
+										<td>
+										<img src="/public/itemImg/<%= item.hand %>.jpg" width="64" height="64"/>
+										<br> <%= item.hand %></td>
+
+										<td><%= item.handPick %>%</td>
+										<td><%= item.handWin %>%</td>
+										<td><img src="/public/itemImg/<%= item.head %>.jpg" width="64" height="64"/><br><%= item.head %></td>
+										<td><%= item.headPick %>%</td>
+										<td><%= item.headWin %>%</td>
+										<td><img src="/public/itemImg/<%= item.chest %>.jpg" width="64" height="64"/><br><%= item.chest %></td>
+										<td><%= item.chestPick %>%</td>
+										<td><%= item.chestWin %>%</td>
+									</tr>
+									<% }); %>
+								</table>
+							</div>
+							<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<td>허리(회피)</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>바지(방어)</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>신발(속도)</td>
+									<td>픽률</td>
+									<td>승률</td>
+								</tr>	
+							<% build.forEach(function(item, index){ %>
+								<tr>
+									<td><img src="/public/itemImg/<%= item.waist %>.jpg" width="64" height="64"/><br><%= item.waist %></td>
+									<td><%= item.waistPick %>%</td>
+									<td><%= item.waistWin %>%</td>
+									<td><img src="/public/itemImg/<%= item.leg %>.jpg" width="64" height="64"/><br><%= item.leg %></td>
+									<td><%= item.legPick %>%</td>
+									<td><%= item.legWin %>%</td>
+									<td><img src="/public/itemImg/<%= item.shoe %>.jpg" width="64" height="64"/><br><%= item.shoe %></td>
+									<td><%= item.shoePick %>%</td>
+									<td><%= item.shoeWin %>%</td>
+								</tr>
+								<% }); %>
+							</table>
+							</div>
+								<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<td>장신구1</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>장신구2</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>회복킷</td>
+									<td>픽률</td>
+									<td>승률</td>
+								</tr>	
+							<% build.forEach(function(item, index){ %>
+								<tr>
+									<td><img src="/public/itemImg/<%= item.arti1 %>.jpg" width="64" height="64"/><br><%= item.arti1 %></td>
+									<td><%= item.arti1Pick %>%</td>
+									<td><%= item.arti1Win %>%</td>
+									<td><img src="/public/itemImg/<%= item.arti2 %>.jpg" width="64" height="64"/><br><%= item.arti2 %></td>
+									<td><%= item.arti2Pick %>%</td>
+									<td><%= item.arti2Win %>%</td>
+									<td><img src="/public/itemImg/<%= item.heal %>.jpg" width="64" height="64"/><br><%= item.heal %></td>
+									<td><%= item.healPick %>%</td>
+									<td><%= item.healWin %>%</td>
+								</tr>
+								<% }); %>
+							</table>
+							</div>
+								<div class="table-responsive">
+							<table class="table">
+								<tr>
+									<td>이속킷</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>공격킷</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>방어킷</td>
+									<td>픽률</td>
+									<td>승률</td>
+								</tr>	
+							<% build.forEach(function(item, index){ %>
+								<tr>
+									<td><img src="/public/itemImg/<%= item.speed %>.jpg" width="64" height="64"/><br><%= item.speed %></td>
+									<td><%= item.speedPick %>%</td>
+									<td><%= item.speedWin %>%</td>
+									<td><img src="/public/itemImg/<%= item.attack %>.jpg" width="64" height="64"/><br><%= item.attack %></td>
+									<td><%= item.attackPick %>%</td>
+									<td><%= item.attackWin %>%</td>
+									<td><img src="/public/itemImg/<%= item.defense %>.jpg" width="64" height="64"/><br><%= item.defense %></td>
+									<td><%= item.defensePick %>%</td>
+									<td><%= item.defenseWin %>%</td>
+								</tr>
+								<% }); %>
+							</table>
+							</div>
+								<div class="table-responsive">
+								<table class="table">
+								<tr>
+									<td>특수킷</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>목</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>장신구3</td>
+									<td>픽률</td>
+									<td>승률</td>
+									<td>장신구4</td>
+									<td>픽률</td>
+									<td>승률</td>
+								</tr>	
+							<% build.forEach(function(item, index){ %>
+								<tr>
+									<td><img src="/public/itemImg/<%= item.special %>.jpg" width="64" height="64"/><br><%= item.special %></td>
+									<td><%= item.specialPick %>%</td>
+									<td><%= item.specialWin %>%</td>
+									<td><img src="/public/itemImg/<%= item.neck %>.jpg" width="64" height="64"/><br><%= item.neck %></td>
+									<td><%= item.neckPick %>%</td>
+									<td><%= item.neckWin %>%</td>
+									<td><img src="/public/itemImg/<%= item.arti3 %>.jpg" width="64" height="64"/><br><%= item.arti3 %></td>
+									<td><%= item.arti3Pick %>%</td>
+									<td><%= item.arti3Win %>%</td>
+									<td><img src="/public/itemImg/<%= item.arti4 %>.jpg" width="64" height="64"/><br><%= item.arti4 %></td>
+									<td><%= item.arti4Pick %>%</td>
+									<td><%= item.arti4Win %>%</td>
+								</tr>
+								<% }); %>
+							</table>
+							</div>
+						</div>
+							
+						<div role="tabpanel" class="tab-pane fade" id="messages"><br>일</div>
+						<div role="tabpanel" class="tab-pane fade" id="settings"><br>그</div>
+					</div>
+			</div>
+			<div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
+				<table class="display nowrap" style="width:100%">
+																			
+				</table>             
+			</div>
+		</div>
+
+
+	</body>
+    <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
+    <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>       
+    <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/1.0.1/js/dataTables.searchPanes.min.js"></script>        
+    <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/public/assets/demo/datatables-demo.js"></script>
+	<script src="/public/dist/js/scripts.js"></script>	
 </html>
