@@ -26,6 +26,13 @@ app.get('/', function (request, response) {
         });
     });
 });
+app.get('/contact', function (request, response) {
+      fs.readFile(`contact.html`, 'utf8', function (err, description) {
+          response.send(description);
+      });
+  });
+
+
 
 
 app.get('/statistic', function (request, response) {
@@ -44,10 +51,11 @@ app.get('/character/:characterId', function (request, response) {
     if (err) throw err;
     var title = path.basename(request.params.characterId, path.extname(request.params.characterId));
     var cleanTitle = sanitizeHtml(title);
+    var charSql = 'SELECT * FROM positionInfo WHERE `character` = ' + mysql.escape(cleanTitle) + ';';
     var buildSql = 'SELECT * FROM build WHERE `character` = ' + mysql.escape(cleanTitle) + ' ';
-    db.query(buildSql, function (err, rows) {
+    db.query(charSql+buildSql, function (err, rows) {
         response.send(ejs.render(description,
-          { pageName: cleanTitle, build: rows}));
+          { pageName: cleanTitle,charInfo : rows[0], build: rows[1]}));
       });
     });
   });
@@ -59,13 +67,17 @@ app.get('/character/:characterId/:position', function (request, response) {
     var title = path.basename(request.params.characterId, path.extname(request.params.characterId));
     var cleanTitle = sanitizeHtml(title);
     var cleanPosition = sanitizeHtml(request.params.position);
+    var charSql = 'SELECT * FROM positionInfo WHERE `character` = ' + mysql.escape(cleanTitle) + ';';
     var buildSql = 'SELECT * FROM build WHERE `character` = '+mysql.escape(cleanTitle)+' AND position = '+mysql.escape(cleanPosition)+' ';
-      db.query(buildSql, function (err, bulidList) {
-          response.send(ejs.render(description,
-            { pageName: cleanTitle, build: bulidList}));
-        });   
+      db.query(charSql+buildSql, function (err, rows) {
+      response.send(ejs.render(description,
+        { pageName: cleanTitle,charInfo : rows[0], build: rows[1]}));
     });
   });
+});
+
+
+
 
 
 app.listen(port, function () {
