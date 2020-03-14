@@ -5,13 +5,6 @@
         <title>지존퍼즈</title>
         <meta name="description" content="템트리 보는 사이트">
 
-        <!-- Facebook Meta Tags / 페이스북 오픈 그래프 -->
-        <meta property="og:url" content="http://kth0416.iptime.org:8080/">
-        <meta property="og:type" content="website">
-        <meta property="og:title" content="지존퍼즈">
-        <meta property="og:description" content="템트리 보는 사이트">
-        <meta property="og:image" content="/public/thumb/fankit_sidney.jpg">
-
         <!-- Twitter Meta Tags / 트위터 -->
         <meta name="twitter:card" content="summary_large_image">
         <meta name="twitter:title" content="지존퍼즈">
@@ -28,51 +21,34 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="author" content="">
-        <script src="/public/ie-emulation-modes-warning.js"></script>
-        <link href="/public/bootstrap.min.css" rel="stylesheet">
-        <link href="/public/offcanvas.css" rel="stylesheet">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/searchpanes/1.0.1/css/searchPanes.dataTables.min.css"/>
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
+        <link rel="stylesheet" href="/public/offcanvas.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sl-1.3.1/datatables.min.css"/>
+ 
+ 
     
     </head>
     <!-- NAVBAR================================================== -->
-    <nav class="navbar navbar-fixed-top navbar-inverse">
-        <div class="container">
-            <div class="navbar-header">
-                <button
-                    type="button"
-                    class="navbar-toggle collapsed"
-                    data-toggle="collapse"
-                    data-target="#navbar"
-                    aria-expanded="false"
-                    aria-controls="navbar">
-                    <span class="sr-only">Toggle navigation</span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                    <span class="icon-bar"></span>
-                </button>
-                <a class="navbar-brand" href="/">지존퍼즈</a>
-            </div>
-            <div id="navbar" class="collapse navbar-collapse">
-                <ul class="nav navbar-nav">
-                    <li class="active">
-                        <a href="/">Home</a>
-                    </li>
-                    <li>
-                        <a href="/statistic">캐릭터 통계</a>
-                    </li>
-                    <li>
-                        <a href="/contact">Contact(미제작)</a>
-                    </li>
-                </ul>
-            </div>
-        </div>
-    </nav>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	 	<div class="container">
+			<a class="navbar-brand" href="/">지존퍼즈</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item "> <a class="nav-link" href="/statistic">캐릭터 통계</a></li>
+				<li class="nav-item"> <a class="nav-link" href="/contact">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav><br>
     <!-- NAVBAR================================================== -->
     <body>
         <div class="container">
-            <div class="col-xs-12 col-sm-8">
+        <div class="row">
+            <div class="col-8">
                 <div class="jumbotron"> 
                     <h2>캐릭터통계 </h2>            
                     <% prodList.forEach(function(item, index){ %>       
@@ -82,42 +58,45 @@
                 </div>
             </div>
             
-            <div class="col-xs-12 col-sm-4 sidebar-offcanvas" id="sidebar">
+            <div class="col-4">
                 <table id="myTable" class="display nowrap" style="width:100%">
                     <thead>
                         <tr>
                         <strong>
-                        <th scope="col"><p class="text-center">캐릭터</p></th>
-                        <th scope="col"><p class="text-center">포지션</p></th>
-                        <th scope="col"><p class="text-center">픽률</p></th>
-                        <th scope="col"><p class="text-center">승률</p></th>
+                        <td scope="col"><p class="text-center">캐릭터</p></td>
+                        <td scope="col"><p class="text-center">포지션</p></td>
+                        <td scope="col"><p class="text-center">픽률</p></td>
+                        <td scope="col"><p class="text-center">승률</p></td>
                         </strong>
                         </tr>
-                    </thead>                                                   
-                </table>
-                
+                    </thead>                                               
+                </table>     
             </div>
-        </div><!--/.container-->
-                <!-- Bootstrap core JavaScript
-                ================================================== -->
-                <!-- Placed at the end of the document so the pages load faster -->
-            <footer style="background-color: #ffffff;">
+            </div>
+        </div>
+           <footer style="background-color: #ffffff;">
            
             <a href="http://developers.neople.co.kr" target="_blank"><img src="public/itemImg/기술표기_가로형_color.png" alt="Neople 오픈 API" /> </a>
              <p>&copy; Company 2020</p>
                 </footer>
+        </div>
+        <!--/.container-->
+                <!-- Bootstrap core JavaScript
+                ================================================== -->
+                <!-- Placed at the end of the document so the pages load faster -->
+           
+ 
+            <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sp-1.0.1/sl-1.3.1/datatables.min.js"></script>
+          
+        	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+        
             <script src="/public/assets/js/ie-emulation-modes-warning.js"></script>
             <script src="/public//ie10-viewport-bug-workaround.js"></script>
-           
-                <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-            <script src="/public/dist/js/scripts.js"></script>
-            <script type="text/javascript" src="https://code.jquery.com/jquery-3.3.1.js"></script>
-            <script type="text/javascript" src="https://cdn.datatables.net/1.10.20/js/jquery.dataTables.min.js"></script>       
-            <script type="text/javascript" src="https://cdn.datatables.net/searchpanes/1.0.1/js/dataTables.searchPanes.min.js"></script>        
-            <script type="text/javascript" src="https://cdn.datatables.net/select/1.3.1/js/dataTables.select.min.js"></script>
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.11.2/js/all.min.js" crossorigin="anonymous"></script>
-            <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        
             <script src="/public/assets/demo/datatables-demo.js"></script>
-
+        	<script src="/public/dist/js/scripts.js"></script>
+     
+    
     </body>
 </html>
