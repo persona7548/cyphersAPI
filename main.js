@@ -33,11 +33,9 @@ app.get('/contact', function (request, response) {
   });
 
 
-
-
 app.get('/statistic', function (request, response) {
   fs.readFile(`statistic.html`, 'utf8', function (err, description) {
-    if (err) throw err;
+    if (err)  next(err);
     var buildSql = 'SELECT * FROM positionInfo';
     db.query(buildSql, function (err, rows) {
       response.send(ejs.render(description,
@@ -48,11 +46,11 @@ app.get('/statistic', function (request, response) {
 
 app.get('/character/:characterId', function (request, response) {
   fs.readFile(`list.html`, 'utf8', function (err, description) {
-    if (err) throw err;
+    if (err) next(err);
     var title = path.basename(request.params.characterId, path.extname(request.params.characterId));
     var cleanTitle = sanitizeHtml(title);
     var charSql = 'SELECT * FROM positionInfo WHERE `character` = ' + mysql.escape(cleanTitle) + ';';
-    var buildSql = 'SELECT * FROM build WHERE `character` = ' + mysql.escape(cleanTitle) + ' ';
+    var buildSql = 'SELECT * FROM builddetail WHERE `character` = ' + mysql.escape(cleanTitle) + ' ';
     db.query(charSql+buildSql, function (err, rows) {
         response.send(ejs.render(description,
           { pageName: cleanTitle,charInfo : rows[0], build: rows[1]}));
@@ -60,15 +58,14 @@ app.get('/character/:characterId', function (request, response) {
     });
   });
 
-
 app.get('/character/:characterId/:position', function (request, response) {
   fs.readFile(`list.html`, 'utf8', function (err, description) {
-    if (err) throw err;
+    if (err) next(err);
     var title = path.basename(request.params.characterId, path.extname(request.params.characterId));
     var cleanTitle = sanitizeHtml(title);
     var cleanPosition = sanitizeHtml(request.params.position);
     var charSql = 'SELECT * FROM positionInfo WHERE `character` = ' + mysql.escape(cleanTitle) + ';';
-    var buildSql = 'SELECT * FROM build WHERE `character` = '+mysql.escape(cleanTitle)+' AND position = '+mysql.escape(cleanPosition)+' ';
+    var buildSql = 'SELECT * FROM builddetail WHERE `character` = '+mysql.escape(cleanTitle)+' AND position = '+mysql.escape(cleanPosition)+' ';
       db.query(charSql+buildSql, function (err, rows) {
       response.send(ejs.render(description,
         { pageName: cleanTitle,charInfo : rows[0], build: rows[1]}));
@@ -77,7 +74,15 @@ app.get('/character/:characterId/:position', function (request, response) {
 });
 
 
-
+app.use(function(req, res, next) {
+  res.status(404).send('Sorry cant find that!');
+});
+ 
+app.use(function (err, req, res, next) {
+  console.error(err.stack)
+  res.status(500).send('Something broke!')
+});
+ 
 
 
 app.listen(port, function () {
