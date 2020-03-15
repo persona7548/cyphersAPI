@@ -18,8 +18,11 @@
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="description" content="">
         <meta name="author" content="">
-        <script src="/public/ie-emulation-modes-warning.js"></script><link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
-        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
+        <script src="/public/ie-emulation-modes-warning.js"></script>
+		
+		<link rel="stylesheet" href="/public/dist/css/bootstrap.min.css"/>
+	
+		<link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/1.10.20/css/jquery.dataTables.min.css"/>
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/select/1.3.1/css/select.dataTables.min.css"/>
     </head>
    
@@ -46,19 +49,21 @@
 			<div class="col-12">
 
 				<div class="media">
-					<img src="/public/thumb/<%=pageName%>.jpg" class="mr-3" alt=<%=pageName%> />
-					<div class="media-body">
-						<h4 class="mt-0"><%=pageName%>  <img src="/public/attriImg/<%= charInfo[0].position%>.jpg"></h4>
-						<strong>픽률 : <%= charInfo[0].pickRate%>%<br>승률 : <%= charInfo[0].winRate%>%</strong>
-					</div>
-					
+					<img src="/public/thumb/<%=pageName%>.jpg" class="mr-3" alt=<%=pageName%> />				
+					<h4 class="mt-0"><%=pageName%></h4>
+					<img src="/public/attriImg/<%= charInfo[0].position%>.jpg">
+					<strong>픽률 : <%= charInfo[0].pickRate%>%<br>승률 : <%= charInfo[0].winRate%>%</strong>
+					<br><img src="/public/attriImg/<%= charInfo[1].position%>.jpg">
+					<strong>픽률 : <%= charInfo[1].pickRate%>%<br>승률 : <%= charInfo[1].winRate%>%</strong>
+					<br><img src="/public/attriImg/<%= charInfo[2].position%>.jpg">
+					<strong>픽률 : <%= charInfo[2].pickRate%>%<br>승률 : <%= charInfo[2].winRate%>%</strong>				
 				</div>
 			
 					<ul class="nav nav-tabs" role="tablist" id="myTab">
 						 <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">기본 정보</a></li>
 						 <li class="nav-item"><a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">아이템 상세</a></li>
-					 	<li class="nav-item"><a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">Messages</a></li>
-						 <li class="nav-item"><a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">Settings</a></li>
+					 	<li class="nav-item"><a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">캐릭터 정보</a></li>
+						 <li class="nav-item"><a class="nav-link" id="settings-tab" data-toggle="tab" href="#settings" role="tab" aria-controls="settings" aria-selected="false">캐릭터 평가</a></li>
 					</ul>
 					
 
@@ -72,24 +77,24 @@
 							</table>
 							<table class="table  table-sm ">
 								<tr>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].hand%>.jpg" width="64" height="64"/><br><%= build[0].hand%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].head%>.jpg" width="64" height="64"/><br><%= build[0].head%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].chest%>.jpg" width="64" height="64"/><br><%= build[0].chest%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].waist%>.jpg" width="64" height="64"/><br><%= build[0].waist%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].leg%>.jpg" width="64" height="64"/><br><%= build[0].leg%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].shoe%>.jpg" width="64" height="64"/><br><%= build[0].shoe%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].arti1%>.jpg" width="64" height="64"/><br><%= build[0].arti1%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].arti2%>.jpg" width="64" height="64"/><br><%= build[0].arti2%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].handInfo%>"><img src="/public/itemImg/<%= build[0].hand%>.jpg" width="64" height="64" /><br><%= build[0].hand%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].headInfo%>"><img src="/public/itemImg/<%= build[0].head%>.jpg" width="64" height="64"/><br><%= build[0].head%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].chestInfo%>"><img src="/public/itemImg/<%= build[0].chest%>.jpg" width="64" height="64"/><br><%= build[0].chest%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].waistInfo%>"><img src="/public/itemImg/<%= build[0].waist%>.jpg" width="64" height="64"/><br><%= build[0].waist%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].legInfo%>"><img src="/public/itemImg/<%= build[0].leg%>.jpg" width="64" height="64"/><br><%= build[0].leg%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].shoeInfo%>"><img src="/public/itemImg/<%= build[0].shoe%>.jpg" width="64" height="64"/><br><%= build[0].shoe%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti1Info%>"><img src="/public/itemImg/<%= build[0].arti1%>.jpg" width="64" height="64"/><br><%= build[0].arti1%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti2Info%>"><img src="/public/itemImg/<%= build[0].arti2%>.jpg" width="64" height="64"/><br><%= build[0].arti2%></td>
 								</tr>
 								<tr>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].heal%>.jpg" width="64" height="64"/><br><%= build[0].heal%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].speed%>.jpg" width="64" height="64"/><br><%= build[0].speed%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].attack%>.jpg" width="64" height="64"/><br><%= build[0].attack%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].defense%>.jpg" width="64" height="64"/><br><%= build[0].defense%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].special%>.jpg" width="64" height="64"/><br><%= build[0].special%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].neck%>.jpg" width="64" height="64"/><br><%= build[0].neck%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].arti3%>.jpg" width="64" height="64"/><br><%= build[0].arti3%></td>
-								<td class="text-center"><img src="/public/itemImg/<%= build[0].arti4%>.jpg" width="64" height="64"/><br><%= build[0].arti4%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].healInfo%>"><img src="/public/itemImg/<%= build[0].heal%>.jpg" width="64" height="64"/><br><%= build[0].heal%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].speedInfo%>"><img src="/public/itemImg/<%= build[0].speed%>.jpg" width="64" height="64"/><br><%= build[0].speed%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].attackInfo%>"><img src="/public/itemImg/<%= build[0].attack%>.jpg" width="64" height="64"/><br><%= build[0].attack%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].defenseInfo%>"><img src="/public/itemImg/<%= build[0].defense%>.jpg" width="64" height="64"/><br><%= build[0].defense%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].specialInfo%>"><img src="/public/itemImg/<%= build[0].special%>.jpg" width="64" height="64"/><br><%= build[0].special%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].neckInfo%>"><img src="/public/itemImg/<%= build[0].neck%>.jpg" width="64" height="64"/><br><%= build[0].neck%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti3Info%>"><img src="/public/itemImg/<%= build[0].arti3%>.jpg" width="64" height="64"/><br><%= build[0].arti3%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti4Info%>"><img src="/public/itemImg/<%= build[0].arti4%>.jpg" width="64" height="64"/><br><%= build[0].arti4%></td>
 								</tr>
 							</table>	
 
@@ -107,9 +112,9 @@
 									<tbody>	
 										<% for(var i=0 ; i<3 ; i++){ %>
 											<tr>
-												<td class="text-center"><img src="/public/attriImg/<%=  build[i].attributeLv1 %>.jpg"/><br><%= build[i].attributeLv1 %></td>
-												<td class="text-center"><img src="/public/attriImg/<%=  build[i].attributeLv2 %>.jpg"/><br><%= build[i].attributeLv2 %></td>
-												<td class="text-center"><img src="/public/attriImg/<%=  build[i].attributeLv3 %>.jpg"/><br><%= build[i].attributeLv3 %></td>
+												<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri1Info%>"><img src="/public/attriImg/<%= build[i].attributeLv1 %>.jpg"/><br><%= build[i].attributeLv1 %></td>
+												<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri2Info%>"><img src="/public/attriImg/<%= build[i].attributeLv2 %>.jpg"/><br><%= build[i].attributeLv2 %></td>
+												<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri3Info%>"><img src="/public/attriImg/<%= build[i].attributeLv3 %>.jpg"/><br><%= build[i].attributeLv3 %></td>
 												<td class="text-center"><br><%= build[i].attriPick %>%</td>
 												<td class="text-center"><br><%= build[i].attriWin %>%</td>
 											</tr>
@@ -132,15 +137,15 @@
 									</tr>	
 									</thead>	
 									<tbody>	
-									<% build.forEach(function(item, index){ %>
+									<% for(var i=0 ; i<5 ; i++){ %>
 									<tr>
-										<td class="text-center"><img src="/public/attriImg/<%= item.attributeLv1 %>.jpg"/><br><%= item.attributeLv1 %></td>
-										<td class="text-center"><img src="/public/attriImg/<%= item.attributeLv2 %>.jpg"/><br><%= item.attributeLv2 %></td>
-										<td class="text-center"><img src="/public/attriImg/<%= item.attributeLv3 %>.jpg"/><br><%= item.attributeLv3 %></td>
-										<td class="text-center"><br><%= item.attriPick %>%</td>
-										<td class="text-center"><br><%= item.attriWin %>%</td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri1Info%>"><img src="/public/attriImg/<%= build[i].attributeLv1 %>.jpg"/><br><%= build[i].attributeLv1 %></td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri2Info%>"><img src="/public/attriImg/<%= build[i].attributeLv2 %>.jpg"/><br><%= build[i].attributeLv2 %></td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri3Info%>"><img src="/public/attriImg/<%= build[i].attributeLv3 %>.jpg"/><br><%= build[i].attributeLv3 %></td>
+										<td class="text-center"><br><%= build[i].attriPick %>%</td>
+										<td class="text-center"><br><%= build[i].attriWin %>%</td>
 									</tr>
-									<% }); %>
+									<% }; %>
 									</tbody>
 									</table>
 							</div>
@@ -160,19 +165,19 @@
 									</tr>	
 									</thead>	
 									<tbody>	
-									<% build.forEach(function(item, index){ %>
+										<% for(var i=0 ; i<5 ; i++){ %>
 									<tr>
-										<td class="text-center"><img src="/public/itemImg/<%= item.hand %>.jpg" width="64" height="64"/><br> <%= item.hand %></td>
-										<td class="text-center"><%= item.handPick %>%</td>
-										<td class="text-center"><%= item.handWin %>%</td>
-										<td class="text-center"><img src="/public/itemImg/<%= item.head %>.jpg" width="64" height="64"/><br><%= item.head %></td>
-										<td class="text-center"><%= item.headPick %>%</td>
-										<td class="text-center"><%= item.headWin %>%</td>
-										<td class="text-center"><img src="/public/itemImg/<%= item.chest %>.jpg" width="64" height="64"/><br><%= item.chest %></td>
-										<td class="text-center"><%= item.chestPick %>%</td>
-										<td class="text-center"><%= item.chestWin %>%</td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].handInfo%>"><img src="/public/itemImg/<%= build[i].hand %>.jpg" width="64" height="64"/><br> <%= build[i].hand %></td>
+										<td class="text-center"><%= build[i].handPick %>%</td>
+										<td class="text-center"><%= build[i].handWin %>%</td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].headInfo%>"><img src="/public/itemImg/<%= build[i].head %>.jpg" width="64" height="64"/><br><%= build[i].head %></td>
+										<td class="text-center"><%= build[i].headPick %>%</td>
+										<td class="text-center"><%= build[i].headWin %>%</td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].chestInfo%>"><img src="/public/itemImg/<%= build[i].chest %>.jpg" width="64" height="64"/><br><%= build[i].chest %></td>
+										<td class="text-center"><%= build[i].chestPick %>%</td>
+										<td class="text-center"><%= build[i].chestWin %>%</td>
 									</tr>
-									<% }); %>
+									<% }; %>
 									</tbody>
 								</table>
 							</div>
@@ -191,19 +196,19 @@
 									<th class="text-center">승률</th>
 								</tr>	
 								</thead>
-							<% build.forEach(function(item, index){ %>
+								<% for(var i=0 ; i<5 ; i++){ %>
 								<tr>
-									<td class="text-center"><img src="/public/itemImg/<%= item.waist %>.jpg" width="64" height="64"/><br><%= item.waist %></td>
-									<td class="text-center"><%= item.waistPick %>%</td>
-									<td class="text-center"><%= item.waistWin %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.leg %>.jpg" width="64" height="64"/><br><%= item.leg %></td>
-									<td class="text-center"><%= item.legPick %>%</td>
-									<td class="text-center"><%= item.legWin %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.shoe %>.jpg" width="64" height="64"/><br><%= item.shoe %></td>
-									<td class="text-center"><%= item.shoePick %>%</td>
-									<td class="text-center"><%= item.shoeWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].waistInfo%>"><img src="/public/itemImg/<%= build[i].waist %>.jpg" width="64" height="64"/><br><%= build[i].waist %></td>
+									<td class="text-center"><%= build[i].waistPick %>%</td>
+									<td class="text-center"><%= build[i].waistWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].legInfo%>"><img src="/public/itemImg/<%= build[i].leg %>.jpg" width="64" height="64"/><br><%= build[i].leg %></td>
+									<td class="text-center"><%= build[i].legPick %>%</td>
+									<td class="text-center"><%= build[i].legWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].shoeInfo%>"><img src="/public/itemImg/<%= build[i].shoe %>.jpg" width="64" height="64"/><br><%= build[i].shoe %></td>
+									<td class="text-center"><%= build[i].shoePick %>%</td>
+									<td class="text-center"><%= build[i].shoeWin %>%</td>
 								</tr>
-								<% }); %>
+								<% }; %>
 							</table>
 							</div>
 							<div class="table-responsive">
@@ -222,19 +227,19 @@
 								</tr>	
 								</thead>
 								<tbody>
-							<% build.forEach(function(item, index){ %>
+								<% for(var i=0 ; i<5 ; i++){ %>
 								<tr>
-									<td class="text-center"><img src="/public/itemImg/<%= item.arti1 %>.jpg" width="64" height="64"/><br><%= item.arti1 %></td>
-									<td class="text-center"><%= item.arti1Pick %>%</td>
-									<td class="text-center"><%= item.arti1Win %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.arti2 %>.jpg" width="64" height="64"/><br><%= item.arti2 %></td>
-									<td class="text-center"><%= item.arti2Pick %>%</td>
-									<td class="text-center"><%= item.arti2Win %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.heal %>.jpg" width="64" height="64"/><br><%= item.heal %></td>
-									<td class="text-center"><%= item.healPick %>%</td>
-									<td class="text-center"><%= item.healWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti1Info%>"><img src="/public/itemImg/<%= build[i].arti1 %>.jpg" width="64" height="64"/><br><%= build[i].arti1 %></td>
+									<td class="text-center"><%= build[i].arti1Pick %>%</td>
+									<td class="text-center"><%= build[i].arti1Win %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti2Info%>"><img src="/public/itemImg/<%= build[i].arti2 %>.jpg" width="64" height="64"/><br><%= build[i].arti2 %></td>
+									<td class="text-center"><%= build[i].arti2Pick %>%</td>
+									<td class="text-center"><%= build[i].arti2Win %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].healInfo%>"><img src="/public/itemImg/<%= build[i].heal %>.jpg" width="64" height="64"/><br><%= build[i].heal %></td>
+									<td class="text-center"><%= build[i].healPick %>%</td>
+									<td class="text-center"><%= build[i].healWin %>%</td>
 								</tr>
-								<% }); %>
+								<% }; %>
 								</tbody>
 							</table>
 							</div>
@@ -253,19 +258,19 @@
 									<th class="text-center">승률</th>
 								</tr>	
 								</thead>
-							<% build.forEach(function(item, index){ %>
+								<% for(var i=0 ; i<5 ; i++){ %>
 								<tr>
-									<td class="text-center"><img src="/public/itemImg/<%= item.speed %>.jpg" width="64" height="64"/><br><%= item.speed %></td>
-									<td class="text-center"><%= item.speedPick %>%</td>
-									<td class="text-center"><%= item.speedWin %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.attack %>.jpg" width="64" height="64"/><br><%= item.attack %></td>
-									<td class="text-center"><%= item.attackPick %>%</td>
-									<td class="text-center"><%= item.attackWin %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.defense %>.jpg" width="64" height="64"/><br><%= item.defense %></td>
-									<td class="text-center"><%= item.defensePick %>%</td>
-									<td class="text-center"><%= item.defenseWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].speedInfo%>"><img src="/public/itemImg/<%= build[i].speed %>.jpg" width="64" height="64"/><br><%= build[i].speed %></td>
+									<td class="text-center"><%= build[i].speedPick %>%</td>
+									<td class="text-center"><%= build[i].speedWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attackInfo%>"><img src="/public/itemImg/<%= build[i].attack %>.jpg" width="64" height="64"/><br><%= build[i].attack %></td>
+									<td class="text-center"><%= build[i].attackPick %>%</td>
+									<td class="text-center"><%= build[i].attackWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].defenseInfo%>"><img src="/public/itemImg/<%= build[i].defense %>.jpg" width="64" height="64"/><br><%= build[i].defense %></td>
+									<td class="text-center"><%= build[i].defensePick %>%</td>
+									<td class="text-center"><%= build[i].defenseWin %>%</td>
 								</tr>
-								<% }); %>
+								<% }; %>
 							</table>
 							</div>
 								<div class="table-responsive">
@@ -286,27 +291,27 @@
 									<th class="text-center">승률</th>
 								</tr>	
 								</thead>
-							<% build.forEach(function(item, index){ %>
+								<% for(var i=0 ; i<5 ; i++){ %>
 								<tr>
-									<td class="text-center"><img src="/public/itemImg/<%= item.special %>.jpg" width="64" height="64"/><br><%= item.special %></td>
-									<td class="text-center"><%= item.specialPick %>%</td>
-									<td class="text-center"><%= item.specialWin %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.neck %>.jpg" width="64" height="64"/><br><%= item.neck %></td>
-									<td class="text-center"><%= item.neckPick %>%</td>
-									<td class="text-center"><%= item.neckWin %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.arti3 %>.jpg" width="64" height="64"/><br><%= item.arti3 %></td>
-									<td class="text-center"><%= item.arti3Pick %>%</td>
-									<td class="text-center"><%= item.arti3Win %>%</td>
-									<td class="text-center"><img src="/public/itemImg/<%= item.arti4 %>.jpg" width="64" height="64"/><br><%= item.arti4 %></td>
-									<td class="text-center"><%= item.arti4Pick %>%</td>
-									<td class="text-center"><%= item.arti4Win %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].specialInfo%>"><img src="/public/itemImg/<%= build[i].special %>.jpg" width="64" height="64"/><br><%= build[i].special %></td>
+									<td class="text-center"><%= build[i].specialPick %>%</td>
+									<td class="text-center"><%= build[i].specialWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].neckInfo%>"><img src="/public/itemImg/<%= build[i].neck %>.jpg" width="64" height="64"/><br><%= build[i].neck %></td>
+									<td class="text-center"><%= build[i].neckPick %>%</td>
+									<td class="text-center"><%= build[i].neckWin %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti3Info%>"><img src="/public/itemImg/<%= build[i].arti3 %>.jpg" width="64" height="64"/><br><%= build[i].arti3 %></td>
+									<td class="text-center"><%= build[i].arti3Pick %>%</td>
+									<td class="text-center"><%= build[i].arti3Win %>%</td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti4Info%>"><img src="/public/itemImg/<%= build[i].arti4 %>.jpg" width="64" height="64"/><br><%= build[i].arti4 %></td>
+									<td class="text-center"><%= build[i].arti4Pick %>%</td>
+									<td class="text-center"><%= build[i].arti4Win %>%</td>
 								</tr>
-								<% }); %>
+								<% }; %>
 							</table>
 							</div>
 						</div>
-						<div role="tabpanel" class="tab-pane fade" id="messages" aria-labelledby="messages-tab"><br>2</div>
-						<div role="tabpanel" class="tab-pane fade" id="settings" aria-labelledby="settings-tab"><br>3</div>
+						<div role="tabpanel" class="tab-pane fade" id="messages" aria-labelledby="messages-tab"><br>캐릭정보</div>
+						<div role="tabpanel" class="tab-pane fade" id="settings" aria-labelledby="settings-tab"><br>캐릭평가</div>
 					</div>
 			</div>
 			<div class="col-xs-12 col-sm-3 sidebar-offcanvas" id="sidebar">
