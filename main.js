@@ -8,7 +8,8 @@ var path = require('path');
 var sanitizeHtml = require('sanitize-html');
 var qs = require('querystring');
 var template = require('./lib/template.js');
-
+var helmet = require('helmet');
+app.use(helmet());
 app.use('/public', express.static('public'));
 var mysql = require('mysql');
 var dbconfig = require('./config/database.js');
@@ -49,8 +50,10 @@ app.get('/character/:characterId', function (request, response) {
     if (err) next(err);
     var title = path.basename(request.params.characterId, path.extname(request.params.characterId));
     var cleanTitle = sanitizeHtml(title);
-    var charSql = 'SELECT * FROM positionInfo WHERE `character` = ' + mysql.escape(cleanTitle) + ';';
-    var buildSql = 'SELECT * FROM builddetail WHERE `character` = ' + mysql.escape(cleanTitle) + ' ';
+    var charSqlTemp = 'SELECT * FROM positionInfo WHERE `character` = ? ;';
+    var charSql = mysql.format(charSqlTemp,cleanTitle);
+    var buildSqlTemp = 'SELECT * FROM builddetail WHERE `character` = ?';
+    var buildSql = mysql.format(buildSqlTemp,cleanTitle);
     db.query(charSql+buildSql, function (err, rows) {
         response.send(ejs.render(description,
           { pageName: cleanTitle,charInfo : rows[0], build: rows[1]}));
