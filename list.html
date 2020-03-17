@@ -6,11 +6,11 @@
         <meta name="description" content="템트리 보는 사이트">
         <!-- Twitter Meta Tags / 트위터 -->
         <meta name="twitter:card" content="summary_large_image">
-        <meta name="twitter:title" content="지존퍼즈">
+        <meta name="twitter:title" content="Oxhorn.Info">
         <meta name="twitter:description" content="템트리 보는 사이트">
         <meta name="twitter:image" content="/public/thumb/fankit_sidney.jpg">
         <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
-        <meta itemprop="name" content="지존퍼즈">
+        <meta itemprop="name" content="Oxhorn.Info">
         <meta itemprop="description" content="템트리 보는 사이트">
         <meta itemprop="image" content="/public/thumb/fankit_sidney.jpg"> 
   		<meta charset="utf-8">
@@ -31,7 +31,7 @@
 
 	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
 	 	<div class="container">
-			<a class="navbar-brand" href="/">지존퍼즈</a>
+			<a class="navbar-brand" href="/">옥스혼.Info</a>
 			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
@@ -47,17 +47,37 @@
         <!-- NAVBAR================================================== -->
 		<div class="container">
 			<div class="col-12">
-
 				<div class="media">
-					<img src="/public/thumb/<%=pageName%>.jpg" class="mr-3" alt=<%=pageName%> />				
-					<h4 class="mt-0"><%=pageName%></h4>
-					<img src="/public/attriImg/<%= charInfo[0].position%>.jpg">
-					<strong>픽률 : <%= charInfo[0].pickRate%>%<br>승률 : <%= charInfo[0].winRate%>%</strong>
-					<br><img src="/public/attriImg/<%= charInfo[1].position%>.jpg">
-					<strong>픽률 : <%= charInfo[1].pickRate%>%<br>승률 : <%= charInfo[1].winRate%>%</strong>
-					<br><img src="/public/attriImg/<%= charInfo[2].position%>.jpg">
-					<strong>픽률 : <%= charInfo[2].pickRate%>%<br>승률 : <%= charInfo[2].winRate%>%</strong>				
+					<img src="/public/thumb/<%=pageName%>.jpg" class="mr-3" alt= <%= pageName %> />				
+					
+					<a class="btn btn-outline-info" href="/character/<%=pageName%>/<%= charInfo[0].position%>" role="button">
+						<div class="media">
+							<img src="/public/attriImg/<%= charInfo[0].position%>.jpg">
+							<div class="media-body">
+								<h6 class="mt-0"><strong>픽률 : <%= charInfo[0].pickRate%>%<br>승률 : <%= charInfo[0].winRate%>%</strong></h6>
+							</div>
+						</div>
+					</a> &nbsp; 
+					<a class="btn btn-outline-success" href="/character/<%=pageName%>/<%= charInfo[1].position%>" role="button">
+						<div class="media">
+							<img src="/public/attriImg/<%= charInfo[1].position%>.jpg">
+							<div class="media-body">
+								<h6 class="mt-0"><strong>픽률 : <%= charInfo[1].pickRate%>%<br>승률 : <%= charInfo[1].winRate%>%</strong></h6>
+							</div>
+						</div>
+					</a> &nbsp; 
+					<a class="btn btn-outline-secondary" href="/character/<%=pageName%>/<%= charInfo[2].position%>" role="button">
+						<div class="media">
+							<img src="/public/attriImg/<%= charInfo[2].position%>.jpg">
+							<div class="media-body">
+								<h6 class="mt-0"><strong>픽률 : <%= charInfo[2].pickRate%>%<br>승률 : <%= charInfo[2].winRate%>%</strong></h6>
+							</div>
+						</div>
+					</a>
+
+			
 				</div>
+					<br>
 			
 					<ul class="nav nav-tabs" role="tablist" id="myTab">
 						 <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">기본 정보</a></li>
@@ -71,7 +91,7 @@
 						<div role="tabpanel" class="tab-pane fade show active" id="home" aria-labelledby="home-tab">
 							<table>
 							<tr>
-							<td><br><h4 data-toggle="tooltip" data-placement="left" title="각 아이템별 픽률 1위임니당">인기 아이템 빌드<h4></td>
+							<td><br><h4 data-toggle="tooltip" data-placement="left" title="(승리한 게임 기준) 각 아이템별 픽률 1위임니당">인기 아이템 빌드<h4></td>
 							<td><i class="fa fa-question-circle"></i></td>
 							</tr>
 							</table>
@@ -310,7 +330,7 @@
 							</table>
 							</div>
 						</div>
-						<div role="tabpanel" class="tab-pane fade" id="messages" aria-labelledby="messages-tab"><br>캐릭정보</div>
+						<div role="tabpanel" class="tab-pane fade" id="messages" aria-labelledby="messages-tab"><img src="/public/profile/<%=pageName%>.jpg"></div>
 						<div role="tabpanel" class="tab-pane fade" id="settings" aria-labelledby="settings-tab"><br>캐릭평가</div>
 					</div>
 			</div>
