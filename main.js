@@ -32,6 +32,11 @@ app.get('/contact', function (request, response) {
           response.send(description);
       });
   });
+app.get('/user', function (request, response) {
+    fs.readFile(`user.html`, 'utf8', function (err, description) {
+        response.send(ejs.render(description, {userName: request.query.userName}));
+    });
+});
 
 
 app.get('/statistic', function (request, response) {
