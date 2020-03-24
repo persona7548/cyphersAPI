@@ -48,8 +48,8 @@
 		<div class="container">
 			<div class="col-12">
 				<div class="media">
-					<img src="/public/thumb/<%=pageName%>.jpg" class="mr-3" alt= <%= pageName %> />				
-					
+					<img src="/public/thumb/<%=pageName%>.jpg" class="mr-3" alt= <%= pageName %> />
+
 					<a class="btn btn-outline-info" href="/character/<%=pageName%>/<%= charInfo[0].position%>" role="button">
 						<div class="media">
 							<img src="/public/attriImg/<%= charInfo[0].position%>.jpg">
@@ -97,51 +97,83 @@
 							</table>
 							<table class="table  table-sm ">
 								<tr>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].handInfo%>"><img src="/public/itemImg/<%= build[0].hand%>.jpg" width="64" height="64" /><br><%= build[0].hand%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].headInfo%>"><img src="/public/itemImg/<%= build[0].head%>.jpg" width="64" height="64"/><br><%= build[0].head%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].chestInfo%>"><img src="/public/itemImg/<%= build[0].chest%>.jpg" width="64" height="64"/><br><%= build[0].chest%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].waistInfo%>"><img src="/public/itemImg/<%= build[0].waist%>.jpg" width="64" height="64"/><br><%= build[0].waist%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].legInfo%>"><img src="/public/itemImg/<%= build[0].leg%>.jpg" width="64" height="64"/><br><%= build[0].leg%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].shoeInfo%>"><img src="/public/itemImg/<%= build[0].shoe%>.jpg" width="64" height="64"/><br><%= build[0].shoe%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti1Info%>"><img src="/public/itemImg/<%= build[0].arti1%>.jpg" width="64" height="64"/><br><%= build[0].arti1%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti2Info%>"><img src="/public/itemImg/<%= build[0].arti2%>.jpg" width="64" height="64"/><br><%= build[0].arti2%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].handInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].hand%>" width="64" height="64" /><br><%= build[0].handName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].headInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].head%>" width="64" height="64"/><br><%= build[0].headName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].chestInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].chest%>" width="64" height="64"/><br><%= build[0].chestName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].waistInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].waist%>" width="64" height="64"/><br><%= build[0].waistName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].legInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].leg%>" width="64" height="64"/><br><%= build[0].legName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].shoeInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].shoe%>" width="64" height="64"/><br><%= build[0].shoeName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti1Info%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].arti1%>" width="64" height="64"/><br><%= build[0].arti1Name%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti2Info%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].arti2%>" width="64" height="64"/><br><%= build[0].arti2Name%></td>
 								</tr>
 								<tr>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].healInfo%>"><img src="/public/itemImg/<%= build[0].heal%>.jpg" width="64" height="64"/><br><%= build[0].heal%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].speedInfo%>"><img src="/public/itemImg/<%= build[0].speed%>.jpg" width="64" height="64"/><br><%= build[0].speed%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].attackInfo%>"><img src="/public/itemImg/<%= build[0].attack%>.jpg" width="64" height="64"/><br><%= build[0].attack%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].defenseInfo%>"><img src="/public/itemImg/<%= build[0].defense%>.jpg" width="64" height="64"/><br><%= build[0].defense%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].specialInfo%>"><img src="/public/itemImg/<%= build[0].special%>.jpg" width="64" height="64"/><br><%= build[0].special%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].neckInfo%>"><img src="/public/itemImg/<%= build[0].neck%>.jpg" width="64" height="64"/><br><%= build[0].neck%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti3Info%>"><img src="/public/itemImg/<%= build[0].arti3%>.jpg" width="64" height="64"/><br><%= build[0].arti3%></td>
-								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti4Info%>"><img src="/public/itemImg/<%= build[0].arti4%>.jpg" width="64" height="64"/><br><%= build[0].arti4%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].heaInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].heal%>" width="64" height="64"/><br><%= build[0].healName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].speedInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].speed%>" width="64" height="64"/><br><%= build[0].speedName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].attackInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].attack%>" width="64" height="64"/><br><%= build[0].attackName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].defenseInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].defense%>" width="64" height="64"/><br><%= build[0].defenseName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].specialInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].special%>" width="64" height="64"/><br><%= build[0].specialName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].neckInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].neck%>" width="64" height="64"/><br><%= build[0].neckName%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti3Info%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].arti3%>" width="64" height="64"/><br><%= build[0].arti3Name%></td>
+								<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[0].arti4Info%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[0].arti4%>" width="64" height="64"/><br><%= build[0].arti4Name%></td>
 								</tr>
 							</table>	
-
-							<br><h3>인기 특성</h3>
-							<table class="table  table-sm">
+							<br>
+							<div class="row">
+            					<div class="col-7">
+									<h3>인기 특성</h3>
+									<table class="table  table-sm">
+											<thead class="thead-dark">
+												<tr>	
+													<th class="text-center">특성 Lv1</th>
+													<th class="text-center">특성 Lv2</th>
+													<th class="text-center">특성 Lv3</th>
+													<th class="text-center">픽률</th>
+													<th class="text-center">승률</th>	
+												</tr>	
+											</thead>	
+											<tbody>	
+												<% for(var i=0 ; i<3 ; i++){ %>
+													<tr>
+														<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri1Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= build[i].attributeLv1 %>"/><br><%= build[i].attri1Name %></td>
+														<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri2Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= build[i].attributeLv2 %>"/><br><%= build[i].attri2Name %></td>
+														<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri3Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= build[i].attributeLv3 %>"/><br><%= build[i].attri3Name %></td>
+														<td class="text-center"><br><%= build[i].attriPick %>%</td>
+														<td class="text-center"><br><%= build[i].attriWin %>%</td>
+													</tr>
+												<% }; %>
+											</tbody>
+									</table>
+								</div>
+								<div class="col-5">
+								 	<h3>캐릭터 랭킹</h3>
+									<table class="table  table-sm">
 									<thead class="thead-dark">
-										<tr>	
-											<th class="text-center">특성 Lv1</th>
-											<th class="text-center">특성 Lv2</th>
-											<th class="text-center">특성 Lv3</th>
-											<th class="text-center">픽률</th>
-											<th class="text-center">승률</th>	
-										</tr>	
+									<tr>	
+											<th class="text-center">순위</th>
+											<th class="text-center">아이디</th>									
+											<th class="text-center">승리수</th>
+											<th class="text-center">패배수</th>	
+											<th class="text-center">승률</th>
+									</tr>	
 									</thead>	
 									<tbody>	
-										<% for(var i=0 ; i<3 ; i++){ %>
+									<% for(var i=0 ; i<10 ; i++){ %>
 											<tr>
-												<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri1Info%>"><img src="/public/attriImg/<%= build[i].attributeLv1 %>.jpg"/><br><%= build[i].attributeLv1 %></td>
-												<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri2Info%>"><img src="/public/attriImg/<%= build[i].attributeLv2 %>.jpg"/><br><%= build[i].attributeLv2 %></td>
-												<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri3Info%>"><img src="/public/attriImg/<%= build[i].attributeLv3 %>.jpg"/><br><%= build[i].attributeLv3 %></td>
-												<td class="text-center"><br><%= build[i].attriPick %>%</td>
-												<td class="text-center"><br><%= build[i].attriWin %>%</td>
+											
+												<td class="text-center"><%=ranking.rows[i].rank%></td>
+											 	<td class="text-center"><a href="/user?userName=<%=ranking.rows[i].nickname%>"><%=ranking.rows[i].nickname%></a></td>
+												<td class="text-center"><%=ranking.rows[i].winCount%></td>
+												<td class="text-center"><%=ranking.rows[i].loseCount%></td>
+												<td class="text-center"><%=((ranking.rows[i].winCount/(ranking.rows[i].winCount+ranking.rows[i].loseCount))*100).toFixed(1)%>%</td>
 											</tr>
 										<% }; %>
 									</tbody>
-							</table>
+									</table>
+								</div>
+							</div>
 						</div>
+						
+					
 					
 						<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
 							<br>
@@ -159,9 +191,9 @@
 									<tbody>	
 									<% for(var i=0 ; i<5 ; i++){ %>
 									<tr>
-										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri1Info%>"><img src="/public/attriImg/<%= build[i].attributeLv1 %>.jpg"/><br><%= build[i].attributeLv1 %></td>
-										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri2Info%>"><img src="/public/attriImg/<%= build[i].attributeLv2 %>.jpg"/><br><%= build[i].attributeLv2 %></td>
-										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri3Info%>"><img src="/public/attriImg/<%= build[i].attributeLv3 %>.jpg"/><br><%= build[i].attributeLv3 %></td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri1Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= build[i].attributeLv1 %>"/><br><%= build[i].attri1Name %></td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri2Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= build[i].attributeLv2 %>"/><br><%= build[i].attri2Name %></td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attri3Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= build[i].attributeLv3 %>"/><br><%= build[i].attri3Name %></td>
 										<td class="text-center"><br><%= build[i].attriPick %>%</td>
 										<td class="text-center"><br><%= build[i].attriWin %>%</td>
 									</tr>
@@ -187,13 +219,13 @@
 									<tbody>	
 										<% for(var i=0 ; i<5 ; i++){ %>
 									<tr>
-										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].handInfo%>"><img src="/public/itemImg/<%= build[i].hand %>.jpg" width="64" height="64"/><br> <%= build[i].hand %></td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].handInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].hand %>" width="64" height="64"/><br> <%= build[i].handName %></td>
 										<td class="text-center"><%= build[i].handPick %>%</td>
 										<td class="text-center"><%= build[i].handWin %>%</td>
-										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].headInfo%>"><img src="/public/itemImg/<%= build[i].head %>.jpg" width="64" height="64"/><br><%= build[i].head %></td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].headInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].head %>" width="64" height="64"/><br><%= build[i].headName %></td>
 										<td class="text-center"><%= build[i].headPick %>%</td>
 										<td class="text-center"><%= build[i].headWin %>%</td>
-										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].chestInfo%>"><img src="/public/itemImg/<%= build[i].chest %>.jpg" width="64" height="64"/><br><%= build[i].chest %></td>
+										<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].chestInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].chest %>" width="64" height="64"/><br><%= build[i].chestName %></td>
 										<td class="text-center"><%= build[i].chestPick %>%</td>
 										<td class="text-center"><%= build[i].chestWin %>%</td>
 									</tr>
@@ -218,13 +250,13 @@
 								</thead>
 								<% for(var i=0 ; i<5 ; i++){ %>
 								<tr>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].waistInfo%>"><img src="/public/itemImg/<%= build[i].waist %>.jpg" width="64" height="64"/><br><%= build[i].waist %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].waistInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].waist %>" width="64" height="64"/><br><%= build[i].waistName %></td>
 									<td class="text-center"><%= build[i].waistPick %>%</td>
 									<td class="text-center"><%= build[i].waistWin %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].legInfo%>"><img src="/public/itemImg/<%= build[i].leg %>.jpg" width="64" height="64"/><br><%= build[i].leg %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].legInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].leg %>" width="64" height="64"/><br><%= build[i].legName %></td>
 									<td class="text-center"><%= build[i].legPick %>%</td>
 									<td class="text-center"><%= build[i].legWin %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].shoeInfo%>"><img src="/public/itemImg/<%= build[i].shoe %>.jpg" width="64" height="64"/><br><%= build[i].shoe %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].shoeInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].shoe %>" width="64" height="64"/><br><%= build[i].shoeName %></td>
 									<td class="text-center"><%= build[i].shoePick %>%</td>
 									<td class="text-center"><%= build[i].shoeWin %>%</td>
 								</tr>
@@ -249,13 +281,13 @@
 								<tbody>
 								<% for(var i=0 ; i<5 ; i++){ %>
 								<tr>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti1Info%>"><img src="/public/itemImg/<%= build[i].arti1 %>.jpg" width="64" height="64"/><br><%= build[i].arti1 %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti1Info%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].arti1 %>" width="64" height="64"/><br><%= build[i].arti1Name %></td>
 									<td class="text-center"><%= build[i].arti1Pick %>%</td>
 									<td class="text-center"><%= build[i].arti1Win %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti2Info%>"><img src="/public/itemImg/<%= build[i].arti2 %>.jpg" width="64" height="64"/><br><%= build[i].arti2 %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti2Info%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].arti2 %>" width="64" height="64"/><br><%= build[i].arti2Name %></td>
 									<td class="text-center"><%= build[i].arti2Pick %>%</td>
 									<td class="text-center"><%= build[i].arti2Win %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].healInfo%>"><img src="/public/itemImg/<%= build[i].heal %>.jpg" width="64" height="64"/><br><%= build[i].heal %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].heaInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].heal %>" width="64" height="64"/><br><%= build[i].healName %></td>
 									<td class="text-center"><%= build[i].healPick %>%</td>
 									<td class="text-center"><%= build[i].healWin %>%</td>
 								</tr>
@@ -280,13 +312,13 @@
 								</thead>
 								<% for(var i=0 ; i<5 ; i++){ %>
 								<tr>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].speedInfo%>"><img src="/public/itemImg/<%= build[i].speed %>.jpg" width="64" height="64"/><br><%= build[i].speed %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].speedInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].speed %>" width="64" height="64"/><br><%= build[i].speedName %></td>
 									<td class="text-center"><%= build[i].speedPick %>%</td>
 									<td class="text-center"><%= build[i].speedWin %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attackInfo%>"><img src="/public/itemImg/<%= build[i].attack %>.jpg" width="64" height="64"/><br><%= build[i].attack %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].attackInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].attack %>" width="64" height="64"/><br><%= build[i].attackName %></td>
 									<td class="text-center"><%= build[i].attackPick %>%</td>
 									<td class="text-center"><%= build[i].attackWin %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].defenseInfo%>"><img src="/public/itemImg/<%= build[i].defense %>.jpg" width="64" height="64"/><br><%= build[i].defense %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].defenseInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].defense %>" width="64" height="64"/><br><%= build[i].defenseName %></td>
 									<td class="text-center"><%= build[i].defensePick %>%</td>
 									<td class="text-center"><%= build[i].defenseWin %>%</td>
 								</tr>
@@ -313,16 +345,16 @@
 								</thead>
 								<% for(var i=0 ; i<5 ; i++){ %>
 								<tr>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].specialInfo%>"><img src="/public/itemImg/<%= build[i].special %>.jpg" width="64" height="64"/><br><%= build[i].special %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].specialInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].special %>" width="64" height="64"/><br><%= build[i].specialName %></td>
 									<td class="text-center"><%= build[i].specialPick %>%</td>
 									<td class="text-center"><%= build[i].specialWin %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].neckInfo%>"><img src="/public/itemImg/<%= build[i].neck %>.jpg" width="64" height="64"/><br><%= build[i].neck %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].neckInfo%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].neck %>" width="64" height="64"/><br><%= build[i].neckName %></td>
 									<td class="text-center"><%= build[i].neckPick %>%</td>
 									<td class="text-center"><%= build[i].neckWin %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti3Info%>"><img src="/public/itemImg/<%= build[i].arti3 %>.jpg" width="64" height="64"/><br><%= build[i].arti3 %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti3Info%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].arti3 %>" width="64" height="64"/><br><%= build[i].arti3Name %></td>
 									<td class="text-center"><%= build[i].arti3Pick %>%</td>
 									<td class="text-center"><%= build[i].arti3Win %>%</td>
-									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti4Info%>"><img src="/public/itemImg/<%= build[i].arti4 %>.jpg" width="64" height="64"/><br><%= build[i].arti4 %></td>
+									<td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= build[i].arti4Info%>"><img src="https://img-api.neople.co.kr/cy/items/<%= build[i].arti4 %>" width="64" height="64"/><br><%= build[i].arti4Name %></td>
 									<td class="text-center"><%= build[i].arti4Pick %>%</td>
 									<td class="text-center"><%= build[i].arti4Win %>%</td>
 								</tr>
@@ -343,6 +375,7 @@
 
 
 	</body>
+	
 	<script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
 	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
