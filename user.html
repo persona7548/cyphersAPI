@@ -1,0 +1,241 @@
+<!doctype html>
+<html>
+    <head>
+<script data-ad-client="ca-pub-8785439393916040" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<link rel="shortcut icon" href="/public/favicon.ico"/>
+        <!-- HTML Meta Tags -->
+        <title>Oxhorn.Info</title>
+        <meta name="description" content="템트리 보는 사이트">
+
+        <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
+        <meta itemprop="name" content="Oxhorn.Info">
+        <meta itemprop="description" content="템트리 보는 사이트">
+        <meta itemprop="image" content="/public/thumb/fankit_sidney.jpg">
+
+        <meta charset="utf-8">
+        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="description" content="">
+        <meta name="author" content="">
+        <link rel="stylesheet" href="/public/offcanvas.css"/>
+        <link rel="stylesheet" href="/public/dist/css/bootstrap.min.css"/>
+     
+       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sl-1.3.1/datatables.min.css"/>
+    </head>
+    <!-- NAVBAR================================================== -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+	 	<div class="container">
+			<a class="navbar-brand" href="/">옥스혼.Info</a>
+			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+				<span class="navbar-toggler-icon"></span>
+			</button>
+			<div class="collapse navbar-collapse" id="navbarNav">
+				<ul class="navbar-nav">
+				<li class="nav-item active"><a class="nav-link" href="/">Home</a></li>
+				<li class="nav-item "> <a class="nav-link" href="/statistic">캐릭터 통계</a></li>
+				<li class="nav-item"> <a class="nav-link" href="/contact">Contact</a></li>
+				</ul>
+			</div>
+		</div>
+	</nav>
+    <!-- NAVBAR================================================== -->
+    <body>
+        <div class="container"><br> 
+        <div class="col-12">   
+        <strong>
+       
+        <ul class="list-inline">
+            <li class="list-inline-item"><h3><%= normal.nickname%></h3></li>
+             <li class="list-inline-item"> <%= normal.grade%>급</li>
+            <li class="list-inline-item">  <% if( normal.clanName!=null){%> 클랜 : <%= normal.clanName%><%}%></li>
+        </ul>
+        
+        <%if(normal.tierName!=null){%> 
+            <%= normal.tierName%><br>
+            현재 점수 : <%= normal.ratingPoint%>점  <br>최고 점수 : <%= normal.maxRatingPoint%>점<br><br>
+        <%}%>
+        <% if(normal.records.length==2){%>
+        
+            공식전 : <%=normal.records[0].winCount %> 승 <%=normal.records[0].loseCount %> 패 <%=normal.records[0].stopCount %> 중단 
+            승률 : <%=((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(2) %>%<br>
+            일반전 : <%=normal.records[1].winCount %> 승 <%=normal.records[1].loseCount %> 패 <%=normal.records[1].stopCount %> 중단
+             승률 : <%=((normal.records[1].winCount/(normal.records[1].winCount+normal.records[1].loseCount))*100).toFixed(2) %>%<br>
+        <%}else{%>
+            일반전 : <%=normal.records[0].winCount %> 승 <%=normal.records[0].loseCount %> 패 <%=normal.records[0].stopCount %> 중단 
+            승률 : <%=((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(2) %>%<br>
+        <%}%>
+      
+         </strong>
+        <br>
+        (경기 상세 정보는 구현중에 있습니다;;)
+        <br>
+        <br>
+
+        </div>
+        		<ul class="nav nav-tabs" role="tablist" id="myTab">
+						 <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">일반전</a></li>
+						 <li class="nav-item"><a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">공식전</a></li>
+				</ul>
+					<div class="tab-content" id="myTabContent">
+						<div role="tabpanel" class="tab-pane fade show active" id="home" aria-labelledby="home-tab">
+                        <% if(normal.matches.rows.length==0){%>  
+                        최근 3달간 일반전 기록이 없습니다.<% }; %>
+                            <% if(normal.matches.rows.length>=20){var j=20;}else{var j=normal.matches.rows.length}%>
+                            <% for(var i=0 ; i<j ; i++){ %>
+                            <br> 
+                            
+                            <% if(normal.matches.rows[i].playInfo.result=="win"){%>
+                            <a class="btn btn-outline-primary col-12" role="button"><%}else{%>
+                            <a class="btn btn-outline-danger col-12" role="button"><%}%>
+                          <div class="container">
+                              <strong>
+                            <div class="row">     
+                                <div class="col-2 align-self-center">
+                                 <div class="col">
+                                     <%=normal.matches.rows[i].date %>
+                                    </div>
+                                    <div class="col">
+                                     <%= Math.floor(normal.matches.rows[i].playInfo.playTime/60)%>분 <%= normal.matches.rows[i].playInfo.playTime%60%>초
+                                    </div>             
+                                </div>
+                                <div class="col-3 align-self-center">
+                                 <div class="col">
+                                    <% if(normal.matches.rows[i].playInfo.result=="win"){%><span style="color:blue">승리</span><%}else{%><span style="color:red">패배</span><%}%>
+                                    </div>   
+                                 <div class="col">
+                                       일반전   <% if(normal.matches.rows[i].playInfo.partyUserCount==0){ %>solo<%}else{%> <%=normal.matches.rows[i].playInfo.partyUserCount%>인<%}%>                             
+                                    </div>
+                                 <div class="col">
+                                       <small><%= normal.matches.rows[i].map.name %></small>
+                                    </div>                                
+                                </div>
+                                <div class="col-2 align-self-center" >
+                                    <div class="col">
+                                       <img src = "https://img-api.neople.co.kr/cy/characters/<%= normal.matches.rows[i].playInfo.characterId%>" href="/character/<%= normal.matches.rows[i].playInfo.characterName %>/<%= normal.matches.rows[i].position.name%>"> 
+                                    </div>
+                                    <div class="col">                          
+                                        <%= normal.matches.rows[i].playInfo.characterName %> Lv.<%= normal.matches.rows[i].playInfo.level %>
+                                    </div>               
+                                </div>
+                                <div class="col-2 align-self-center">         
+                                  <div class="col">           
+                                    <%= normal.matches.rows[i].playInfo.killCount %> /
+                                   <span style="color:red"><%= normal.matches.rows[i].playInfo.deathCount %></span> /
+                                    <%= normal.matches.rows[i].playInfo.assistCount %>
+                                     </div>   
+                                     <div class="col">
+                                     <% var kda =((normal.matches.rows[i].playInfo.killCount+normal.matches.rows[i].playInfo.assistCount)/normal.matches.rows[i].playInfo.assistCount).toFixed(1);%>
+                                     평점 : <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
+                                     </div>      
+                                </div>
+                                <div class="col-3 align-self-center">    
+                                <div class="col">  
+                                <img src="/public/attriImg/<%= normal.matches.rows[i].position.name%>.jpg">           
+                                </div>                                          
+                                  <div class="col">  
+                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[0].id%>" width="46" height="46">
+                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[1].id%>" width="46" height="46">
+                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[2].id%>" width="46" height="46">  
+                                     </div>                                 
+                                </div>
+                            </div>
+                            </div>
+                                    </strong>                
+                                  </a><br>
+                            <% }; %>
+                        
+                        </div>
+						<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                        <% if(rating.matches.rows.length==0){%>   
+                        최근 3달간 공식전 기록이 없습니다.<% }; %>
+                            <% if(rating.matches.rows.length>=20){var j=20;}else{var j=rating.matches.rows.length}%>
+                            <% for(var i=0 ; i<j ; i++){ %>
+                            <br> 
+                            
+                            <% if(rating.matches.rows[i].playInfo.result=="win"){%>
+                            <a class="btn btn-outline-primary col-12" role="button"><%}else{%>
+                            <a class="btn btn-outline-danger col-12" role="button"><%}%>
+                          <div class="container">
+                              <strong>
+                            <div class="row">     
+                                <div class="col-2 align-self-center">
+                                 <div class="col">
+                                     <%=rating.matches.rows[i].date %>
+                                    </div>
+                                    <div class="col">
+                                     <%= Math.floor(rating.matches.rows[i].playInfo.playTime/60)%>분 <%= rating.matches.rows[i].playInfo.playTime%60%>초
+                                    </div>
+                                      <div class="col">
+                                    <% if(rating.matches.rows[i].playInfo.result=="win"){%><span style="color:blue">승리</span><%}else{%><span style="color:red">패배</span><%}%>
+                                    </div>       
+                                </div>
+                                <div class="col-3 align-self-center">
+                                 <div class="col">
+                                       일반전   <% if(rating.matches.rows[i].playInfo.partyUserCount==0){ %>solo<%}else{%> <%=rating.matches.rows[i].playInfo.partyUserCount%>인<%}%>                             
+                                    </div>
+                                 <div class="col">
+                                       <small><%= rating.matches.rows[i].map.name %></small>
+                                    </div>                                
+                                </div>
+                                <div class="col-2 align-self-center" >
+                                    <div class="col">
+                                       <img src = "https://img-api.neople.co.kr/cy/characters/<%= rating.matches.rows[i].playInfo.characterId%>" href="/character/<%= rating.matches.rows[i].playInfo.characterName %>/<%= rating.matches.rows[i].position.name%>"> 
+                                    </div>
+                                    <div class="col">                          
+                                        <%= rating.matches.rows[i].playInfo.characterName %> Lv.<%= rating.matches.rows[i].playInfo.level %>
+                                    </div>               
+                                </div>
+                                <div class="col-2 align-self-center">         
+                                  <div class="col">           
+                                    <%= rating.matches.rows[i].playInfo.killCount %> /
+                                   <span style="color:red"><%= rating.matches.rows[i].playInfo.deathCount %></span> /
+                                    <%= rating.matches.rows[i].playInfo.assistCount %>
+                                     </div>   
+                                     <div class="col">
+                                      <% var kda =((rating.matches.rows[i].playInfo.killCount+rating.matches.rows[i].playInfo.assistCount)/rating.matches.rows[i].playInfo.assistCount).toFixed(1);%>
+                                     평점 : <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
+                                
+                                     </div>      
+                                </div>
+                                <div class="col-3 align-self-center">  
+                                <div class="col">  
+                                <img src="/public/attriImg/<%= rating.matches.rows[i].position.name%>.jpg">
+                                </div>                                                    
+                                  <div class="col">  
+                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[0].id%>" width="46" height="46">
+                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[1].id%>" width="46" height="46">
+                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[2].id%>" width="46" height="46">  
+                                     </div>                                 
+                                </div>
+                            </div>
+                            </div>
+
+                                    </strong>
+                                  
+                                  
+                                  </a><br>
+    
+                            <% }; %>
+                        
+                        
+                        </div>
+					</div>
+
+
+           <footer style="background-color: #ffffff;">      
+                <a href="http://developers.neople.co.kr" target="_blank"><img src="public/itemImg/기술표기_가로형_color.png" alt="Neople 오픈 API" /> </a>
+                <p>&copy; Company 2020</p>
+            </footer>
+        </div>
+         
+            <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sp-1.0.1/sl-1.3.1/datatables.min.js"></script>     
+            <script src="/public/request.js"></script>
+        	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script src="/public/assets/js/ie-emulation-modes-warning.js"></script>
+            <script src="/public//ie10-viewport-bug-workaround.js"></script>
+            <script src="/public/assets/demo/datatables-demo.js"></script>
+        	<script src="/public/dist/js/scripts.js"></script>   
+            <script type="text/javascript" src="/public/search.js"></script>
+    </body>
+</html>
