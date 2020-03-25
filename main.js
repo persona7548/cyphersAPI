@@ -24,6 +24,9 @@ app.get('/', function (request, response) {
 app.get('/user', function (request, response) {
   sql.user(request, response);});
 
+app.get('/ranking', function (request, response) {
+  sql.ranking(request, response);});
+  
 app.get('/statistic', function (request, response) {
   sql.statistic(request, response);});
 
