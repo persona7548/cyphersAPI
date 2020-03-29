@@ -1,7 +1,7 @@
 <!doctype html>
+<html lang="ko">
 <html>
     <head>
-
 <!-- Global site tag (gtag.js) - Google Analytics -->
 <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161183796-1"></script>
 <script>
@@ -14,8 +14,9 @@ window.dataLayer = window.dataLayer || [];
 <script data-ad-client="ca-pub-8785439393916040" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<link rel="shortcut icon" href="/public/favicon.ico"/>
         <!-- HTML Meta Tags -->
-        <title>Oxhorn.Info</title>
+        <title>전적검색 - <%= normal.nickname%></title>
         <meta name="description" content="템트리 보는 사이트">
+<meta property="og:image" content="/public/thumb/fankit_sidney.jpg">
 
         <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
         <meta itemprop="name" content="Oxhorn.Info">
@@ -28,8 +29,7 @@ window.dataLayer = window.dataLayer || [];
         <meta name="description" content="">
         <meta name="author" content="">
         <link rel="stylesheet" href="/public/offcanvas.css"/>
-        <link rel="stylesheet" href="/public/dist/css/bootstrap.min.css"/>
-     
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sl-1.3.1/datatables.min.css"/>
     </head>
     <!-- NAVBAR================================================== -->
@@ -43,7 +43,7 @@ window.dataLayer = window.dataLayer || [];
 				<ul class="navbar-nav">
 				<li class="nav-item "> <a class="nav-link" href="/statistic">통계</a></li>
 				<li class="nav-item "> <a class="nav-link" href="/ranking">랭킹</a></li>
-				<li class="nav-item"> <a class="nav-link" href="/contact">Contact</a></li>
+				<li class="nav-item"> <a class="nav-link" href="/contact">문의</a></li>
 				</ul>
 			</div>
 
@@ -52,68 +52,61 @@ window.dataLayer = window.dataLayer || [];
                      <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
             </form> 
 		</div>
-	</nav>
+	</nav><br> 
     <!-- NAVBAR================================================== -->
       <body>
-        <div class="container"><br> 
-        <div class="col-12">   
-        <strong>
-       
-        <ul class="list-inline">
-            <li class="list-inline-item"><h3><%= normal.nickname%></h3></li>
-             <li class="list-inline-item"> <%= normal.grade%>급</li>
-            <li class="list-inline-item">  <% if( normal.clanName!=null){%> 클랜 : <%= normal.clanName%><%}%></li>
-        </ul>
-        
-        <%if(normal.tierName!=null){%> 
-            <%= normal.tierName%><br>
-            현재 점수 : <%= normal.ratingPoint%>점  <br>최고 점수 : <%= normal.maxRatingPoint%>점<br><br>
-        <%}%>
-           <table class="table table-sm">
-            <thead class="thead-dark">
-            <tr>	
-                <th class="text-center">Type</th>
-                <th class="text-center">승리</th>
-                <th class="text-center">패배</th>
-                <th class="text-center">중단</th>
-                <th class="text-center">총 경기</th>
-                <th class="text-center">승률</th>
-            </tr>
-            </thead>	
-             <tbody>
-                <% if(normal.records.length==2){%>
-                  <% if((normal.records[0].stopCount+normal.records[0].winCount+normal.records[0].loseCount)!=0){%>
-                <tr>
-                    <td class="text-center"> 공식전 </td> 
-                    <td class="text-center"><%=normal.records[0].winCount %></td> 
-                    <td class="text-center"><%=normal.records[0].loseCount %></td>  
-                    <td class="text-center"><%=normal.records[0].stopCount %></td>
-                    <td class="text-center"><%=normal.records[0].stopCount+normal.records[0].winCount+normal.records[0].loseCount %></td>
-                    <td class="text-center"><%=((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(2) %>%</td>
-                </tr>
-                 <%}%>
-                <tr>
-                    <td class="text-center">일반전 </td>
-                    <td class="text-center"><%=normal.records[1].winCount %></td>
-                    <td class="text-center"><%=normal.records[1].loseCount %></td>
-                    <td class="text-center"><%=normal.records[1].stopCount %></td>
-                    <td class="text-center"><%=normal.records[1].stopCount+normal.records[1].winCount+normal.records[1].loseCount %></td>
-                    <td class="text-center"><%=((normal.records[1].winCount/(normal.records[1].winCount+normal.records[1].loseCount))*100).toFixed(2)%>%</td>
-                </tr>
-                <%}else if(normal.records.length==1){%>
-                <tr>
-                    <td class="text-center"> 일반전 </td> 
-                    <td class="text-center"><%=normal.records[0].winCount %></td> 
-                    <td class="text-center"><%=normal.records[0].loseCount %></td>  
-                    <td class="text-center"><%=normal.records[0].stopCount %></td>  
-                    <td class="text-center"><%=normal.records[0].stopCount+normal.records[0].winCount+normal.records[0].loseCount %></td>
-                    <td class="text-center"><%=((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(2) %>%</td>
-                </tr>  
-                <%}%>
-            </tbody>
-        </table>
-         </strong><br>
-        </div>
+        <div class="container">
+            <div class="col-12">   
+                <strong>   
+                    <ul class="list-inline">
+                        <li class="list-inline-item"><h3><%= normal.nickname%></h3></li>
+                        <li class="list-inline-item"> <%= normal.grade%>급</li>
+                        <li class="list-inline-item">  <% if( normal.clanName!=null){%> 클랜 : <%= normal.clanName%><%}%></li>
+                    </ul>
+                </strong>
+                <div class="row">     
+                    <div class="col-6"><strong> 
+                    <table class="table">
+                            <thead>
+                            <tr>	
+                                <th class="text-center">Type</th>
+                                <th class="text-center">승률</th>
+                            </tr>
+                            </thead>	
+                            <tbody>
+                                <% if(normal.records.length==2){%>
+                                    <% if((normal.records[0].stopCount+normal.records[0].winCount+normal.records[0].loseCount)!=0){%>
+                                    <tr>
+                                        <td class="text-center"> 공식전 </td> 
+                                        <td class="text-center"><%=((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(1) %>%<br>
+                                        (<%=normal.records[0].winCount %>승 <%=normal.records[0].loseCount %>패)</td>
+                                    </tr>
+                                    <%}%>   
+                                    <tr>
+                                        <td class="text-center"> 일반전 </td> 
+                                        <td class="text-center"><%=((normal.records[1].winCount/(normal.records[1].winCount+normal.records[1].loseCount))*100).toFixed(1) %>%<br>
+                                        (<%=normal.records[1].winCount %>승 <%=normal.records[1].loseCount %>패)</td>
+                                    </tr>
+                                <%}else if(normal.records.length==1){%>
+                                <tr>
+                                    <td class="text-center"> 일반전 </td> 
+                                    <td class="text-center"><%=((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(1) %>%<br>
+                                    (<%=normal.records[0].winCount %>승 <%=normal.records[0].loseCount %>패)</td>
+                                </tr>  
+                                <%}%>
+                            </tbody>
+                        </table> </strong>
+                    </div>
+                    <div class="col-6">
+                        <strong> 
+                            <%if(normal.tierName!=null){%> 
+                                <%= normal.tierName%><br>
+                                현재 점수 : <%= normal.ratingPoint%>점  <br>최고 점수 : <%= normal.maxRatingPoint%>점<br><br>
+                            <%}%>
+                        </strong>
+                    </div>
+                </div><br>
+            </div>
         		<ul class="nav nav-tabs" role="tablist" id="myTab">
 						 <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">일반전</a></li>
 						 <li class="nav-item"><a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">공식전</a></li>
@@ -121,7 +114,6 @@ window.dataLayer = window.dataLayer || [];
 					<div class="tab-content" id="myTabContent">
 						<div role="tabpanel" class="tab-pane fade show active" id="home" aria-labelledby="home-tab"><br>
                         <% if(normal.matches.rows.length==0){%><br>최근 3달간 일반전 기록이 없습니다.<br><% }; %>
-
                                 <%if(normal.matches.rows.length!=0){%>
                                     <% var normalL = normal.matches.rows.length%>
                                     <% var normalWin=0; var normalLose=0 %>
@@ -132,47 +124,39 @@ window.dataLayer = window.dataLayer || [];
                                             <div class="card mb-4">
                                                 <div class="card-header" data-toggle="tooltip" data-placement="bottom" title="지난 3개월간 진행한 경기(최대 100개)입니다."><i class="fas fa-chart-pie mr-1"></i>최근 일반전 기록</div>
                                                 <div class="card-body"><canvas id="normalPieChart" width="100%" height="50"></canvas></div>
-                                                <a class="text-center"><%= normalL%>판 <%= normalWin %>승 <%= normalLose %>패  승률 <%= (normalWin/normalL*100).toFixed(0)%>%</a>
+                                         <a class="text-center">승률 <%= (normalWin/normalL*100).toFixed(0)%>% (<%= normalWin %>승 <%= normalLose %>패)</a>
+                                           
                                             </div> </strong>
                                         </div>
-                                          <div class="col-md-6 col-lg-4 col-sm-6 col-xs-6"><strong> 
-                                            <table class="table">
-                                                <thead class="thead-dark">
-                                                <tr>	
-                                                    <th class="text-center">포지션</th>
-                                                    <th class="text-center">플레이</th>
-                                                    <th class="text-center">승률</th>
-                                                </tr>
-                                                </thead>	
+                                          <div class="col-md-6 col-lg-3 col-sm-6 col-xs-6"><strong> 
+                                            <table class="table">	
+                                             <thead><th class="text-center">포지션</th><th class="text-center">승률</th></thead> 
                                                 <tbody>
                                                 <%var j = normalPosi.length%>
                                                 <% for(var i=0 ; i<j ; i++){%>
                                                         <tr>
-                                                            <td class="text-center"><img src="/public/attriImg/posi/<%= normalPosi[i][0]%>.jpg"> </td> 
-                                                            <td class="text-center"><%= normalPosi[i][1]%>판<br>(<%= normalPosi[i][2]%>승 <%= normalPosi[i][1]- normalPosi[i][2]%>패)</td> 
-                                                            <td class="text-center"><%= ((normalPosi[i][2]/normalPosi[i][1])*100).toFixed(0)%>%</td> 
+                                                            <td class="text-center"><img src="/public/attriImg/posi/<%= normalPosi[i][0]%>.jpg"></td> 
+                                                            <td class="text-center"><%= ((normalPosi[i][2]/normalPosi[i][1])*100).toFixed(0)%>%<br>(<%= normalPosi[i][2]%>승 <%= normalPosi[i][1]- normalPosi[i][2]%>패)</td> 
                                                         </tr>  
                                                     <%}%>
                                                 </tbody>
                                             </table></strong>            
                                         </div>
                                              
-                                        <div class="col-md-12 col-lg-4 col-sm-12 col-xs-12"> <strong> 
-                                            <table class="table">
-                                                <thead class="thead-dark">
-                                                <tr>	
-                                                    <th class="text-center">캐릭터</th>
-                                                    <th class="text-center">플레이</th>
-                                                    <th class="text-center">승률</th>
-                                                </tr>
-                                                </thead>	
+                                        <div class="col-md-12 col-lg-5 col-sm-12 col-xs-12"> <strong> 
+                                            <table class="table"> 
+                                            <thead>   <th class="text-center">캐릭터</th><th class="text-center">승률</th><th class="text-center">KDA</th></thead>       
                                                 <tbody>
                                                 <%if(normalChar.length<4){var j = normalChar.length}else{var j=4}%>
                                                     <% for(var i=0 ; i<j ; i++){%>
                                                         <tr>
                                                             <td class="text-center"> <a href="/character/<%= normalChar[i][0]%>/"><img src="/public/thumb/<%= normalChar[i][0]%>.jpg"></a> </td> 
-                                                            <td class="text-center"><%= normalChar[i][1]%>판<br>(<%= normalChar[i][2]%>승 <%= normalChar[i][1]- normalChar[i][2]%>패)</td> 
-                                                            <td class="text-center"><%= ((normalChar[i][2]/normalChar[i][1])*100).toFixed(0)%>%</td> 
+                                                            <td class="text-center">
+                                                            <%= ((normalChar[i][2]/normalChar[i][1])*100).toFixed(0)%>% <br>(<%= normalChar[i][2]%>승 <%= normalChar[i][1]- normalChar[i][2]%>패)</td> 
+                                                            <td class="text-center"><%=(normalChar[i][3]/normalChar[i][1]).toFixed(1)%> / <span style="color:red"><%=(normalChar[i][4]/normalChar[i][1]).toFixed(1)%></span> / <%=(normalChar[i][5]/normalChar[i][1]).toFixed(1)%><br>
+    <% var kda =((normalChar[i][3]+normalChar[i][5])/normalChar[i][4]).toFixed(1)%>
+                                        평점 : <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
+                                                            </td> 
                                                         </tr>
                                                     <%}%>
                                                 </tbody>                           
@@ -189,41 +173,36 @@ window.dataLayer = window.dataLayer || [];
                                 <div class="container">
                                 <strong>
                                 <div class="row">     
-                                    <div class="col-md-12 col-lg-2 col-sm-12 col-xs-12 align-self-center">
-                                    <div class="col text-center">
-                                        <%=normal.matches.rows[i].date %><br>
-                                        <%= Math.floor(normal.matches.rows[i].playInfo.playTime/60)%>분 <%= normal.matches.rows[i].playInfo.playTime%60%>초
+                                    <div class="col-md-12 col-lg-3 col-sm-12 col-xs-12 align-self-center">
+                                        <div class="col text-center">
+                                            <%=normal.matches.rows[i].date %><br></div><div class="col text-center">  
+                                            <%= Math.floor(normal.matches.rows[i].playInfo.playTime/60)%>분<%= normal.matches.rows[i].playInfo.playTime%60%>초
                                         </div>             
                                     </div>
-                                    <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 align-self-center">
+                                    <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">
                                     <div class="col text-center">
                                         <% if(normal.matches.rows[i].playInfo.result=="win"){%><span style="color:blue">승리</span><%}else{%><span style="color:red">패배</span><%}%><br>             
                                         일반전   <% if(normal.matches.rows[i].playInfo.partyUserCount==0){ %>solo<%}else{%> <%=normal.matches.rows[i].playInfo.partyUserCount%>인<%}%><br>                        
                                         <small><%= normal.matches.rows[i].map.name %></small>
                                         </div>                                
                                     </div>
-                                    <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-center" >
+                                   <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">    
                                         <div class="col text-center"> <a href="/character/<%= normal.matches.rows[i].playInfo.characterName %>/<%= normal.matches.rows[i].position.name%>">   
-                                        <img src = "/public/thumb/<%= normal.matches.rows[i].playInfo.characterName%>.jpg" class="border border-secondary"></a> 
+                                        <img src = "/public/thumb/<%= normal.matches.rows[i].playInfo.characterName%>.jpg" class="border border-secondary"  width="46" height="46"><img src="/public/attriImg/posi/<%= normal.matches.rows[i].position.name%>.jpg"></a><br>
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[0].id%>" width="46" height="46">
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[1].id%>" width="46" height="46">
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[2].id%>" width="46" height="46">  
                                         </div>               
                                     </div>
-                                    <div class="col-md-3 col-lg-2 col-sm-3 col-xs-3 align-self-center">         
+                                    <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">         
                                     <div class="col text-center">
                                          Lv.<%= normal.matches.rows[i].playInfo.level %><br>    
                                         <%= normal.matches.rows[i].playInfo.killCount %> /
                                     <span style="color:red"><%= normal.matches.rows[i].playInfo.deathCount %></span> /
                                         <%= normal.matches.rows[i].playInfo.assistCount %><br>
-                                        <% var kda =((normal.matches.rows[i].playInfo.killCount+normal.matches.rows[i].playInfo.assistCount)/normal.matches.rows[i].playInfo.assistCount).toFixed(1);%>
+                                        <% var kda =((normal.matches.rows[i].playInfo.killCount+normal.matches.rows[i].playInfo.assistCount)/normal.matches.rows[i].playInfo.deathCount).toFixed(1);%>
                                         평점 : <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
                                         </div>      
-                                    </div>
-                                    <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">    
-                                    <div class="col text-center">  
-                                    <img src="/public/attriImg/posi/<%= normal.matches.rows[i].position.name%>.jpg">  <br>
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[0].id%>" width="46" height="46">
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[1].id%>" width="46" height="46">
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[2].id%>" width="46" height="46">  
-                                        </div>                                 
                                     </div>
                                 </div>
                                 </div>
@@ -233,8 +212,7 @@ window.dataLayer = window.dataLayer || [];
                                       <br></div>   
 						<div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab"><br>
                         <% if(rating.matches.rows.length==0){%>   
-                        최근 3달간 공식전 기록이 없습니다.<% }; %>
-                  
+                        최근 3달간 공식전 기록이 없습니다.<% }; %>        
                             <%if(rating.matches.rows.length!=0){%>
                                 <% var ratingL = rating.matches.rows.length%>
                                 <% var matchWin=0; var matchLose=0 %>
@@ -244,48 +222,38 @@ window.dataLayer = window.dataLayer || [];
                                     <div class="card mb-4">
                                         <div class="card-header" data-toggle="tooltip" data-placement="bottom" title="지난 3개월간 진행한 경기(최대 100개)입니다."><i class="fas fa-chart-pie mr-1"></i>최근 공식전 기록</div>   
                                         <div class="card-body"><canvas id="ratingPieChart" width="100%" height="50"></canvas></div>
-                                        <a class="text-center"> <%= ratingL%>전 <%= matchWin %>승 <%= matchLose %>패  승률 <%= (matchWin/ratingL*100).toFixed(0)%>%</a>
+                                       <a class="text-center">승률 <%= (matchWin/ratingL*100).toFixed(0)%>% (<%= matchWin %>승 <%= matchLose %>패)</a>
                                     </div></strong>
                                 </div>
-                                   <div class="col-md-6 col-lg-4 col-sm-6 col-xs-6"><strong> 
+                                   <div class="col-md-6 col-lg-3 col-sm-6 col-xs-6"><strong> 
                                     <table class="table"> 
-                                            <thead class="thead-dark">
-                                            <tr>	
-                                                <th class="text-center">포지션</th>
-                                                <th class="text-center">플레이</th>
-                                                <th class="text-center">승률</th>
-                                            </tr>
-                                            </thead>	
+                                             <thead><th class="text-center">포지션</th><th class="text-center">승률</th></thead> 	
                                             <tbody>
                                             <%var j = ratingPosi.length%>
                                                 <% for(var i=0 ; i<j ; i++){%>
                                                     <tr>
                                                         <td class="text-center"><img src="/public/attriImg/posi/<%= ratingPosi[i][0]%>.jpg"></td> 
-                                                        <td class="text-center"> <%= ratingPosi[i][1]%>판<br>(<%= ratingPosi[i][2]%>승 <%= ratingPosi[i][1]- ratingPosi[i][2]%>패) </td> 
-                                                        <td class="text-center"> <%= ((ratingPosi[i][2]/ratingPosi[i][1])*100).toFixed(0)%>%</td> 
+                                                        <td class="text-center"><%= ((ratingPosi[i][2]/ratingPosi[i][1])*100).toFixed(0)%>%<br>(<%= ratingPosi[i][2]%>승 <%= ratingPosi[i][1]- ratingPosi[i][2]%>패)</td> 
                                                     </tr>  
                                                 <%}%>
                                             </tbody>
                                           </table></strong>
                                         </div>
                                             
-                              <div class="col-md-12 col-lg-4 col-sm-12 col-xs-12"> <strong> 
+                              <div class="col-md-12 col-lg-5 col-sm-12 col-xs-12"> <strong> 
                                         <table class="table"> 
-                                            <thead class="thead-dark">
-                                            <tr>	
-                                                <th class="text-center">캐릭터</th>
-                                                <th class="text-center">플레이</th>
-                                                <th class="text-center">승률</th>
-                                            </tr>
-                                            </thead>	
+                                            <thead>   <th class="text-center">캐릭터</th><th class="text-center">승률</th><th class="text-center">KDA</th></thead>       
                                             <tbody>
                                             <%if(ratingChar.length<4){var j = ratingChar.length}else{var j=4}%>
                                                 <% for(var i=0 ; i<j ; i++){%>
                                                     <tr>
-                                                        <td class="text-center"> <a href="/character/<%= ratingChar[i][0]%>/"> <img src="/public/thumb/<%= ratingChar[i][0]%>.jpg"></a></td> 
-                                                        <td class="text-center"> <%= ratingChar[i][1]%>판<br>(<%= ratingChar[i][2]%>승 <%= ratingChar[i][1]- ratingChar[i][2]%>패)</td> 
-                                                        <td class="text-center"> <%= ((ratingChar[i][2]/ratingChar[i][1])*100).toFixed(0)%>%</td> 
-                                                    </tr>  
+                                                        <td class="text-center"> <a href="/character/<%= ratingChar[i][0]%>/"><img src="/public/thumb/<%= ratingChar[i][0]%>.jpg"></a> </td> 
+                                                            <td class="text-center">
+                                                            <%= ((ratingChar[i][2]/ratingChar[i][1])*100).toFixed(0)%>% <br>(<%= ratingChar[i][2]%>승 <%= ratingChar[i][1]- ratingChar[i][2]%>패)</td> 
+                                                            <td class="text-center"><%=(ratingChar[i][3]/ratingChar[i][1]).toFixed(1)%> / <span style="color:red"><%=(ratingChar[i][4]/ratingChar[i][1]).toFixed(1)%></span> / <%=(ratingChar[i][5]/ratingChar[i][1]).toFixed(1)%><br>
+<% var kda =((ratingChar[i][3]+ratingChar[i][5])/ratingChar[i][4]).toFixed(1)%>
+                                         평점 : <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
+                                                            </td> </tr>  
                                                 <%}%>
                                             </tbody>
                                           </table></strong>
@@ -301,45 +269,40 @@ window.dataLayer = window.dataLayer || [];
                           <div class="container">
                               <strong>
                             <div class="row">     
-                                <div class="col-md-0 col-lg-2 col-sm-0 col-xs-0 align-self-center">
-                                 <div class="col text-center">
-                                     <%=rating.matches.rows[i].date %><br>
-                                     <%= Math.floor(rating.matches.rows[i].playInfo.playTime/60)%>분 <%= rating.matches.rows[i].playInfo.playTime%60%>초
-                                    </div>                
-                                </div>
-                               <div class="col-md-3 col-lg-3 col-sm-3 col-xs-3 align-self-center">
-                                <div class="col text-center">
-                                    <% if(rating.matches.rows[i].playInfo.result=="win"){%><span style="color:blue">승리</span><%}else{%><span style="color:red">패배</span><%}%><br>
-                                       공식전 <% if(rating.matches.rows[i].playInfo.partyUserCount==0){ %>solo<%}else{%> <%=rating.matches.rows[i].playInfo.partyUserCount%>인<%}%><br>
-                                       <small><%= rating.matches.rows[i].map.name %></small>
-                                    </div>                                
-                                </div>
-                                <div class="col-md-2 col-lg-2 col-sm-2 col-xs-2 align-self-center" >
-                                    <div class="col text-center"><a href="/character/<%= rating.matches.rows[i].playInfo.characterName %>/<%= rating.matches.rows[i].position.name%>">   
-                                       <img src = "/public/thumb/<%= rating.matches.rows[i].playInfo.characterName%>.jpg" class="border border-secondary"></a>           
+                               <div class="col-md-12 col-lg-3 col-sm-12 col-xs-12 align-self-center">
+                                        <div class="col text-center">
+                                            <%=rating.matches.rows[i].date %><br></div><div class="col text-center">  
+                                            <%= Math.floor(rating.matches.rows[i].playInfo.playTime/60)%>분<%= rating.matches.rows[i].playInfo.playTime%60%>초
+                                        </div>             
+                                    </div>
+                                    <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">
+                                    <div class="col text-center">
+                                        <% if(rating.matches.rows[i].playInfo.result=="win"){%><span style="color:blue">승리</span><%}else{%><span style="color:red">패배</span><%}%><br>             
+                                        공식전  <% if(rating.matches.rows[i].playInfo.partyUserCount==0){ %>solo<%}else{%> <%=rating.matches.rows[i].playInfo.partyUserCount%>인<%}%><br>                        
+                                        <small><%= rating.matches.rows[i].map.name %></small>
+                                        </div>                                
+                                    </div>
+                                   <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">    
+                                        <div class="col text-center"> <a href="/character/<%= rating.matches.rows[i].playInfo.characterName %>/<%= rating.matches.rows[i].position.name%>">   
+                                        <img src = "/public/thumb/<%= rating.matches.rows[i].playInfo.characterName%>.jpg" class="border border-secondary"  width="46" height="46"><img src="/public/attriImg/posi/<%= rating.matches.rows[i].position.name%>.jpg"></a><br>
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[0].id%>" width="46" height="46">
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[1].id%>" width="46" height="46">
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[2].id%>" width="46" height="46">  
+                                        </div>               
+                                    </div>
+                                    <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">         
+                                    <div class="col text-center">
+                                         Lv.<%= rating.matches.rows[i].playInfo.level %><br>    
+                                        <%= rating.matches.rows[i].playInfo.killCount %> /
+                                    <span style="color:red"><%= rating.matches.rows[i].playInfo.deathCount %></span> /
+                                        <%= rating.matches.rows[i].playInfo.assistCount %><br>
+                                        <% var kda =((rating.matches.rows[i].playInfo.killCount+rating.matches.rows[i].playInfo.assistCount)/rating.matches.rows[i].playInfo.deathCount).toFixed(1);%>
+                                        평점 : <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
+                                        </div>      
                                     </div>
                                 </div>
-                                <div class="col-md-3 col-lg-2 col-sm-3 col-xs-3 align-self-center">         
-                                  <div class="col text-center">           
-                                   Lv.<%= rating.matches.rows[i].playInfo.level %><br>    
-                                    <%= rating.matches.rows[i].playInfo.killCount %> /
-                                   <span style="color:red"><%= rating.matches.rows[i].playInfo.deathCount %></span> /
-                                    <%= rating.matches.rows[i].playInfo.assistCount %><br>
-                                      <% var kda =((rating.matches.rows[i].playInfo.killCount+rating.matches.rows[i].playInfo.assistCount)/rating.matches.rows[i].playInfo.assistCount).toFixed(1);%>
-                                     평점 : <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
-                                
-                                     </div>      
                                 </div>
-                                 <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">    
-                                <div class="col text-center">  
-                                <img src="/public/attriImg/posi/<%= rating.matches.rows[i].position.name%>.jpg"  class="img-fluid "><br>
-                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[0].id%>" width="46" height="46" class="img-fluid ">
-                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[1].id%>" width="46" height="46"  class="img-fluid ">
-                                    <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[2].id%>" width="46" height="46"  class="img-fluid ">  
-                                    </div>                                 
-                                </div>
-                            </div>
-                            </div>
+                                        
                                     </strong>                    
                                   </li>
                             <% }; %>
