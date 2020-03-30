@@ -13,48 +13,16 @@ window.dataLayer = window.dataLayer || [];
 <script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 <script data-ad-client="ca-pub-8785439393916040" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 	<link rel="shortcut icon" href="/public/favicon.ico"/>
-        <!-- HTML Meta Tags -->
-        <title>전적검색 - <%= normal.nickname%></title>
-        <meta name="description" content="템트리 보는 사이트">
-<meta property="og:image" content="/public/thumb/fankit_sidney.jpg">
-
-        <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
-        <meta itemprop="name" content="Oxhorn.Info">
-        <meta itemprop="description" content="템트리 보는 사이트">
-        <meta itemprop="image" content="/public/thumb/fankit_sidney.jpg">
-
-        <meta charset="utf-8">
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="description" content="">
-        <meta name="author" content="">
+       
         <link rel="stylesheet" href="/public/offcanvas.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
        <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sl-1.3.1/datatables.min.css"/>
+ <script src="/public/include.js"></script>
     </head>
-    <!-- NAVBAR================================================== -->
-  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	 	<div class="container">
-			<a class="navbar-brand" href="/">옥스혼.Info</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-				<li class="nav-item "> <a class="nav-link" href="/statistic">통계</a></li>
-				<li class="nav-item "> <a class="nav-link" href="/ranking">랭킹</a></li>
-				<li class="nav-item"> <a class="nav-link" href="/contact">문의</a></li>
-				</ul>
-			</div>
-
- <form action="/user" class="form-inline my-2 my-lg-0" method = "get" autocomplete ="off"> 
-             <input type="text" id="txt_str" maxlength="8" class="form-control mr-sm-2" type="search" placeholder="유저명" aria-label="Search" name = "userName" autocomplete ="off">
-                     <button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Search</button>
-            </form> 
-		</div>
-	</nav><br> 
-    <!-- NAVBAR================================================== -->
+   
       <body>
+<header include-html="/public/html/header.html"></header>
+        <nav include-html="/public/html/nav.html" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav><br>
         <div class="container">
             <div class="col-12">   
                 <strong>   
@@ -189,9 +157,9 @@ window.dataLayer = window.dataLayer || [];
                                    <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">    
                                         <div class="col text-center"> <a href="/character/<%= normal.matches.rows[i].playInfo.characterName %>/<%= normal.matches.rows[i].position.name%>">   
                                         <img src = "/public/thumb/<%= normal.matches.rows[i].playInfo.characterName%>.jpg" class="border border-secondary"  width="46" height="46"><img src="/public/attriImg/posi/<%= normal.matches.rows[i].position.name%>.jpg"></a><br>
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[0].id%>" width="46" height="46">
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[1].id%>" width="46" height="46">
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[2].id%>" width="46" height="46">  
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[0].id%>" data-toggle="tooltip" data-placement="bottom" data-html="true" width="46" height="46" title="<%= normal.matches.rows[i].position.attribute[0].name%>">
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[1].id%>" data-toggle="tooltip" data-placement="bottom" data-html="true" width="46" height="46" title="<%= normal.matches.rows[i].position.attribute[1].name%>">
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= normal.matches.rows[i].position.attribute[2].id%>" data-toggle="tooltip" data-placement="bottom" data-html="true" width="46" height="46" title="<%= normal.matches.rows[i].position.attribute[2].name%>">  
                                         </div>               
                                     </div>
                                     <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">         
@@ -285,9 +253,10 @@ window.dataLayer = window.dataLayer || [];
                                    <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">    
                                         <div class="col text-center"> <a href="/character/<%= rating.matches.rows[i].playInfo.characterName %>/<%= rating.matches.rows[i].position.name%>">   
                                         <img src = "/public/thumb/<%= rating.matches.rows[i].playInfo.characterName%>.jpg" class="border border-secondary"  width="46" height="46"><img src="/public/attriImg/posi/<%= rating.matches.rows[i].position.name%>.jpg"></a><br>
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[0].id%>" width="46" height="46">
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[1].id%>" width="46" height="46">
-                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[2].id%>" width="46" height="46">  
+
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[0].id%>" data-toggle="tooltip" data-placement="bottom" data-html="true" width="46" height="46" title="<%= rating.matches.rows[i].position.attribute[0].name%>">
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[1].id%>" data-toggle="tooltip" data-placement="bottom" data-html="true" width="46" height="46" title="<%= rating.matches.rows[i].position.attribute[1].name%>">
+                                        <img src = "https://img-api.neople.co.kr/cy/position-attributes/<%= rating.matches.rows[i].position.attribute[2].id%>" data-toggle="tooltip" data-placement="bottom" data-html="true" width="46" height="46" title="<%= rating.matches.rows[i].position.attribute[2].name%>">  
                                         </div>               
                                     </div>
                                     <div class="col-md-4 col-lg-3 col-sm-4 col-xs-4 align-self-center">         
@@ -341,6 +310,7 @@ window.dataLayer = window.dataLayer || [];
                 },
                 });
             </script>
+ <script>includeHTML();</script>
             <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sp-1.0.1/sl-1.3.1/datatables.min.js"></script>     
             <script src="/public/request.js"></script>
         	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
