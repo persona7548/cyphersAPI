@@ -2,42 +2,26 @@
 <html lang="ko">
     <html>
         <head>
-         <!-- HTML Meta Tags -->
-        <title>캐릭터 통계</title>
-        <meta name="description" content="템트리 보는 사이트">
-    
-        <!-- Google / Search Engine Tags / 구글 검색 엔진 -->
-        <meta itemprop="name" content="옥스혼.Info">
-        <meta itemprop="description" content="템트리 보는 사이트">
-        <meta itemprop="image" content="/public/thumb/fankit_sidney.jpg">
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-        <meta http-equiv="X-UA-Compatible" content="IE=edge">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
-        <meta name="description" content="">
-        <meta name="author" content="">
-
+<script data-ad-client="ca-pub-8785439393916040" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161183796-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-161183796-1');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<link rel="shortcut icon" href="/public/favicon.ico"/>
         <link rel="stylesheet" href="/public/offcanvas.css"/>
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
         <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/r-2.2.3/sc-2.0.1/sl-1.3.1/datatables.min.css"/>
-  </head>   
-        <!-- NAVBAR================================================== -->
-     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-	 	<div class="container">
-			<a class="navbar-brand" href="/">옥스혼.Info</a>
-			<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-			<div class="collapse navbar-collapse" id="navbarNav">
-				<ul class="navbar-nav">
-				<li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-				<li class="nav-item active"> <a class="nav-link" href="/statistic">캐릭터 통계<span class="sr-only">(current)</span></a></li>
-				<li class="nav-item"> <a class="nav-link" href="/contact">Contact</a></li>
-				</ul>
-			</div>
-		</div>
-	</nav><br>
-        <!-- NAVBAR================================================== -->
+<script src="/public/include.js"></script>
+<header include-html="/public/html/header.html"></header>
+        <nav include-html="/public/html/nav.html" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav><br>
+        </head>   
     <body>
+
         <div class="container">
             <ul class="nav nav-tabs" role="tablist" id="myTab">
 						 <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">통계 상세 정보</a></li>
@@ -66,17 +50,19 @@
              </div>
               </div>
              <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+<br> <strong>2020H 시즌 경쟁전 151629경기 기준</strong><br><br>
              <div class="table-responsive">
                <table class="table table-sm">
                     <thead class="thead-dark">
                             <tr>  
                                 <th class="text-center"><strong>순위</strong></th>
                                 <th class="text-center"><strong>조합</strong></th>
+ 		        <th class="text-center"><strong>픽률</strong></th>
+                                <th class="text-center"><strong>승률</strong></th>
                                 <th class="text-center"><strong>승리</strong></th>
                                 <th class="text-center"><strong>패배</strong></th>
                                 <th class="text-center"><strong>총합</strong></th>
-                                <th class="text-center"><strong>픽률</strong></th>
-                                <th class="text-center"><strong>승률</strong></th>
+                               
                             </tr>      	
                     </thead>    
                     <tbody>		
@@ -85,10 +71,10 @@
                     <tr>
                         <td class="text-center"><strong><%=i+1%></strong></td> 
                         <td class="text-center">
-                        <%for(var j=0;j<combi[i].tank;j++){%><img src="/public/attriImg/탱커.jpg"><%}%>
-                        <%for(var j=0;j<combi[i].melee;j++){%><img src="/public/attriImg/근거리딜러.jpg"><%}%>
-                        <%for(var j=0;j<combi[i].ad;j++){%><img src="/public/attriImg/원거리딜러.jpg"><%}%>
-                        <%for(var j=0;j<combi[i].sup;j++){%><img src="/public/attriImg/서포터.jpg"><%}%>
+                        <%for(var j=0;j<combi[i].tank;j++){%><img src="/public/attriImg/posi/탱커.jpg"><%}%>
+                        <%for(var j=0;j<combi[i].melee;j++){%><img src="/public/attriImg/posi/근거리딜러.jpg"><%}%>
+                        <%for(var j=0;j<combi[i].ad;j++){%><img src="/public/attriImg/posi/원거리딜러.jpg"><%}%>
+                        <%for(var j=0;j<combi[i].sup;j++){%><img src="/public/attriImg/posi/서포터.jpg"><%}%>
                         <strong >
                         <div>
                         [<%if(combi[i].tank!=0){%><%=combi[i].tank%> 탱<%}%>
@@ -98,12 +84,12 @@
                         </div>
                         </strong >
                         </td> 
-                         
+                          <td class="text-center"><strong><%=combi[i].ratio%>%</strong></td> 
+                        <td class="text-center"><strong><%=combi[i].winratio%>%</strong></td> 
                         <td class="text-center"><strong><%=combi[i].win%>판</strong></td> 
                         <td class="text-center"><strong><%=combi[i].lose%>판</strong></td>
                         <td class="text-center"><strong><%=combi[i].total%>판</strong></td> 
-                        <td class="text-center"><strong><%=combi[i].ratio%>%</strong></td> 
-                        <td class="text-center"><strong><%=combi[i].winratio%>%</strong></td> 
+                       
                      
                     </tr>   
                    		 
@@ -114,18 +100,21 @@
                 </div>
              </div>
              </div>
+   <footer style="background-color: #ffffff;">      
+                <a href="http://developers.neople.co.kr" target="_blank"><img src="public/itemImg/기술표기_가로형_color.png" alt="Neople 오픈 API" /> </a>
+                <p>&copy; Company 2020</p>
+            </footer>
         </div>
-
-            <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sp-1.0.1/r-2.2.3/sc-2.0.1/sl-1.3.1/datatables.min.js"></script>
+  <script>includeHTML();</script>
+     <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sp-1.0.1/r-2.2.3/sc-2.0.1/sl-1.3.1/datatables.min.js"></script>
 
         	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
 	        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
         
             <script src="/public/assets/js/ie-emulation-modes-warning.js"></script>
             <script src="/public//ie10-viewport-bug-workaround.js"></script>
-
+        
             <script src="/public/assets/demo/datatables-demo.js"></script>
-          
-            <script src="/public/dist/js/scripts.js"></script>
+        	<script src="/public/dist/js/scripts.js"></script>
     </body>
 </html>
