@@ -8,7 +8,7 @@ $("button").on("click" , function() {
     var id = $('.show').attr("id");
     var winTeamDeal=0,winTeamDamaged=0,winTeamBattleP=0,winTeamSightP=0;
     var loseTeamDeal=0, loseTeamDamaged=0, loseTeamBattleP=0,loseTeamSightP=0;
-    
+
 
     if( $(this).html() == 'Info'&& $('#'+target+'_'+id).attr('src')=='disable'){
         $.ajax({
@@ -38,13 +38,84 @@ $("button").on("click" , function() {
                     loseTeamBattleP+=result.result.players[i].playInfo.battlePoint;
                     loseTeamSightP+=result.result.players[i].playInfo.sightPoint;
                  }}
-                var total = ('<ul class="nav nav-tabs" role="tablist" id="myTab">'+
+
+                 var graph =('<script>'+
+                 'var ctx = document.getElementById("TeamDeal");'+
+                 'var TeamDeal = new Chart(ctx, {'+
+                 'type: "pie",'+
+                 'data: {'+
+                  '   labels: ["승리팀", "패배팀"],'+
+                     'datasets: [{'+
+                     'data: ['+winTeamDeal+','+loseTeamDeal+'],'+
+                     'backgroundColor: ["#007bff", "#dc3545", "#ffc107", "#28a745"],'+
+                     '}],'+
+                 '},'+
+                 '});</script>'
+                 );
+                 graph +=('<script>'+
+                 'var ctx = document.getElementById("TeamDamaged");'+
+                 'var TeamDamaged = new Chart(ctx, {'+
+                 'type: "pie",'+
+                 'data: {'+
+                  '   labels: ["승리팀", "패배팀"],'+
+                     'datasets: [{'+
+                     'data: ['+winTeamDamaged+','+loseTeamDamaged+'],'+
+                     'backgroundColor: ["#007bff", "#dc3545", "#ffc107", "#28a745"],'+
+                     '}],'+
+                 '},'+
+                 '});</script>'
+                 );
+                 graph +=('<script>'+
+                 'var ctx = document.getElementById("TeamBattleP");'+
+                 'var TeamBattleP = new Chart(ctx, {'+
+                 'type: "pie",'+
+                 'data: {'+
+                  '   labels: ["승리팀", "패배팀"],'+
+                     'datasets: [{'+
+                     'data: ['+winTeamBattleP+','+loseTeamBattleP+'],'+
+                     'backgroundColor: ["#007bff", "#dc3545", "#ffc107", "#28a745"],'+
+                     '}],'+
+                 '},'+
+                 '});</script>'
+                 );
+                graph +=('<script>'+
+                 'var ctx = document.getElementById("TeamSightP");'+
+                 'var TeamSightP = new Chart(ctx, {'+
+                 'type: "pie",'+
+                 'data: {'+
+                  '   labels: ["승리팀", "패배팀"],'+
+                     'datasets: [{'+
+                     'data: ['+winTeamSightP+','+loseTeamSightP+'],'+
+                     'backgroundColor: ["#007bff", "#dc3545", "#ffc107", "#28a745"],'+
+                     '}],'+
+                 '},'+
+                 '});</script>'
+                 );
+               
+               
+    
+            
+
+                var total = ('<li class="list-group-item list-group-item-light"><ul class="nav nav-tabs" role="tablist" id="myTab">'+
                         '<li class="nav-item"> <a class="nav-link active" id="total-tab" data-toggle="tab" href="#total" role="tab" aria-controls="total" aria-selected="true">종합</a></li>'+
                          '<li class="nav-item"><a class="nav-link" id="item-tab" data-toggle="tab" href="#item" role="tab" aria-controls="item" aria-selected="false">아이템</a></li>'+
 						 '<li class="nav-item"><a class="nav-link" id="team-tab" data-toggle="tab" href="#team" role="tab" aria-controls="team" aria-selected="false">팀 통계</a></li>'+
 				'</ul><div class="tab-content" id="myTabContent">');
                 
-                total +=('<div role="tabpanel" class="tab-pane fade" id="team" aria-labelledby="team-tab">제작중입니다.</div>');
+                total +=('<div role="tabpanel" class="tab-pane fade" id="team" aria-labelledby="team-tab"><br><div class="row">'+
+                '<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"> <div class="card mb-4">'+
+                '<div class="card-header" data-toggle="tooltip" data-placement="bottom" ><i class="fas fa-chart-pie mr-1"></i>딜량</div>'+
+                '<div class="card-body"><canvas id="TeamDeal" width="100%" height="50"></canvas></div><a class="text-center">승리팀 : '+(winTeamDeal/1000).toFixed(0)+'K<br>패배팀 : '+(loseTeamDeal/1000).toFixed(0)+'K</a></div> </div>'+
+                '<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"> <div class="card mb-4">'+
+                '<div class="card-header" data-toggle="tooltip" data-placement="bottom" ><i class="fas fa-chart-pie mr-1"></i>받은 피해량</div>'+
+                '<div class="card-body"><canvas id="TeamDamaged" width="100%" height="50"></canvas></div><a class="text-center">승리팀 : '+(winTeamDamaged/1000).toFixed(0)+'K<br>패배팀 : '+(loseTeamDamaged/1000).toFixed(0)+'K</a></div> </div>'+
+                '<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"> <div class="card mb-4">'+
+                '<div class="card-header" data-toggle="tooltip" data-placement="bottom" ><i class="fas fa-chart-pie mr-1"></i>전투 참여</div>'+
+                '<div class="card-body"><canvas id="TeamBattleP" width="100%" height="50"></canvas></div><a class="text-center">승리팀 : '+winTeamBattleP+'점<br>패배팀 : '+loseTeamBattleP+'점</a></div> </div>'+
+                '<div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"> <div class="card mb-4">'+
+                '<div class="card-header" data-toggle="tooltip" data-placement="bottom" ><i class="fas fa-chart-pie mr-1"></i>시야 확보</div>'+
+                '<div class="card-body"><canvas id="TeamSightP" width="100%" height="50"></canvas></div><a class="text-center">승리팀 : '+winTeamSightP+'점<br>패배팀 : '+loseTeamSightP+'점</a></div> </div></div></div>');
+                total += graph;
                 total += ('<div role="tabpanel" class="tab-pane fade active show" id="total" aria-labelledby="total-tab">'+
                 '<table class="table table-sm"><thead><tr class="table-info"><th class="text-center">승리</th><th class="text-center">유저</th><th class="text-center">KDA</th><th class="text-center">Info</th></tr><tbody>');
                 
@@ -190,7 +261,7 @@ $("button").on("click" , function() {
                                  '<small><strong>Lv.'+result.result.players[i].playInfo.level+'<br>'+result.result.players[i].playInfo.killCount+'/<span style="color:red">'+result.result.players[i].playInfo.deathCount+'</span>/'+result.result.players[i].playInfo.assistCount+'<br>'+kda+
                                  '</strong></small></td><td class="text-center">'+itemInfo+'</td></tr>');
                          }
-                         total +=('</table></div>');
+                         total +=('</table></div></li>');
                     $('#'+target+'_'+id).html(total);    
                     $('#'+target+'_'+id).attr('src','able')
             },
