@@ -65,10 +65,16 @@ window.dataLayer = window.dataLayer || [];
                         <li class="list-inline-item"><h3><%= normal.nickname%></h3></li>
                         <li class="list-inline-item"> <%= normal.grade%>급</li>
                         <li class="list-inline-item">  <% if( normal.clanName!=null){%> 클랜 : <%= normal.clanName%><%}%></li>
-                        <%if(normal.tierName!=null){%> 
+                         <%if(normal.tierName!=null){%> 
                             <br><li class="list-inline-item"><h5><%= normal.tierName%></li>
                             <li class="list-inline-item">(현재 : <%= normal.ratingPoint%>점 / 최고 : <%= normal.maxRatingPoint%>점)</h5></li>
                         <%}%>                 
+                        <br>
+                         <% for(var i=0 ; i<hashtag.length ; i++){ %>
+                          <span class='text-primary'>  #<%= hashtag[i]%>&nbsp;</span> 
+                        <%}%>   
+
+                             
                     </ul>
  
                     <table class="table">
@@ -77,21 +83,24 @@ window.dataLayer = window.dataLayer || [];
                                 <% if(normal.records.length==2){%>
                                     <% if((normal.records[0].stopCount+normal.records[0].winCount+normal.records[0].loseCount)!=0){%>
                                     <tr>
-                                        <td> 공식전 </td> 
-                                        <td><%=((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(1) %>%
-                                        (<%=normal.records[0].winCount %>승 <%=normal.records[0].loseCount %>패)</td>
+                                        <td> 공식전 </td>
+                                        <% var winrate =((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(1); %>
+                                        <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                        (<%=normal.records[0].winCount %>승 <%=normal.records[0].loseCount %>패 <%=normal.records[0].stopCount %>중단)</td>
                                     </tr>
                                     <%}%>   
                                     <tr>
                                         <td > 일반전 </td> 
-                                        <td><%=((normal.records[1].winCount/(normal.records[1].winCount+normal.records[1].loseCount))*100).toFixed(1) %>%
-                                        (<%=normal.records[1].winCount %>승 <%=normal.records[1].loseCount %>패)</td>
+                                         <% var winrate =((normal.records[1].winCount/(normal.records[1].winCount+normal.records[1].loseCount))*100).toFixed(1); %>
+                                        <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                        (<%=normal.records[1].winCount %>승 <%=normal.records[1].loseCount %>패 <%=normal.records[1].stopCount %>중단)</td>
                                     </tr>
                                 <%}else if(normal.records.length==1){%>
                                 <tr>
                                     <td class="text-center"> 일반전 </td> 
-                                    <td class="text-center"><%=((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(1) %>%<br>
-                                    (<%=normal.records[0].winCount %>승 <%=normal.records[0].loseCount %>패)</td>
+                                   <% var winrate =((normal.records[0].winCount/(normal.records[0].winCount+normal.records[0].loseCount))*100).toFixed(1); %>
+                                        <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                        (<%=normal.records[0].winCount %>승 <%=normal.records[0].loseCount %>패 <%=normal.records[0].stopCount %>중단)</td>
                                 </tr>  
                                 <%}%>
                             </tbody>
@@ -218,7 +227,9 @@ window.dataLayer = window.dataLayer || [];
                                                 <%}%>
                                             </tbody>
                                         </table> </strong></div> 
-                                          <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><strong> 
+                                          <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"> <strong>
+                                      
+                                   
                                             <table class="table">	
                                              <thead><th class="text-center">선호 포지션</th><th class="text-center">승률</th></thead> 
                                                 <tbody>
@@ -226,33 +237,54 @@ window.dataLayer = window.dataLayer || [];
                                                 <% for(var i=0 ; i<j ; i++){%>
                                                         <tr>
                                                             <td class="text-center"><img src="/public/attriImg/posi/<%= normalPosi[i][0]%>.jpg" width="40" height="40"><br><a data-toggle="tooltip" data-placement="bottom" title ="<%=normalPosi[i][1]%>경기" class="text-info"><%=(normalPosi[i][1]/normalL*100).toFixed(0)%>%</a></td> 
-                                                            <td class="text-center"><a data-toggle="tooltip" data-placement="bottom" title ="(<%= normalPosi[i][2]%>승 <%= normalPosi[i][1]- normalPosi[i][2]%>패)"><%= ((normalPosi[i][2]/normalPosi[i][1])*100).toFixed(0)%>%</a></td> 
+                                                            <td class="text-center"> <a data-toggle="tooltip" data-placement="bottom" title ="(<%= normalPosi[i][2]%>승 <%= normalPosi[i][1]- normalPosi[i][2]%>패)"><%= ((normalPosi[i][2]/normalPosi[i][1])*100).toFixed(0)%>%</a></td> 
                                                         </tr>  
                                                     <%}%>
                                                 </tbody>
                                             </table></strong>            
                                         </div>
-                                             
-                                        <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"> <strong> 
-                                            <table class="table"> 
+
+                                              <div class="col-md-6 col-lg-6 col-sm-6 col-xs-6"><strong>  
+                                                    <table class="table">
                                             <thead><th class="text-center text-truncate">선호 캐릭터</th><th class="text-center">승률</th><th class="text-center">KDA</th></thead>       
                                                 <tbody>
-                                                <%if(normalChar.length<4){var j = normalChar.length}else{var j=4}%>
+                                                <%if(normalChar.length<4){var j = normalChar.length}else{var j=2}%>
                                                     <% for(var i=0 ; i<j ; i++){%>
                                                         <tr>
                                                             <td class="text-center"> <a href="/character/<%= normalChar[i][0]%>/"><img src="/public/thumb/<%= normalChar[i][0]%>.jpg" width="40" height="40"></a><br><a data-toggle="tooltip" data-placement="bottom" title ="<%=normalChar[i][1]%>경기" class="text-info"><%= (normalChar[i][1]/normalL*100).toFixed(0)%>%</a></td> 
                                                             <td class="text-center"><a data-toggle="tooltip" data-placement="bottom" title ="(<%= normalChar[i][2]%>승 <%= normalChar[i][1]- normalChar[i][2]%>패)">
                                                             <%= ((normalChar[i][2]/normalChar[i][1])*100).toFixed(0)%>%</a></td> 
-                                                            <td class="text-center"><small><strong><%=(normalChar[i][3]/normalChar[i][1]).toFixed(1)%> / <span style="color:red"> <%=(normalChar[i][4]/normalChar[i][1]).toFixed(1)%> </span> / <%=(normalChar[i][5]/normalChar[i][1]).toFixed(1)%></strong></small><br>
+                                                            <td class="text-center"><small><strong>  <%=(normalChar[i][3]/normalChar[i][1]).toFixed(1)%> / <span style="color:red"> <%=(normalChar[i][4]/normalChar[i][1]).toFixed(1)%> </span> / <%=(normalChar[i][5]/normalChar[i][1]).toFixed(1)%></strong>  </small><br>
                                                             <% var kda =((normalChar[i][3]+normalChar[i][5])/normalChar[i][4]).toFixed(1)%>
                                                              <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>평점 : 0<%}else{%>평점 : <%=kda%><%}%>
                                                             </td> 
                                                         </tr>
                                                     <%}%>
                                                 </tbody>                           
+                                            </table></strong>  
+                                            <strong> 
+
+                                            <table class="table">
+                                            <thead><th class="text-center">함께한 유저</th><th class="text-center">경기수</th><th class="text-center">승률</th></thead>       
+                                                <tbody>
+                                                <%if(normalFriends.length<4){var j = normalFriends.length}else{var j=4}%>
+                                                    <% for(var i=0 ; i<j ; i++){%>
+                                                    <%if(normalFriends[i]==undefined){break;}%>
+                                                    <%if(normalFriends[i][0]=="null"||normalFriends[i]==undefined){j+=1;continue;}%>
+                                                        <tr>
+                                                            <td class="text-center"><a href="/user?userName=<%= normalFriends[i][0]%>" style="color: black"><%= normalFriends[i][0]%></a></td> 
+                                                            <td class="text-center"><%= normalFriends[i][1]%><br><small  class="text-center"><strong>(<%= normalFriends[i][2]%>승 <%= normalFriends[i][1]-normalFriends[i][2]%>패)</strong></small></td> 
+                                                            <% var tmp =((normalFriends[i][2]/normalFriends[i][1])*100).toFixed(1)%>
+                                                            <td class="text-center">
+                                                            <% if(tmp=="Infinity"){ %>Perfect!<%}else if(tmp=="NaN"){%>0%<%}else{%><%=tmp%>%<%}%>
+                                                            </td> 
+                                                        </tr>
+                                                    <%}%>
+                                                </tbody>                           
                                             </table>
                                              </strong>
-                                        </div>     
+                                                            </div>
+                                      
                                         </div></div>                            
                                 <%}%>                              
                             <% if(normal.matches.rows.length>=40){var j=40;}else{var j=normal.matches.rows.length}%>
@@ -368,7 +400,7 @@ window.dataLayer = window.dataLayer || [];
                                         <table class="table"> 
                                             <thead>   <th class="text-center">선호 캐릭터</th><th class="text-center">승률</th><th class="text-center">KDA</th></thead>       
                                             <tbody>
-                                            <%if(ratingChar.length<4){var j = ratingChar.length}else{var j=4}%>
+                                            <%if(ratingChar.length<2){var j = ratingChar.length}else{var j=2}%>
                                                 <% for(var i=0 ; i<j ; i++){%>
                                                     <tr>
                                                         <td class="text-center"> <a href="/character/<%= ratingChar[i][0]%>/"><img src="/public/thumb/<%= ratingChar[i][0]%>.jpg"  width="40" height="40"></a><br><a data-toggle="tooltip" data-placement="bottom" title ="<%=ratingChar[i][1]%>경기"  class="text-info"><%=(ratingChar[i][1]/ratingL*100).toFixed(0)%>%</td> 
@@ -382,6 +414,27 @@ window.dataLayer = window.dataLayer || [];
                                                 <%}%>
                                             </tbody>
                                           </table></strong>
+                                              <strong> 
+
+                                            <table class="table">
+                                            <thead><th class="text-center">함께한 유저</th><th class="text-center">경기수</th><th class="text-center">승률</th></thead>           
+                                            <tbody>
+                                                <%if(ratingFriends.length<4){var j = ratingFriends.length}else{var j=4}%>
+                                                    <% for(var i=0 ; i<j ; i++){%>
+                                                    <%if(ratingFriends[i]==undefined){break;}%>
+                                                    <%if(ratingFriends[i][0]=="null"||ratingFriends[i]==undefined){j+=1;continue;}%>
+                                                        <tr>
+                                                            <td class="text-center"><a href="/user?userName=<%= ratingFriends[i][0]%>" style="color: black"><%= ratingFriends[i][0]%></a></td> 
+                                                            <td class="text-center"><%= ratingFriends[i][1]%><br><small  class="text-center"><strong>(<%= ratingFriends[i][2]%>승 <%= ratingFriends[i][1]-ratingFriends[i][2]%>패)</strong></small></td> 
+                                                            <% var tmp =((ratingFriends[i][2]/ratingFriends[i][1])*100).toFixed(1)%>
+                                                            <td class="text-center">
+                                                            <% if(tmp=="Infinity"){ %>Perfect!<%}else if(tmp=="NaN"){%>0%<%}else{%><%=tmp%>%<%}%>
+                                                            </td> 
+                                                        </tr>
+                                                    <%}%>
+                                                </tbody>                           
+                                            </table>
+                                             </strong>
                                     </div>
                                 </div> </div>
                                         <%}%>
