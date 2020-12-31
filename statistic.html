@@ -22,84 +22,209 @@ window.dataLayer = window.dataLayer || [];
         </head>   
     <body>
 
-        <div class="container">
+        <div class="container"><br><script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<!-- 수평 -->
+<ins class="adsbygoogle"
+     style="display:block"
+     data-ad-client="ca-pub-8785439393916040"
+     data-ad-slot="2282196919"
+     data-ad-format="auto"
+     data-full-width-responsive="true"></ins>
+<script>
+     (adsbygoogle = window.adsbygoogle || []).push({});
+</script> <br>
             <ul class="nav nav-tabs" role="tablist" id="myTab">
 						 <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">통계 상세 정보</a></li>
 						 <li class="nav-item"><a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">조합 통계</a></li>
-			</ul>
+					    <li class="nav-item"><a class="nav-link" id="messages-tab" data-toggle="tab" href="#messages" role="tab" aria-controls="messages" aria-selected="false">특성 통계</a></li>				
+            </ul>
             <div class="tab-content" id="myTabContent">
             <div role="tabpanel" class="tab-pane fade show active" id="home" aria-labelledby="home-tab">
-            <div class="table-responsive">
-                <table id="statisticTable" class="table table-striped" width="100%">
-                <thead class="thead-dark">
-                            <tr>	              
-                                <th scope="col"><strong><p class="text-center">이름</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">포지션</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">게임 수</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">픽률</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">승률</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">KDA</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">데미지</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">받은 피해</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">전투 점수</p></strong></th>
-                                <th scope="col"><strong><p class="text-center">시야 점수</p></strong></th> 
-                                 <th scope="col"><strong><p class="text-center">맵이름</p></strong></th>             
-                            </tr>      	
-                    </thead>    	
-                </table>
-             </div>
-              </div>
-             <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
-<br> <strong>2020H 시즌 경쟁전 151629경기 기준</strong><br><br>
-             <div class="table-responsive">
-               <table class="table table-sm">
+                <div class="table-responsive">
+                    <table id="statisticTable" class="table table-striped" width="100%">
                     <thead class="thead-dark">
-                            <tr>  
-                                <th class="text-center"><strong>순위</strong></th>
-                                <th class="text-center"><strong>조합</strong></th>
- 		        <th class="text-center"><strong>픽률</strong></th>
-                                <th class="text-center"><strong>승률</strong></th>
-                                <th class="text-center"><strong>승리</strong></th>
-                                <th class="text-center"><strong>패배</strong></th>
-                                <th class="text-center"><strong>총합</strong></th>
-                               
-                            </tr>      	
-                    </thead>    
-                    <tbody>		
-                   
-                <%for(var i=0;i<10;i++){%>
-                    <tr>
-                        <td class="text-center"><strong><%=i+1%></strong></td> 
-                        <td class="text-center">
-                        <%for(var j=0;j<combi[i].tank;j++){%><img src="/public/attriImg/posi/탱커.jpg"><%}%>
-                        <%for(var j=0;j<combi[i].melee;j++){%><img src="/public/attriImg/posi/근거리딜러.jpg"><%}%>
-                        <%for(var j=0;j<combi[i].ad;j++){%><img src="/public/attriImg/posi/원거리딜러.jpg"><%}%>
-                        <%for(var j=0;j<combi[i].sup;j++){%><img src="/public/attriImg/posi/서포터.jpg"><%}%>
-                        <strong >
-                        <div>
-                        [<%if(combi[i].tank!=0){%><%=combi[i].tank%> 탱<%}%>
-                        <%if(combi[i].melee!=0){%><%=combi[i].melee%> 근<%}%>
-                        <%if(combi[i].ad!=0){%><%=combi[i].ad%> 원<%}%>
-                        <%if(combi[i].sup!=0){%><%=combi[i].sup%> 서폿<%}%>]
+                                <tr>	              
+                                    <th scope="col"><small><strong><p class="text-center">캐릭터</p></strong></small></th>
+                                    <th scope="col"><small><strong><p class="text-center">포지션</p></strong></small></th>                                <th scope="col"><small><strong><p class="text-center">픽률</p></strong></small></th>
+                                    <th scope="col"><small><strong><p class="text-center">승률</p></strong></small></th>
+                                    <th scope="col"><small><strong><p class="text-center">KDA</p></strong></small></th>
+                                    <th scope="col"><small><strong><p class="text-center">데미지</p></strong></small></th>
+                                    <th scope="col"><small><strong><p class="text-center">받은 피해</p></strong></small></th>
+                                    <th scope="col"><small><strong><p class="text-center">전투 점수</p></strong></small></th>
+                                    <th scope="col"><small><strong><p class="text-center">시야 점수</p></strong></small></th> 
+                                    <th scope="col"><small><strong><p class="text-center">맵이름</p></strong></small></th>             
+                                </tr>      	
+                        </thead>    	
+                    </table>
+                    </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="profile" aria-labelledby="profile-tab">
+                <br> <strong>라이언 공식전 패치 이후 13492경기 기준</strong><br><br>
+                <div class="table-responsive">
+                <table class="table table-sm">
+                        <thead class="thead-dark">
+                                <tr>  
+                                    <th class="text-center"><strong>순위</strong></th>
+                                    <th class="text-center"><strong>조합</strong></th>
+                                    <th class="text-center"><strong>픽률</strong></th>
+                                    <th class="text-center"><strong>승률</strong></th>
+                                    <th class="text-center"><strong>승리</strong></th>
+                                    <th class="text-center"><strong>패배</strong></th>
+                                    <th class="text-center"><strong>총합</strong></th>
+                                
+                                </tr>      	
+                        </thead>    
+                        <tbody>		
+                    
+                    <%for(var i=0;i<10;i++){%>
+                        <tr>
+                            <td class="text-center"><strong><%=i+1%></strong></td> 
+                            <td class="text-center">
+                            <%for(var j=0;j<combi[i].tank;j++){%><img src="/public/attriImg/posi/탱커.jpg"><%}%>
+                            <%for(var j=0;j<combi[i].melee;j++){%><img src="/public/attriImg/posi/근거리딜러.jpg"><%}%>
+                            <%for(var j=0;j<combi[i].ad;j++){%><img src="/public/attriImg/posi/원거리딜러.jpg"><%}%>
+                            <%for(var j=0;j<combi[i].sup;j++){%><img src="/public/attriImg/posi/서포터.jpg"><%}%>
+                            <strong >
+                            <div>
+                            [<%if(combi[i].tank!=0){%><%=combi[i].tank%> 탱<%}%>
+                            <%if(combi[i].melee!=0){%><%=combi[i].melee%> 근<%}%>
+                            <%if(combi[i].ad!=0){%><%=combi[i].ad%> 원<%}%>
+                            <%if(combi[i].sup!=0){%><%=combi[i].sup%> 서폿<%}%>]
+                            </div>
+                            </strong >
+                            </td> 
+                            <td class="text-center"><strong><%=combi[i].ratio%>%</strong></td> 
+                            <td class="text-center"><strong><%=combi[i].winratio%>%</strong></td> 
+                            <td class="text-center"><strong><%=combi[i].win%>판</strong></td> 
+                            <td class="text-center"><strong><%=combi[i].lose%>판</strong></td>
+                            <td class="text-center"><strong><%=combi[i].total%>판</strong></td> 
+                        
+                        
+                        </tr>   
+                            
+                    <%}%>
+                    
+                    </tbody>
+                    </table>
+                    </div>
+            </div>
+            <div role="tabpanel" class="tab-pane fade" id="messages" aria-labelledby="messages-tab">
+                <ul class="nav nav-tabs" role="tablist" id="myTab">
+					<li class="nav-item"><a class="nav-link active" id="tank-tab" data-toggle="tab" href="#tank" role="tab" aria-controls="tank" aria-selected="true">탱커</a></li>
+					<li class="nav-item"><a class="nav-link" id="melee-tab" data-toggle="tab" href="#melee" role="tab" aria-controls="melee" aria-selected="false">근딜</a></li>
+					<li class="nav-item"><a class="nav-link" id="range-tab" data-toggle="tab" href="#range" role="tab" aria-controls="range" aria-selected="false">원딜</a></li>
+                    <li class="nav-item"><a class="nav-link" id="sup-tab" data-toggle="tab" href="#sup" role="tab" aria-controls="sup" aria-selected="false">서포터</a></li>
+			    </ul>  
+                <div class="tab-content" id="myTabContent">
+                        <div role="tabpanel" class="tab-pane fade show active" id="tank" aria-labelledby="tank-tab">
+                            <table class="table table-sm">
+                                <thead class="thead-dark">
+                                        <tr>	
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">특성 Lv1</th>
+                                            <th class="text-center">특성 Lv2</th>
+                                            <th class="text-center">특성 Lv3</th>
+                                            <th class="text-center">픽률</th>
+                                            <th class="text-center">승률</th>	
+                                        </tr>	 	
+                                </thead>    
+                                <tbody>		
+                                    <%for(var i=0;i<10;i++){%> 
+                                        <tr>
+                                            <td class="text-center"><br><small><strong><%= i+1 %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri1Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv1 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri1Name %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri2Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv2 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri2Name %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri3Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv3 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri3Name %></strong></small></td>
+                                            <td class="text-center"><br><small><strong><%= attri[i].attriPick %>%</strong></small></td>
+                                            <td class="text-center"><br><small><strong><%= attri[i].attriWin %>%</strong></small></td>
+                                        </tr>            
+                                    <%};%>
+                                </tbody>
+                            </table>
                         </div>
-                        </strong >
-                        </td> 
-                          <td class="text-center"><strong><%=combi[i].ratio%>%</strong></td> 
-                        <td class="text-center"><strong><%=combi[i].winratio%>%</strong></td> 
-                        <td class="text-center"><strong><%=combi[i].win%>판</strong></td> 
-                        <td class="text-center"><strong><%=combi[i].lose%>판</strong></td>
-                        <td class="text-center"><strong><%=combi[i].total%>판</strong></td> 
-                       
-                     
-                    </tr>   
-                   		 
-                <%}%>
-                  
-                 </tbody>
-                </table>
+                        <div role="tabpanel" class="tab-pane fade" id="melee" aria-labelledby="melee-tab">
+                            <table class="table table-sm">
+                                <thead class="thead-dark">
+                                        <tr>
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">특성 Lv1</th>
+                                            <th class="text-center">특성 Lv2</th>
+                                            <th class="text-center">특성 Lv3</th>
+                                            <th class="text-center">픽률</th>
+                                            <th class="text-center">승률</th>	
+                                        </tr>	 	
+                                </thead>    
+                                <tbody>		
+                                    <%for(var i=20;i<30;i++){%> 
+                                        <tr>
+                                            <td class="text-center"><br><small><strong><%= i-19 %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri1Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv1 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri1Name %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri2Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv2 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri2Name %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri3Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv3 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri3Name %></strong></small></td>
+                                            <td class="text-center"><br><small><strong><%= attri[i].attriPick %>%</strong></small></td>
+                                            <td class="text-center"><br><small><strong><%= attri[i].attriWin %>%</strong></small></td>
+                                        </tr>            
+                                    <%};%>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="range" aria-labelledby="range-tab">
+                            <table class="table table-sm">
+                                <thead class="thead-dark">
+                                        <tr>	
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">특성 Lv1</th>
+                                            <th class="text-center">특성 Lv2</th>
+                                            <th class="text-center">특성 Lv3</th>
+                                            <th class="text-center">픽률</th>
+                                            <th class="text-center">승률</th>	
+                                        </tr>	 	
+                                </thead>    
+                                <tbody>		
+                                    <%for(var i=30;i<40;i++){%> 
+                                        <tr>
+                                             <td class="text-center"><br><small><strong><%= i-29 %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri1Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv1 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri1Name %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri2Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv2 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri2Name %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri3Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv3 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri3Name %></strong></small></td>
+                                            <td class="text-center"><br><small><strong><%= attri[i].attriPick %>%</strong></small></td>
+                                            <td class="text-center"><br><small><strong><%= attri[i].attriWin %>%</strong></small></td>
+                                        </tr>            
+                                    <%};%>
+                                </tbody>
+                            </table>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="sup" aria-labelledby="sup-tab">
+                            <table class="table table-sm">
+                                <thead class="thead-dark">
+                                        <tr>	
+                                            <th class="text-center">#</th>
+                                            <th class="text-center">특성 Lv1</th>
+                                            <th class="text-center">특성 Lv2</th>
+                                            <th class="text-center">특성 Lv3</th>
+                                            <th class="text-center">픽률</th>
+                                            <th class="text-center">승률</th>	
+                                        </tr>	 	
+                                </thead>    
+                                <tbody>		
+                                    <%for(var i=10;i<20;i++){%> 
+                                        <tr>
+                                            <td class="text-center"><br><small><strong><%= i-9 %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri1Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv1 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri1Name %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri2Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv2 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri2Name %></strong></small></td>
+                                            <td class="text-center" data-placement="right" data-toggle="tooltip" title="<%= attri[i].attri3Info%>"><img src="https://img-api.neople.co.kr/cy/position-attributes/<%= attri[i].attributeLv3 %>" width="50" height="50"/><br><small><strong><%= attri[i].attri3Name %></strong></small></td>
+                                            <td class="text-center"><br><small><strong><%= attri[i].attriPick %>%</strong></small></td>
+                                            <td class="text-center"><br><small><strong><%= attri[i].attriWin %>%</strong></small></td>
+                                        </tr>            
+                                    <%};%>
+                                </tbody>
+                            </table>
+                        </div>
                 </div>
-             </div>
-             </div>
+            
+            
+            <div>
+             </div>  <br>
    <footer style="background-color: #ffffff;">      
                 <a href="http://developers.neople.co.kr" target="_blank"><img src="public/itemImg/기술표기_가로형_color.png" alt="Neople 오픈 API" /> </a>
                 <p>&copy; Company 2020</p>
