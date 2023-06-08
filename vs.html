@@ -1,0 +1,424 @@
+<!doctype html>
+<html lang="ko">
+<html>
+    <head>
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-161183796-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-161183796-1');
+</script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script data-ad-client="ca-pub-8785439393916040" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<link rel="shortcut icon" href="/public/favicon.ico"/>
+       
+        <link rel="stylesheet" href="/public/offcanvas.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sl-1.3.1/datatables.min.css"/>
+ <script src="/public/include.js"></script>
+   <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+   <script async src="https://www.googletagmanager.com/gtag/js?id=UA-161183796-1"></script>
+<script>
+window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+  gtag('config', 'UA-161183796-1');
+</script>  <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+	<link rel="shortcut icon" href="/public/favicon.ico"/>
+       
+        <link rel="stylesheet" href="/public/offcanvas.css"/>
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+       <link rel="stylesheet" type="text/css" href="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sl-1.3.1/datatables.min.css"/>
+ <script src="/public/include.js"></script>
+
+    </head>
+   
+      <body>
+<header include-html="/public/html/header.html"></header>
+        <nav include-html="/public/html/nav.html" class="navbar navbar-expand-lg navbar-dark bg-dark"></nav><br>
+        <div class="container">
+            <div class="row" style="float: none; margin:100 auto;">
+                <div class="col-4  p-0  text-center" >
+                    <strong>   
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><h3><a href="/user?userName=<%= normalA.nickname%>" style="color: black"><%= normalA.nickname%></a></h3></li><br>
+                            <li class="list-inline-item"> <%= normalA.grade%>급</li><br>
+                            <li class="list-inline-item">  <% if( normalA.clanName!=null){%> 클랜 : <%= normalA.clanName%><%}%></li><br>
+                            <%if(normalA.tierName!=null){%> 
+                                <br><li class="list-inline-item"><h5><%= normalA.tierName%></li>
+                                <li class="list-inline-item">(현재 : <%= normalA.ratingPoint%>점 / 최고 : <%= normalA.maxRatingPoint%>점)</h5></li>
+                            <%}else{%>
+                                <br><li class="list-inline-item"><h5></li>
+                                <li class="list-inline-item">티어 기록 없음</h5></li>
+                            <%}%>
+                        </ul>
+                    </strong>
+                    <tbody>
+                        <% if(normalA.records.length==2){%>
+                            <% if((normalA.records[0].stopCount+normalA.records[0].winCount+normalA.records[0].loseCount)!=0){%>
+                            <tr>
+                                <td>공식전: </td>
+                                <% var winrate =((normalA.records[0].winCount/(normalA.records[0].winCount+normalA.records[0].loseCount))*100).toFixed(1); %>
+                                <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                (<%=normalA.records[0].winCount %>승 <%=normalA.records[0].loseCount %>패 <%=normalA.records[0].stopCount %>중단)</td>
+                            </tr><br>
+                            <%}else{%>
+                                <tr>
+                                    <td>공식전 기록 없음</td>
+                                   </tr><br>
+                                <tr>
+                                <%}%>   
+                            <tr>
+                                <td >일반전: </td> 
+                                 <% var winrate =((normalA.records[1].winCount/(normalA.records[1].winCount+normalA.records[1].loseCount))*100).toFixed(1); %>
+                                <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                (<%=normalA.records[1].winCount %>승 <%=normalA.records[1].loseCount %>패 <%=normalA.records[1].stopCount %>중단)</td>
+                            </tr>
+                        <%}else if(normalA.records.length==1){%>
+                            <tr>
+                                <td>공식전 기록 없음</td>
+                               </tr><br>
+                            <tr>
+                            <td class="text-center">일반전: </td> 
+                           <% var winrate =((normalA.records[0].winCount/(normalA.records[0].winCount+normalA.records[0].loseCount))*100).toFixed(1); %>
+                                <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                (<%=normalA.records[0].winCount %>승 <%=normalA.records[0].loseCount %>패 <%=normalA.records[0].stopCount %>중단)</td>
+                        </tr>  
+                        <%}%><br><br><br>
+                        <strong> 
+                            <table class="table"> 
+                                <thead>   <th class="text-center">포지션</th><th class="text-center">승률</th><th class="text-center">KDA</th>
+                               <th class="text-center">딜량</th><th class="text-center">받은피해</th>
+                                </thead>       
+                                <tbody>
+                                    <% for(var i=0 ; i<totalPosiSortA.length ; i++){%>
+                                        <tr>
+                                            <td class="text-center"><img src="/public/attriImg/posi/<%= totalPosiSortA[i][0]%>.jpg"  width="40" height="40"><br><small><strong><%=totalPosiSortA[i][1]%> 경기</strong></small></td> 
+                                                <td class="text-center"><a data-toggle="tooltip" data-placement="bottom" title ="(<%= totalPosiSortA[i][2]%>승 <%= totalPosiSortA[i][1]- totalPosiSortA[i][2]%>패)">
+                                                <%= ((totalPosiSortA[i][2]/totalPosiSortA[i][1])*100).toFixed(0)%>%</a></td> 
+                                                <td class="text-center"><% var kda =((totalPosiSortA[i][3]+totalPosiSortA[i][5])/totalPosiSortA[i][4]).toFixed(1)%>
+                              <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
+                              <%var playTime =  (totalPosiSortA[i][6]/totalPosiSortA[i][1]/60).toFixed(0)%>
+                                               
+                                                </td>                                           
+                                                 <td class="text-center"><a data-toggle="tooltip" data-placement="bottom" title ="18분 기준"><%= (totalPosiSortA[i][7]/totalPosiSortA[i][1]/playTime*0.018).toFixed(1) %>K</a></td>
+                                                  <td class="text-center"><a data-toggle="tooltip" data-placement="bottom" title ="18분 기준"><%= (totalPosiSortA[i][8]/totalPosiSortA[i][1]/playTime*0.018).toFixed(1)%>K</a></td>
+                                                 </tr>  
+                                               
+                                    <%}%>
+                                </tbody>
+                              </table></strong>
+    
+                    </tbody>
+                </div>
+                <div class="col-4 p-0 text-center">
+                    <H3>VS</H3><br>
+                    <ul class="nav nav-tabs  nav-justified" role="tablist" id="myTab">
+                        <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#total" role="tab" aria-controls="home" aria-selected="true"><H6>통합</H6></a></li>
+                        <li class="nav-item"> <a class="nav-link" id="normal-tab" data-toggle="tab" href="#normal" role="tab" aria-controls="home" aria-selected="true"><H6>일반전</H6></a></li>
+                        <li class="nav-item"> <a class="nav-link" id="rank-tab" data-toggle="tab" href="#rank" role="tab" aria-controls="home" aria-selected="true"><H6>경쟁전</H6></a></li>
+                  </ul>
+                 
+                    <div class="tab-content" id="myTabContent">
+                        <div role="tabpanel" class="tab-pane fade active show" id="total" aria-labelledby="home-tab">
+                            <ul class="nav nav-tabs  nav-justified" role="tablist" id="myTab">
+                                <li class="nav-item"> <a class="nav-link active" id="total_all-tab" data-toggle="tab" href="#total_all" role="tab" aria-controls="total_all" aria-selected="true"><H6>ALL</H6></a></li>
+                             </ul>
+                            <div class="tab-content" id="myTabContent"><strong>
+                                <div role="tabpanel" class="tab-pane fade active show" id="total_all" aria-labelledby="total_all-tab">
+                                    <table class="table  table-borderless text-center">
+                                       
+                                    <tbody>
+                                    <tr>
+                                        <td><%=((normalTotalWinA+ratingTotalWinA)/(normalTotalGameA+ratingTotalGameA)*100).toFixed(1)%>%</td>
+                                        <td class="text-center">승률</td>
+                                        <td><%=((normalTotalWinB+ratingTotalWinB)/(normalTotalGameB+ratingTotalGameB)*100).toFixed(1)%>%</td>
+                                   </tr>
+     
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalDealA+ratingTotalDealA)/(normalTotalPlaytimeA+ratingTotalPlaytimeA)*60*18/1000).toFixed(1)%>K</td>
+                                        <td>18분 가한 피해량</td>
+                                        <td><%=((normalTotalDealB+ratingTotalDealB)/(normalTotalPlaytimeB+ratingTotalPlaytimeB)*60*18/1000).toFixed(1)%>K</td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalDamegedA+ratingTotalDamegedA)/(normalTotalPlaytimeA+ratingTotalPlaytimeA)*60*18/1000).toFixed(1)%>K</td>
+                                        <td>18분 받은 피해량</td>
+                                        <td><%=((normalTotalDamegedB+ratingTotalDamegedB)/(normalTotalPlaytimeB+ratingTotalPlaytimeB)*60*18/1000).toFixed(1)%>K</td>
+                                    </tr>  
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalBattlePointA+ratingTotalBattlePointA)/(normalTotalPlaytimeA+ratingTotalPlaytimeA)*60*18).toFixed(1)%></td>
+                                        <td>18분 전투참여</td>
+                                        <td><%=((normalTotalBattlePointB+ratingTotalBattlePointB)/(normalTotalPlaytimeB+ratingTotalPlaytimeB)*60*18).toFixed(1)%></td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalSightA+ratingTotalSightA)/(normalTotalPlaytimeA+ratingTotalPlaytimeA)*60*18).toFixed(1)%></td>
+                                        <td>18분 시야 점수</td>
+                                        <td><%=((normalTotalSightB+ratingTotalSightB)/(normalTotalPlaytimeB+ratingTotalPlaytimeB)*60*18).toFixed(1)%></td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalKillA+normalTotalAssistA+ratingTotalKillA+ratingTotalAssistA)/(normalTotalDeathA+ratingTotalDeathA)).toFixed(1) %></td>
+                                        <td>KDA</td>
+                                        <td><%=((normalTotalKillB+normalTotalAssistB+ratingTotalKillB+ratingTotalAssistB)/(normalTotalDeathB+ratingTotalDeathB)).toFixed(1) %></td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalKillA+ratingTotalKillA)/(normalTotalGameA+ratingTotalGameA)).toFixed(1) %></td>
+                                        <td>킬</td>
+                                        <td><%=((normalTotalKillB+ratingTotalKillB)/(normalTotalGameB+ratingTotalGameB)).toFixed(1) %></td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalDeathA+ratingTotalDeathA)/(normalTotalGameA+ratingTotalGameA)).toFixed(1) %></td>
+                                        <td>데스</td>
+                                        <td><%=((normalTotalDeathB+ratingTotalDeathB)/(normalTotalGameB+ratingTotalGameB)).toFixed(1) %></td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalAssistA+ratingTotalAssistA)/(normalTotalGameA+ratingTotalGameA)).toFixed(1) %></td>
+                                        <td>어시스트</td>
+                                        <td><%=((normalTotalAssistB+ratingTotalAssistB)/(normalTotalGameB+ratingTotalGameB)).toFixed(1) %></td>
+                                    </tr>
+                                    </tbody>
+                                    </table> </strong>
+                                </div>
+                                <div role="tabpanel" class="tab-pane fade active show" id="messages" aria-labelledby="messages-tab"></div>
+
+                            </div>
+                        </div>
+                        <div role="tabpanel" class="tab-pane fade" id="normal" aria-labelledby="normal-tab">
+                            <ul class="nav nav-tabs  nav-justified" role="tablist" id="myTab">
+                                <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><H6>ALL</H6></a></li>
+                              </ul>
+                            <div class="tab-content" id="myTabContent"><strong>
+                                <div role="tabpanel" class="tab-pane fade active show" id="home" aria-labelledby="home-tab">
+                                    <table class="table  table-borderless text-center">
+                                       
+                                    <tbody>
+                                    <tr>
+                                        <td><%=((normalTotalWinA)/normalTotalGameA*100).toFixed(1)%>%</td>
+                                        <td class="text-center">승률</td>
+                                        <td><%=((normalTotalWinB)/normalTotalGameB*100).toFixed(1) %>%</td>
+                                   </tr>
+     
+                                    <tr class="text-center">
+                                        <td><%=(normalTotalDealA/normalTotalPlaytimeA*60*18/1000).toFixed(1)%>K</td>
+                                        <td>18분 가한 피해량</td>
+                                        <td><%=(normalTotalDealB/normalTotalPlaytimeB*60*18/1000).toFixed(1)%>K</td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=(normalTotalDamegedA/normalTotalPlaytimeA*60*18/1000).toFixed(1)%>K</td>
+                                        <td>18분 받은 피해량</td>
+                                        <td><%=(normalTotalDamegedB/normalTotalPlaytimeB*60*18/1000).toFixed(1)%>K</td>
+                                    </tr>  
+                                    <tr class="text-center">
+                                        <td><%=(normalTotalBattlePointA/normalTotalPlaytimeA*60*18).toFixed(1)%></td>
+                                        <td>18분 전투참여</td>
+                                        <td><%=(normalTotalBattlePointB/normalTotalPlaytimeB*60*18).toFixed(1)%></td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=(normalTotalSightA/normalTotalPlaytimeA*60*18).toFixed(1)%></td>
+                                        <td>18분 시야 점수</td>
+                                        <td><%=(normalTotalSightB/normalTotalPlaytimeB*60*18).toFixed(1)%></td>
+                                    </tr>
+                                    <tr class="text-center">
+                                        <td><%=((normalTotalKillA+normalTotalAssistA)/normalTotalDeathA).toFixed(1) %></td>
+                                        <td>KDA</td>
+                                        <td><%=((normalTotalKillB+normalTotalAssistB)/normalTotalDeathB).toFixed(1) %></td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=(normalTotalKillA/normalTotalGameA).toFixed(1) %></td>
+                                        <td>킬</td>
+                                        <td><%=(normalTotalKillB/normalTotalGameB).toFixed(1) %></td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=(normalTotalDeathA/normalTotalGameA).toFixed(1) %></td>
+                                        <td>데스</td>
+                                        <td><%=(normalTotalDeathB/normalTotalGameB).toFixed(1) %></td>
+                                    </tr>
+        
+                                    <tr class="text-center">
+                                        <td><%=(normalTotalAssistA/normalTotalGameA).toFixed(1) %></td>
+                                        <td>어시스트</td>
+                                        <td><%=(normalTotalAssistB/normalTotalGameB).toFixed(1) %></td>
+                                    </tr>
+                                    </tbody>
+                                    </table> </strong>
+                                </div>
+                          
+                            </div>
+                        </div>
+						
+                        <div role="tabpanel" class="tab-pane fade" id="rank" aria-labelledby="rank-tab">
+                            <ul class="nav nav-tabs  nav-justified" role="tablist" id="myTab">
+                                <li class="nav-item"> <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true"><H6>ALL</H6></a></li>
+                              </ul>
+                            <div class="tab-content" id="myTabContent"><strong>
+                                <div role="tabpanel" class="tab-pane fade active show" id="home" aria-labelledby="home-tab">
+                                    <table class="table  table-borderless text-center">
+                                       
+                                        <tbody>
+                                            <tr>
+                                                <td><%=((ratingTotalWinA)/ratingTotalGameA*100).toFixed(1)%>%</td>
+                                                <td class="text-center">승률</td>
+                                                <td><%=((ratingTotalWinB)/ratingTotalGameB*100).toFixed(1) %>%</td>
+                                           </tr>
+             
+                                            <tr class="text-center">
+                                                <td><%=(ratingTotalDealA/ratingTotalPlaytimeA*60*18/1000).toFixed(1)%>K</td>
+                                                <td>18분 가한 피해량</td>
+                                                <td><%=(ratingTotalDealB/ratingTotalPlaytimeB*60*18/1000).toFixed(1)%>K</td>
+                                            </tr>
+                
+                                            <tr class="text-center">
+                                                <td><%=(ratingTotalDamegedA/ratingTotalPlaytimeA*60*18/1000).toFixed(1)%>K</td>
+                                                <td>18분 받은 피해량</td>
+                                                <td><%=(ratingTotalDamegedB/ratingTotalPlaytimeB*60*18/1000).toFixed(1)%>K</td>
+                                            </tr>  
+                                            <tr class="text-center">
+                                                <td><%=(ratingTotalBattlePointA/ratingTotalPlaytimeA*60*18).toFixed(1)%></td>
+                                                <td>18분 전투참여</td>
+                                                <td><%=(ratingTotalBattlePointB/ratingTotalPlaytimeB*60*18).toFixed(1)%></td>
+                                            </tr>
+                
+                                            <tr class="text-center">
+                                                <td><%=(ratingTotalSightA/ratingTotalPlaytimeA*60*18).toFixed(1)%></td>
+                                                <td>18분 시야 점수</td>
+                                                <td><%=(ratingTotalSightB/ratingTotalPlaytimeB*60*18).toFixed(1)%></td>
+                                            </tr>
+                                            <tr class="text-center">
+                                                <td><%=((ratingTotalKillA+ratingTotalAssistA)/ratingTotalDeathA).toFixed(1) %></td>
+                                                <td>KDA</td>
+                                                <td><%=((ratingTotalKillB+ratingTotalAssistB)/ratingTotalDeathB).toFixed(1) %></td>
+                                            </tr>
+                
+                                            <tr class="text-center">
+                                                <td><%=(ratingTotalKillA/ratingTotalGameA).toFixed(1) %></td>
+                                                <td>킬</td>
+                                                <td><%=(ratingTotalKillB/ratingTotalGameB).toFixed(1) %></td>
+                                            </tr>
+                
+                                            <tr class="text-center">
+                                                <td><%=(ratingTotalDeathA/ratingTotalGameA).toFixed(1) %></td>
+                                                <td>데스</td>
+                                                <td><%=(ratingTotalDeathB/ratingTotalGameB).toFixed(1) %></td>
+                                            </tr>
+                
+                                            <tr class="text-center">
+                                                <td><%=(ratingTotalAssistA/ratingTotalGameA).toFixed(1) %></td>
+                                                <td>어시스트</td>
+                                                <td><%=(ratingTotalAssistB/ratingTotalGameB).toFixed(1) %></td>
+                                            </tr>
+                                            </tbody>
+                                    </table> </strong>
+                                </div>
+                
+                      
+                            </div>
+                        </div>
+						
+                 
+                    </div>
+                </div>
+                <div class="col-4  p-0 text-center" >
+                    <strong>   
+                        <ul class="list-inline">
+                            <li class="list-inline-item"><h3><a href="/user?userName=<%= normalB.nickname%>" style="color: black"><%= normalB.nickname%></a></h3></li><br>
+                            <li class="list-inline-item"> <%= normalB.grade%>급</li><br>
+                            <li class="list-inline-item">  <% if( normalB.clanName!=null){%> 클랜 : <%= normalB.clanName%><%}%></li><br>
+                            <%if(normalB.tierName!=null){%> 
+                                <br><li class="list-inline-item"><h5><%= normalB.tierName%></li>
+                                <li class="list-inline-item">(현재 : <%= normalB.ratingPoint%>점 / 최고 : <%= normalB.maxRatingPoint%>점)</h5></li>
+                            <%}else{%>
+                                <br><li class="list-inline-item"><h5></li>
+                                <li class="list-inline-item">티어 기록 없음</h5></li>
+                            <%}%>
+                        </ul>
+                    </strong>
+                    <tbody>
+                        <% if(normalB.records.length==2){%>
+                            <% if((normalB.records[0].stopCount+normalB.records[0].winCount+normalB.records[0].loseCount)!=0){%>
+                            <tr>
+                                <td>공식전: </td>
+                                <% var winrate =((normalB.records[0].winCount/(normalB.records[0].winCount+normalB.records[0].loseCount))*100).toFixed(1); %>
+                                <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                (<%=normalB.records[0].winCount %>승 <%=normalB.records[0].loseCount %>패 <%=normalB.records[0].stopCount %>중단)</td>
+                            </tr><br>
+                            <%}else{%>
+                                <tr>
+                                    <td>공식전 기록 없음</td>
+                                   </tr><br>
+                                <tr>
+                                <%}%>   
+                            <tr>
+                                <td >일반전: </td> 
+                                 <% var winrate =((normalB.records[1].winCount/(normalB.records[1].winCount+normalB.records[1].loseCount))*100).toFixed(1); %>
+                                <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                (<%=normalB.records[1].winCount %>승 <%=normalB.records[1].loseCount %>패 <%=normalB.records[1].stopCount %>중단)</td>
+                            </tr>
+                        <%}else if(normalB.records.length==1){%>
+                            <tr>
+                                <td>공식전 기록 없음</td>
+                               </tr><br>
+                            <tr>
+                            <td class="text-center">일반전: </td> 
+                           <% var winrate =((normalB.records[0].winCount/(normalB.records[0].winCount+normalB.records[0].loseCount))*100).toFixed(1); %>
+                                <td> <% if(winrate=="Infinity"){ %>Perfect!<%}else if(winrate=="NaN"){%> 승률 : 0%<%}else{%> 승률 : <%=winrate%> % <%}%>
+                                (<%=normalB.records[0].winCount %>승 <%=normalB.records[0].loseCount %>패 <%=normalB.records[0].stopCount %>중단)</td>
+                        </tr>  
+                        <%}%><br><br><br>
+                        <strong> 
+                            <table class="table"> 
+                                <thead>   <th class="text-center">포지션</th><th class="text-center">승률</th><th class="text-center">KDA</th>
+                               <th class="text-center">딜량</th><th class="text-center">받은피해</th>
+                                </thead>       
+                                <tbody>
+                                    <% for(var i=0 ; i<totalPosiSortB.length ; i++){%>
+                                        <tr>
+                                            <td class="text-center"><img src="/public/attriImg/posi/<%= totalPosiSortB[i][0]%>.jpg"  width="40" height="40"><br><small><strong><%=totalPosiSortB[i][1]%> 경기</strong></small></td> 
+                                                <td class="text-center"><a data-toggle="tooltip" data-placement="bottom" title ="(<%= totalPosiSortB[i][2]%>승 <%= totalPosiSortB[i][1]- totalPosiSortB[i][2]%>패)">
+                                                <%= ((totalPosiSortB[i][2]/totalPosiSortB[i][1])*100).toFixed(0)%>%</a></td> 
+                                                <td class="text-center"><% var kda =((totalPosiSortB[i][3]+totalPosiSortB[i][5])/totalPosiSortB[i][4]).toFixed(1)%>
+                              <% if(kda=="Infinity"){ %>Perfect!<%}else if(kda=="NaN"){%>0<%}else{%><%=kda%><%}%>
+                              <%var playTime =  (totalPosiSortB[i][6]/totalPosiSortB[i][1]/60).toFixed(0)%>
+                                               
+                                                </td>                                           
+                                                 <td class="text-center"><a data-toggle="tooltip" data-placement="bottom" title ="18분 기준"><%= (totalPosiSortB[i][7]/totalPosiSortB[i][1]/playTime*0.018).toFixed(1) %>K</a></td>
+                                                  <td class="text-center"><a data-toggle="tooltip" data-placement="bottom" title ="18분 기준"><%= (totalPosiSortB[i][8]/totalPosiSortB[i][1]/playTime*0.018).toFixed(1)%>K</a></td>
+                                                 </tr>  
+                                               
+                                    <%}%>
+                                </tbody>
+                              </table></strong>
+    
+                    </tbody>
+                </div>
+            </div>
+ 
+				
+<br><br>
+           <footer style="background-color: #ffffff;">      
+                <a href="http://developers.neople.co.kr" target="_blank"><img src="public/itemImg/기술표기_가로형_color.png" alt="Neople 오픈 API" /> </a>
+                <p>&copy; Company 2020</p>
+            </footer>
+        </div>
+       
+ <script>includeHTML();</script>
+            <script type="text/javascript" src="https://cdn.datatables.net/v/bs4/jq-3.3.1/dt-1.10.20/sp-1.0.1/sl-1.3.1/datatables.min.js"></script>     
+            <script src="/public/request.js"></script>
+        	<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+	        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+            <script src="/public/assets/js/ie-emulation-modes-warning.js"></script>
+            <script src="/public//ie10-viewport-bug-workaround.js"></script>
+            <script src="/public/assets/demo/datatables-demo.js"></script>
+        	<script src="/public/dist/js/scripts.js"></script>   
+    </body>
+</html>
