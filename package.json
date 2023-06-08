@@ -40,7 +40,7 @@
     },
     "dependencies": {
         "async": "^3.2.0",
-        "axios": "^0.19.2",
+        "axios": "^1.4.0",
         "bootstrap": "4.4.1",
         "bootstrap-autocomplete": "^2.3.4",
         "cheerio": "^1.0.0-rc.3",
@@ -60,7 +60,7 @@
     },
     "devDependencies": {
         "autoprefixer": "9.7.4",
-        "browser-sync": "2.26.7",
+        "browser-sync": "2.29.3",
         "chokidar": "3.3.1",
         "concurrently": "5.0.2",
         "postcss": "7.0.26",
