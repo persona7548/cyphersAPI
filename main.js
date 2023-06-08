@@ -23,11 +23,6 @@ app.use(helmet());
 
 app.use('/public', express.static('public'));
 
-var mysql = require('mysql');
-var dbconfig = require('./config/database.js');
-var db = mysql.createConnection(dbconfig);
-db.connect();
-
 app.get('/', function (request, response) {
   sql.index(request, response);});
 
